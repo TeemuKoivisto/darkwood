@@ -184,15 +184,18 @@
   </div>
 </Modal>
 
+<!-- `11-level-up.png`: the same portrait alert as the game-won one, shown after the win dialog -->
 <Modal open={ending === 'level'} label="Level Advancement">
-  <div class="text-dialog">
+  <div class="text-dialog with-picture">
+    <img class="portrait" src="assets/img/portrait-player.png" alt="" />
     <p>
+      Congratulations.<br />
       You advance to level {fight.levelUp?.level}. Your character has gained {fight.levelUp?.gained}
       hit points.
       {#if fight.levelUp?.maxed}<br />Your character has reached the maximum allowed level.{/if}
     </p>
-    <div class="ok"><button class="default" onclick={next}>OK</button></div>
   </div>
+  <div class="ok"><button class="default" onclick={next}>OK</button></div>
 </Modal>
 
 <Modal open={ending === 'won-game'} label="Congratulations">

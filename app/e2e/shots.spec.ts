@@ -183,6 +183,25 @@ test('10 win', async ({ page }) => {
   await shot(page, '10-win')
 })
 
+test('11 level up', async ({ page }) => {
+  await fixRandom(page, 0.5)
+  // 50 xp short of level 14: the Giant Rat's 75 cross the line
+  await patchCharacter(page, {
+    ...VETERAN,
+    level: 13,
+    xp: 1499950,
+    thac0: 8,
+    weapons: [HOLY_AVENGER],
+  })
+  await fightWith(page, 'Rat, Giant')
+  await page.getByRole('button', { name: 'Fight' }).click()
+  await page.getByRole('dialog', { name: 'Victory' }).getByRole('button', { name: 'OK' }).click()
+  await expect(page.getByRole('dialog', { name: 'Level Advancement' })).toContainText(
+    'You advance to level 14.'
+  )
+  await shot(page, '11-level-up')
+})
+
 test('12 death', async ({ page }) => {
   await fixRandom(page, 0.5)
   await patchCharacter(page, { hp: 3 })

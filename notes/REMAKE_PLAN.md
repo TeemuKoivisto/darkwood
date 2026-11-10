@@ -106,9 +106,9 @@ GameSys<{ item: string }>`, `surrender`, each a `GameSys` that runs one round th
       main; or the "not enough gold" alert and the fight continues.
 - [x] Win (`10-win.png`): dialog with `treasure.png`, "You have defeated your opponent." and the
       award line, OK returns to main.
-- [x] Level up (`11-level-up.png` is not captured yet; use `DITL 281`: text + OK): after the win
-      dialog, "You advance to level N. Your character has gained G hit points." and, at 15, the
-      max-level line.
+- [x] Level up (`11-level-up.png`): after the win dialog is dismissed, a portrait alert
+      "Congratulations. You advance to level N. Your character has gained G hit points." and, at
+      15, the max-level line.
 - [x] Death (`12-death.png`): dialog with `reaper.png` and "Sorry... You character has been
       killed fighting in the arena. Better luck next time."; OK starts a new character.
 - [x] Game won (`13-game-won.png`): after killing "Dragon, Red", the Captain of the Guard alert
@@ -132,7 +132,7 @@ GameSys<{ item: string }>`, `surrender`, each a `GameSys` that runs one round th
 ## Task 10 — Finish
 
 - [x] `app/README.md`: how to run, build, where the rules and data come from.
-- [x] `app/e2e/shots.spec.ts` has a step for every screen in `reference/` (01..13 except 11) and
+- [x] `app/e2e/shots.spec.ts` has a step for every screen in `reference/` (01..13) and
       `npm run shots` produces them all. Look at each next to its reference and fix what is off.
 - [x] `app/e2e/game.spec.ts`: one browser run through the whole game: buy a weapon, stay at the
       inn, fight the Giant Rat to the win dialog, surrender once, die once. Passes.
