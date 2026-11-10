@@ -2,7 +2,7 @@
  * Pure rule functions from `notes/rules.md` "Character": tables and derived values. No state,
  * no randomness; the systems in `systems/` apply these to the maps.
  */
-import type { Character, Creature, Weapon } from './types'
+import type { Character, Creature, MagicItem, Weapon } from './types'
 
 export const MAX_LEVEL = 15
 
@@ -68,4 +68,20 @@ export function currentWeapon(c: Character): Weapon | undefined {
 
 export function surrenderPenalty(creature: Creature): number {
   return Math.trunc(creature.gold * 0.1)
+}
+
+/** Magic item limits, `notes/rules.md` "Shops and inn". */
+export const MAX_MAGIC_ITEMS = 10
+export const MAX_WEAPONS = 6
+
+/** What a shop pays for something: half the price, rounded down. */
+export function sellPrice(cost: number): number {
+  return Math.trunc(cost / 2)
+}
+
+/** Charges on a freshly bought copy: wands 10, potions and tomes 1, rings 0 (never used up). */
+export function initialCharges(item: MagicItem): number {
+  if (item.ac_bonus > 0) return 0
+  if (item.attribute_raised > 0) return 1
+  return item.charges
 }

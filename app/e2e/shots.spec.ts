@@ -49,3 +49,16 @@ test('01 main', async ({ page }) => {
   await page.getByRole('button', { name: 'Armorer' }).hover()
   await shot(page, '01-main')
 })
+
+test('02 magic shop', async ({ page }) => {
+  await patchCharacter(page, VETERAN)
+  await page.getByRole('button', { name: 'Magic Item Shop' }).click()
+  const shop = page.getByRole('listbox', { name: 'Items Available' })
+  await shop.getByRole('option', { name: 'Ring of Protection +3' }).click()
+  await page.getByRole('button', { name: 'Buy' }).click()
+  await shop.getByRole('option', { name: 'Wand of Lightning' }).click()
+  await page.getByRole('button', { name: 'Buy' }).click()
+  await shop.getByRole('option', { name: 'Potion of Healing' }).click()
+  await page.getByRole('listbox', { name: 'Character Items' }).getByRole('option').first().click()
+  await shot(page, '02-magic-shop')
+})

@@ -9,6 +9,7 @@
   import type { Screen } from './game/types'
   import Alert from './ui/Alert.svelte'
   import { provideGame, type UiCtx } from './ui/game'
+  import MagicShop from './ui/MagicShop.svelte'
   import MainScreen from './ui/MainScreen.svelte'
   import MenuBar from './ui/MenuBar.svelte'
 
@@ -19,7 +20,9 @@
   // A fresh load with no save (or an unreadable one) starts the fixed character
   if (!data.character) run(newGame, {})
 
-  const SCREENS: Partial<Record<Screen, Component>> = {}
+  const SCREENS: Partial<Record<Screen, Component>> = {
+    'magic-shop': MagicShop,
+  }
   const Current = $derived(SCREENS[data.screen])
 </script>
 

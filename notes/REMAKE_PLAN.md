@@ -42,11 +42,11 @@ Already in place (see `CLAUDE.md` "Architecture"): `game/types.ts`, `game/maps.t
 
 ## Task 2 — Magic Item Shop (`reference/02-magic-shop.png`)
 
-- [ ] `systems/magicShop.ts`: `buyMagicItem: GameSys<{ name: string }>`, `sellMagicItem` per
+- [x] `systems/magicShop.ts`: `buyMagicItem: GameSys<{ name: string }>`, `sellMagicItem` per
       `rules.md` "Shops and inn" (cost <= gold, max 10, no duplicates, only one AC item, sell for
       `cost div 2`, charges initialised 10/1/0). Refusals return `{ err }` with the alert text. Tests
       in `systems/__tests__/magicShop.test.ts` via `bootGame`.
-- [ ] `ui/MagicShop.svelte`: two lists (Items Available / Character Items) with single selection,
+- [x] `ui/MagicShop.svelte`: two lists (Items Available / Character Items) with single selection,
       Cost and Sell fields for the selected rows, Buy / Sell / Done buttons, Gold. Buying refreshes
       both lists; failures show the alert.
 
@@ -146,3 +146,4 @@ GameSys<{ item: string }>`, `surrender`, each a `GameSys` that runs one round th
 - Task 0: `main.ts` creates the maps and `GameData` (not `App.svelte`) so the save loads before the first render; `App` receives them as a prop, provides them via context and runs `newGame` when nothing was loaded.
 - Task 0: `state.alert` is derived from a queue, `state.alerts`, so a combat round can show several notices (level drain, magic weapon needed) one after another; `run` appends refusals to it.
 - Task 1: the menus are disabled while a shop, the arena or a fight is open (the original opened those as modal dialogs). The main window has a "Darkwood" title bar like the original window.
+- Task 2: the shop refusal texts were not recovered; they are "Sorry... You do not have enough gold to buy this item." / "...can not carry any more magic items." / "...already own this item." / "...can only own one item that alters your armor class.". Prices are the ones in `tables.json`; the screenshots show different prices (Potion of Healing 100), presumably from the later version that took them.
