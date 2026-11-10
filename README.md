@@ -2,7 +2,11 @@
 
 Darkwood 1.2 by Robert Chancellor, a shareware arena-combat RPG for classic Mac OS.
 
+The original game and its assets are Robert Chancellor's; the notes, tooling and the web remake are MIT-licensed. See `NOTICE.md` and `LICENSE`.
+
 ## Remake
+
+Playable at https://teemukoivisto.github.io/darkwood/ — every push to `main` runs the tests and deploys `app/dist` through `.github/workflows/deploy.yml`.
 
 - `app/` — the web remake, Vite + Svelte 5 + TypeScript, Vitest for the rules, Playwright for browser tests and screenshots. `npm install && npm run dev` at the root (`app` is an npm workspace); `npm run shots` writes one PNG per screen to `app/shots/` for comparing with `reference/`. First time: `npx playwright install chromium`.
 - `notes/REMAKE_PLAN.md` — ordered task list with acceptance criteria; `CLAUDE.md` — conventions for an unattended Claude Code session.

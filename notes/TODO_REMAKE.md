@@ -78,4 +78,6 @@ the emulator, listed bottom to top:
 ## 5. Licensing
 
 Darkwood is shareware by Robert Chancellor (1992), $10 registration requested in the Read Me. The art,
-sounds and text are his. Keeping the remake private is fine; publishing it would warrant asking first.
+sounds and text are his and stay his; the remake is published as a credited, non-commercial
+preservation project, see `NOTICE.md`. A PICO-8 remake, _Siege of Darkwood_ (petpolitics, 2020,
+CC BY-NC-SA), has been public with the same credit since 2020.

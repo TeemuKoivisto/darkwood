@@ -4,6 +4,8 @@ import { defineConfig } from 'vite'
 
 export default defineConfig({
   plugins: [svelte()],
+  // GitHub Pages serves the app under /darkwood/; the deploy workflow sets BASE_PATH
+  base: process.env.BASE_PATH ?? '/',
   // Runes in `.svelte.ts` modules need the client runtime under vitest too
   resolve: process.env.VITEST ? { conditions: ['browser'] } : undefined,
   test: {
