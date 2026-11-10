@@ -8,25 +8,27 @@ build setup are deliberately not covered here.
 ## 1. Reference screenshots
 
 Host screenshots of the Basilisk II window, cropped to the game window (2x Retina, slightly
-smoothed; fine for layout and copy, not for pixel work). Full desktop originals are in
-`reference/raw/`.
+smoothed; fine for layout and copy, not for pixel work). Numbered in implementation order: main
+screen, then the shops bottom-up as they sit on the map, then the arena.
 
 | File | Shows |
 |---|---|
 | 01-main.png | Main window: portrait, name/class, level/XP/HP/AC/gold, six stats, town map with "Click on a building" |
-| 03-opponent.png | "Please Select an Opponent": list + Award Money / XP Value / Surrender Penalty / Magic Weapon Req, Cancel/Fight |
-| 04-combat-start.png | Combat dialog before round 1: both portraits, HP bars, AC / Attacks/Round / Damage/Attack, Fight/Use/Surrender buttons, empty Messages box |
-| 06-win.png | "You have defeated your opponent" treasure dialog over the combat window, which shows the round messages ("You strike first", "You hit 3 time for 39 points.", "The creature missed") |
-| 09-weapons.png | Weapon Shop: available list, owned list, Buy/Sell, Cost/Speed/Damage, Sell For, Gold, Done |
-| 10-armor.png | Armorer: list, Buy, Cost (Trade-In)/AC Adjust, current armor name + icon, Gold, Done |
-| 11-magic-shop.png | Magic Item Shop: available/owned lists, Cost/Sell, Buy/Sell, Gold, Done |
-| 12-inn.png | Inn: "For each night you stay you are healed 1 hit point.", Cancel / Stay 1 Night / Stay Until Healed |
-| 14-magic-items.png | Magic Items picker during combat, Cancel/Use |
-| 16-message-surrender.png | "You pay 2 gold pieces to surrender." alert; combat messages show "You use an item" |
+| 02-magic-shop.png | Magic Item Shop: available/owned lists, Cost/Sell, Buy/Sell, Gold, Done |
+| 03-inn.png | Inn: "For each night you stay you are healed 1 hit point.", Cancel / Stay 1 Night / Stay Until Healed |
+| 04-armorer.png | Armorer: list, Buy, Cost (Trade-In)/AC Adjust, current armor name + icon, Gold, Done |
+| 05-weapon-shop.png | Weapon Shop: available list, owned list, Buy/Sell, Cost/Speed/Damage, Sell For, Gold, Done |
+| 06-opponent.png | "Please Select an Opponent": list + Award Money / XP Value / Surrender Penalty / Magic Weapon Req, Cancel/Fight |
+| 07-combat-start.png | Combat dialog before round 1: both portraits, HP bars, AC / Attacks/Round / Damage/Attack, Fight/Use/Surrender buttons, empty Messages box |
+| 08-magic-items.png | Magic Items picker during combat (Use button), Cancel/Use |
+| 09-surrender.png | "You pay 2 gold pieces to surrender." alert; combat messages show "You use an item" |
+| 10-win.png | "You have defeated your opponent" treasure dialog over the combat window, which shows the round messages ("You strike first", "You hit 3 time for 39 points.", "The creature missed") |
+| 11-level-up.png | **Still to add.** Level Advancement dialog (needs a fight that crosses a level boundary) |
+| 12-death.png | "Sorry... You character has been killed fighting in the arena. Better luck next time." alert with reaper picture, over the combat window ("The creature strikes first", "You missed", "The creature hit 1 time for 4 points.") |
+| 13-game-won.png | "Congratulations. You have been awarded the position of Captain of the Guard. You have won the game." alert with portrait, shown after beating the top creature |
 
-Still worth grabbing if convenient (not blocking): Level Advancement dialog, Character Death dialog
-(fight the Red Dragon at level 1), Equipment dialog, a "Sorry..." message when buying something too
-expensive, the New Game abandon-character confirmation.
+Not captured: the plain alerts ("Sorry..." when too poor, abandon-character confirmation), which
+are just text in a standard alert box.
 
 Observed from the shots: the main window has no message box; combat results go into the Messages
 box of the combat dialog. Menu bar is File / Edit / Character (Equipment..., Magic Items...) /
