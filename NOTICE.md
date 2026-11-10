@@ -14,8 +14,6 @@ Nothing in this repository claims any right to that material, and none of it is 
 MIT license below. If you are the rights holder and want any of it removed, open an issue or
 contact the repository owner and it will be taken down.
 
-Another remake, _Siege of Darkwood_ by petpolitics (PICO-8, 2020), credits the same original.
-
 ## This repository
 
 The extraction notes (`notes/`), the recovered rules and data tables, the tooling, and the web
