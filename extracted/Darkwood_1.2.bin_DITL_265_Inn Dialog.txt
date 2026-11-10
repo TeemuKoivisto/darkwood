@@ -1,0 +1,13 @@
+# 4 entries
+# item 0: BUTTON (0x04) enabled
+#   bounds: x1=182 y1=96 x2=307 y2=116
+#   text: "Stay Until Healed"
+# item 1: BUTTON (0x04) enabled
+#   bounds: x1=81 y1=96 x2=171 y2=116
+#   text: "Stay 1 Night"
+# item 2: BUTTON (0x04) enabled
+#   bounds: x1=10 y1=96 x2=70 y2=116
+#   text: "Cancel"
+# item 3: TEXT (0x88) disabled
+#   bounds: x1=53 y1=34 x2=262 y2=73
+#   text: "For each night you stay you are healed 1 hit point."

@@ -1,0 +1,2543 @@
+# near model CODE resource
+# jump table entries: 26-79 (54 of them)
+export_26:
+00000000  302F 0004                move.w     D0, [A7 + 0x04]
+00000004  43EF 0006                lea.l      A1, [A7 + 0x06]
+00000008  3200                     move.w     D1, D0
+0000000A  E549                     lsl.w      D1, 2
+0000000C  D2C1                     adda.w     A1, D1
+0000000E  2051                     movea.l    A0, [A1]
+00000010  2297                     move.l     [A1], [A7]
+00000012  48E7 00E0                movem.l    -[A7], (A2-A0)
+00000016  7200                     moveq.l    D1, 0
+00000018  5248                     addq.w     A0, 1
+0000001A  601A                     bra        +0x1C /* 00000036 */
+label0000001C:
+0000001C  2461                     movea.l    A2, -[A1]
+0000001E  7400                     moveq.l    D2, 0
+00000020  141A                     move.b     D2, [A2]+
+00000022  D202                     add.b      D1, D2
+00000024  640C                     bcc        +0xE /* 00000032 */
+00000026  9401                     sub.b      D2, D1
+00000028  5302                     subq.b     D2, 1
+0000002A  7000                     moveq.l    D0, 0
+0000002C  72FF                     moveq.l    D1, -1
+0000002E  6002                     bra        +0x4 /* 00000032 */
+label00000030:
+00000030  10DA                     move.b     [A0]+, [A2]+
+label00000032:
+00000032  51CA FFFC                dbf        D2, -0x2 /* 00000030 */
+label00000036:
+00000036  51C8 FFE4                dbf        D0, -0x1A /* 0000001C */
+0000003A  4CDF 0700                movem.l    (A0-A2), [A7]+
+0000003E  1081                     move.b     [A0], D1
+00000040  2E49                     movea.l    A7, A1
+00000042  5241                     addq.w     D1, 1
+00000044  2057                     movea.l    A0, [A7]
+00000046  4ED0                     jmp        [A0]
+export_27:
+label00000048:
+00000048  202D 932E                move.l     D0, [A5 - 0x6CD2]
+0000004C  6704                     beq        +0x6 /* 00000052 */
+0000004E  2040                     movea.l    A0, D0
+00000050  4E90                     jsr        [A0]
+label00000052:
+00000052  202D 9724                move.l     D0, [A5 - 0x68DC]
+00000056  6704                     beq        +0x6 /* 0000005C */
+00000058  2040                     movea.l    A0, D0
+0000005A  4E90                     jsr        [A0]
+label0000005C:
+0000005C  A9F4                     syscall    ExitToShell /* () -> void */
+export_28:
+0000005E  4EBA 004E                jsr        [PC + 0x4E] /* 000000AE */
+00000062  2C4D                     movea.l    A6, A5
+00000064  536D FFDE                subq.w     [A5 - 0x22], 1
+00000068  3B7C 0002 FFDC           move.w     [A5 - 0x24], 0x02
+0000006E  426D FFD6                clr.w      [A5 - 0x2A]
+00000072  42AD 932E                clr.l      [A5 - 0x6CD2]
+00000076  42AD 9332                clr.l      [A5 - 0x6CCE]
+0000007A  42AD 9336                clr.l      [A5 - 0x6CCA]
+0000007E  42AD 933A                clr.l      [A5 - 0x6CC6]
+00000082  426D 936A                clr.w      [A5 - 0x6C96]
+00000086  426D 936C                clr.w      [A5 - 0x6C94]
+0000008A  50ED 936E                st         [A5 - 0x6C92]
+0000008E  50ED 936F                st         [A5 - 0x6C91]
+00000092  51ED 9370                sf         [A5 - 0x6C90]
+00000096  51ED 9371                sf         [A5 - 0x6C8F]
+0000009A  42AD 9724                clr.l      [A5 - 0x68DC]
+0000009E  303C 07D0                move.w     D0, 0x07D0
+000000A2  4EBA 0E52                jsr        [PC + 0x0E52] /* 00000EF6 */
+000000A6  2050                     movea.l    A0, [A0]
+000000A8  2B48 932A                move.l     [A5 - 0x6CD6], A0
+000000AC  4E75                     rts
+fn000000AE:
+000000AE  598F                     subq.l     A7, 4
+000000B0  2F3C 5A45 524F           move.l     -[A7], 0x5A45524F /* 'ZERO' */
+000000B6  4267                     clr.w      -[A7]
+000000B8  A9A0                     syscall    GetResource /* (ResType theType @ [A7 + 2], short theID @ [A7]) -> Handle @ [A7] */
+000000BA  2017                     move.l     D0, [A7]
+000000BC  670E                     beq        +0x10 /* 000000CC */
+000000BE  4267                     clr.w      -[A7]
+000000C0  2F00                     move.l     -[A7], D0
+000000C2  A9A4                     syscall    HomeResFile /* (Handle theResource @ [A7]) -> short @ [A7] */
+000000C4  301F                     move.w     D0, [A7]+
+000000C6  B078 0900                cmp.w      D0, [0x00000900] /* CurApRefNum */
+000000CA  6704                     beq        +0x6 /* 000000D0 */
+label000000CC:
+000000CC  588F                     addq.l     A7, 4
+000000CE  4E75                     rts
+label000000D0:
+000000D0  2457                     movea.l    A2, [A7]
+000000D2  598F                     subq.l     A7, 4
+000000D4  2F3C 4441 5441           move.l     -[A7], 0x44415441 /* 'DATA' */
+000000DA  4267                     clr.w      -[A7]
+000000DC  A9A0                     syscall    GetResource /* (ResType theType @ [A7 + 2], short theID @ [A7]) -> Handle @ [A7] */
+000000DE  2057                     movea.l    A0, [A7]
+000000E0  2050                     movea.l    A0, [A0]
+000000E2  2278 0908                movea.l    A1, [0x00000908] /* CurStackBase */
+000000E6  2452                     movea.l    A2, [A2]
+000000E8  600E                     bra        +0x10 /* 000000F8 */
+label000000EA:
+000000EA  32D8                     move.w     [A1]+, [A0]+
+000000EC  660A                     bne        +0xC /* 000000F8 */
+000000EE  321A                     move.w     D1, [A2]+
+000000F0  6002                     bra        +0x4 /* 000000F4 */
+label000000F2:
+000000F2  4259                     clr.w      [A1]+
+label000000F4:
+000000F4  51C9 FFFC                dbf        D1, -0x2 /* 000000F2 */
+label000000F8:
+000000F8  BBC9                     cmpa.l     A5, A1
+000000FA  66EE                     bne        -0x10 /* 000000EA */
+000000FC  A9A3                     syscall    ReleaseResource /* (Handle theResource @ [A7]) -> void */
+000000FE  A9A3                     syscall    ReleaseResource /* (Handle theResource @ [A7]) -> void */
+00000100  598F                     subq.l     A7, 4
+00000102  2F3C 4452 454C           move.l     -[A7], 0x4452454C /* 'DREL' */
+00000108  4267                     clr.w      -[A7]
+0000010A  A9A0                     syscall    GetResource /* (ResType theType @ [A7 + 2], short theID @ [A7]) -> Handle @ [A7] */
+0000010C  2057                     movea.l    A0, [A7]
+0000010E  A025                     syscall    GetHandleSize /* (Handle h @ A0) -> Size @ D0 */
+00000110  2050                     movea.l    A0, [A0]
+00000112  E240                     asr.w      D0, 1
+00000114  240D                     move.l     D2, A5
+00000116  6006                     bra        +0x8 /* 0000011E */
+label00000118:
+00000118  3218                     move.w     D1, [A0]+
+0000011A  D5B5 1000                add.l      [A5 + D1.w], D2
+label0000011E:
+0000011E  51C8 FFF8                dbf        D0, -0x6 /* 00000118 */
+00000122  A9A3                     syscall    ReleaseResource /* (Handle theResource @ [A7]) -> void */
+00000124  4E75                     rts
+export_29:
+00000126  487A 0010                pea.l      [PC + 0x10] /* 0x00000138; value 0x0D '\r'; cstring "" */
+label0000012A:
+0000012A  3F3C 0001                move.w     -[A7], 0x01
+0000012E  A9EB                     syscall    FOCLASS
+00000130  4E75                     rts
+00000132  487A 0006                pea.l      [PC + 0x06] /* 0x0000013A; value 0x000D486D '\rHm'; cstring "" */
+00000136  60F2                     bra        -0xC /* 0000012A */
+00000138  0000 000D                ori.b      D0, 0x0D /* '\r' */
+export_30:
+0000013C  486D FFCA                pea.l      [A5 - 0x36]
+00000140  A86E                     syscall    InitGraf /* (void* globalPtr @ [A7]) -> void */
+00000142  A8FE                     syscall    InitFonts /* () -> void */
+00000144  A912                     syscall    InitWindows /* () -> void */
+00000146  A930                     syscall    InitMenus /* () -> void */
+00000148  A9CC                     syscall    TEInit /* () -> void */
+0000014A  487A 001C                pea.l      [PC + 0x1C] /* 0x00000168; value 0xA9F47200 */
+0000014E  A97B                     syscall    InitDialogs /* (void* ignored @ [A7]) -> void */
+00000150  204F                     movea.l    A0, A7
+00000152  226D 932A                movea.l    A1, [A5 - 0x6CD6]
+00000156  91D1                     suba.l     A0, [A1]
+00000158  A02D                     syscall    SetApplLimit /* (void* zoneLimit @ A0) -> OSErr @ D0 */
+0000015A  4EBA 14E8                jsr        [PC + 0x14E8] /* 00001644 */
+0000015E  7209                     moveq.l    D1, 9
+label00000160:
+00000160  A036                     syscall    MoreMasters /* () -> OSErr @ D0 */
+00000162  51C9 FFFC                dbf        D1, -0x2 /* 00000160 */
+00000166  4E75                     rts
+00000168  A9F4                     syscall    ExitToShell /* () -> void */
+export_31:
+0000016A  7200                     moveq.l    D1, 0
+0000016C  6002                     bra        +0x4 /* 00000170 */
+export_32:
+0000016E  72FF                     moveq.l    D1, -1
+label00000170:
+00000170  4E56 FFF4                link       A6, -0x0000000C
+00000174  486E FFF4                pea.l      [A6 - 0x0C]
+00000178  3F3C 0017                move.w     -[A7], 0x17
+0000017C  A9EB                     syscall    FOCLASS
+0000017E  3F3C 6000                move.w     -[A7], 0x6000 /* '`\0' */
+00000182  4857                     pea.l      [A7]
+00000184  3F3C 0001                move.w     -[A7], 0x01
+00000188  A9EB                     syscall    FOCLASS
+0000018A  544F                     addq.w     A7, 2
+0000018C  41EE FFF6                lea.l      A0, [A6 - 0x0A]
+00000190  226E 0008                movea.l    A1, [A6 + 0x08]
+00000194  20D9                     move.l     [A0]+, [A1]+
+00000196  20D9                     move.l     [A0]+, [A1]+
+00000198  3091                     move.w     [A0], [A1]
+0000019A  5148                     subq.w     A0, 8
+0000019C  43EE 000C                lea.l      A1, [A6 + 0x0C]
+000001A0  613E                     bsr        +0x40 /* 000001E0 */
+000001A2  3F3C 0004                move.w     -[A7], 0x04
+000001A6  4857                     pea.l      [A7]
+000001A8  3F3C 001B                move.w     -[A7], 0x1B
+000001AC  A9EB                     syscall    FOCLASS
+000001AE  C21F                     and.b      D1, [A7]+
+000001B0  671C                     beq        +0x1E /* 000001CE */
+000001B2  7200                     moveq.l    D1, 0
+000001B4  0890 0007                bclr       [A0], 0x07
+000001B8  6704                     beq        +0x6 /* 000001BE */
+000001BA  123C 0080                move.b     D1, 0x80
+label000001BE:
+000001BE  487A 002C                pea.l      [PC + 0x2C] /* 0x000001EC; value 0x3F000000 '?\0\0\0'; cstring "?" */
+000001C2  4850                     pea.l      [A0]
+000001C4  3F3C 1000                move.w     -[A7], 0x1000
+000001C8  A9EB                     syscall    FOCLASS
+000001CA  8310                     or.b       [A0], D1
+000001CC  6112                     bsr        +0x14 /* 000001E0 */
+label000001CE:
+000001CE  486E FFF4                pea.l      [A6 - 0x0C]
+000001D2  3F3C 0019                move.w     -[A7], 0x19
+000001D6  A9EB                     syscall    FOCLASS
+000001D8  4E5E                     unlink     A6
+000001DA  205F                     movea.l    A0, [A7]+
+000001DC  584F                     addq.w     A7, 4
+000001DE  4ED0                     jmp        [A0]
+fn000001E0:
+000001E0  4850                     pea.l      [A0]
+000001E2  4851                     pea.l      [A1]
+000001E4  3F3C 2810                move.w     -[A7], 0x2810
+000001E8  A9EB                     syscall    FOCLASS
+000001EA  4E75                     rts
+000001EC  3F00                     move.w     -[A7], D0
+000001EE  0000 598F                ori.b      D0, 0x598F
+// begin alternate branch 000001F0-000001F2
+fn000001F0:
+000001F0  598F                     subq.l     A7, 4
+// end alternate branch 000001F0-000001F2
+fn000001F0: // (misaligned)
+000001F2  4EBA 05C4                jsr        [PC + 0x05C4] /* 000007B8 */
+000001F6  2F17                     move.l     -[A7], [A7]
+000001F8  2F17                     move.l     -[A7], [A7]
+000001FA  2F17                     move.l     -[A7], [A7]
+000001FC  A915                     syscall    ShowWindow /* (WindowRef window @ [A7]) -> void */
+000001FE  A91F                     syscall    SelectWindow /* (WindowRef window @ [A7]) -> void */
+00000200  A873                     syscall    SetPort /* (GrafPtr port @ [A7]) -> void */
+00000202  4EBA 0060                jsr        [PC + 0x60] /* 00000264 */
+00000206  205F                     movea.l    A0, [A7]+
+00000208  4ED0                     jmp        [A0]
+fn0000020A:
+0000020A  6106                     bsr        +0x8 /* 00000212 */
+0000020C  0454 6578                subi.w     [A4], 0x6578 /* 'ex' */
+00000210  7400                     moveq.l    D2, 0
+fn00000212:
+00000212  201F                     move.l     D0, [A7]+
+00000214  4E75                     rts
+fn00000216:
+00000216  4E56 0000                link       A6, 0x00000000
+0000021A  48E7 0118                movem.l    -[A7], (A4-A3, D7)
+0000021E  286E 0008                movea.l    A4, [A6 + 0x08]
+00000222  266C 0098                movea.l    A3, [A4 + 0x98]
+00000226  4267                     clr.w      -[A7]
+00000228  2F2B 0008                move.l     -[A7], [A3 + 0x08]
+0000022C  A960                     syscall    GetControlValue /* (ControlRef theControl @ [A7]) -> SInt16 @ [A7] */
+0000022E  301F                     move.w     D0, [A7]+
+00000230  322B 000E                move.w     D1, [A3 + 0x0E]
+00000234  9240                     sub.w      D1, D0
+00000236  3E01                     move.w     D7, D1
+00000238  4A47                     tst.w      D7
+0000023A  671A                     beq        +0x1C /* 00000256 */
+0000023C  9F6B 000E                sub.w      [A3 + 0x0E], D7
+00000240  206B 0004                movea.l    A0, [A3 + 0x04]
+00000244  2050                     movea.l    A0, [A0]
+00000246  3028 0018                move.w     D0, [A0 + 0x18]
+0000024A  C1C7                     muls.w     D0, D7
+0000024C  4267                     clr.w      -[A7]
+0000024E  3F00                     move.w     -[A7], D0
+00000250  2F2B 0004                move.l     -[A7], [A3 + 0x04]
+00000254  A9DD                     syscall    TEScroll /* (short dh @ [A7 + 6], short dv @ [A7 + 4], TEHandle hTE @ [A7]) -> void */
+label00000256:
+00000256  4CDF 1880                movem.l    (D7, A3-A4), [A7]+
+0000025A  4E5E                     unlink     A6
+0000025C  205F                     movea.l    A0, [A7]+
+0000025E  4FEF 0004                lea.l      A7, [A7 + 0x04]
+00000262  4ED0                     jmp        [A0]
+fn00000264:
+00000264  4E56 FFE4                link       A6, -0x0000001C
+00000268  48E7 0038                movem.l    -[A7], (A4-A2)
+0000026C  286E 0008                movea.l    A4, [A6 + 0x08]
+00000270  246C 0098                movea.l    A2, [A4 + 0x98]
+00000274  4267                     clr.w      -[A7]
+00000276  486E FFF0                pea.l      [A6 - 0x10]
+0000027A  A911                     syscall    CheckUpdate /* (EventRecord* theEvent @ [A7]) -> Boolean @ [A7] */
+0000027C  101F                     move.b     D0, [A7]+
+0000027E  4A00                     tst.b      D0
+00000280  6700 0084                beq        +0x86 /* 00000306 */
+00000284  B9EE FFF2                cmpa.l     A4, [A6 - 0x0E]
+00000288  6600 007C                bne        +0x7E /* 00000306 */
+0000028C  486D 942C                pea.l      [A5 - 0x6BD4]
+00000290  A874                     syscall    GetPort /* (GrafPtr* port @ [A7]) -> void */
+00000292  2F0C                     move.l     -[A7], A4
+00000294  A873                     syscall    SetPort /* (GrafPtr port @ [A7]) -> void */
+00000296  42A7                     clr.l      -[A7]
+00000298  A8D8                     syscall    NewRgn /* () -> RgnHandle @ [A7] */
+0000029A  205F                     movea.l    A0, [A7]+
+0000029C  2648                     movea.l    A3, A0
+0000029E  2F0B                     move.l     -[A7], A3
+000002A0  A87A                     syscall    GetClip /* (RgnHandle rgn @ [A7]) -> void */
+000002A2  2F0C                     move.l     -[A7], A4
+000002A4  A922                     syscall    BeginUpdate /* (WindowRef window @ [A7]) -> void */
+000002A6  206A 0004                movea.l    A0, [A2 + 0x04]
+000002AA  2050                     movea.l    A0, [A0]
+000002AC  4868 0008                pea.l      [A0 + 0x08]
+000002B0  A8A3                     syscall    EraseRect /* (const Rect* r @ [A7]) -> void */
+000002B2  206A 0004                movea.l    A0, [A2 + 0x04]
+000002B6  2050                     movea.l    A0, [A0]
+000002B8  4868 0008                pea.l      [A0 + 0x08]
+000002BC  2F2A 0004                move.l     -[A7], [A2 + 0x04]
+000002C0  A9D3                     syscall    TEUpdate /* (const Rect* rUpdate @ [A7 + 4], TEHandle hTE @ [A7]) -> void */
+000002C2  41EE FFE8                lea.l      A0, [A6 - 0x18]
+000002C6  43EC 0010                lea.l      A1, [A4 + 0x10]
+000002CA  20D9                     move.l     [A0]+, [A1]+
+000002CC  20D9                     move.l     [A0]+, [A1]+
+000002CE  302E FFEE                move.w     D0, [A6 - 0x12]
+000002D2  0640 FFF1                addi.w     D0, 0xFFF1
+000002D6  3D40 FFEA                move.w     [A6 - 0x16], D0
+000002DA  486E FFE8                pea.l      [A6 - 0x18]
+000002DE  A87B                     syscall    ClipRect /* (const Rect* r @ [A7]) -> void */
+000002E0  2F0C                     move.l     -[A7], A4
+000002E2  A904                     syscall    DrawGrowIcon /* (WindowRef window @ [A7]) -> void */
+000002E4  2F0B                     move.l     -[A7], A3
+000002E6  A879                     syscall    SetClip /* (RgnHandle rgn @ [A7]) -> void */
+000002E8  2F0B                     move.l     -[A7], A3
+000002EA  A8D9                     syscall    DisposeRgn /* (RgnHandle rgn @ [A7]) -> void */
+000002EC  2F0C                     move.l     -[A7], A4
+000002EE  A969                     syscall    DrawControls /* (WindowRef theWindow @ [A7]) -> void */
+000002F0  B9F8 09D6                cmpa.l     A4, [0x000009D6] /* WindowList */
+000002F4  6606                     bne        +0x8 /* 000002FC */
+000002F6  2F2A 0004                move.l     -[A7], [A2 + 0x04]
+000002FA  A9D8                     syscall    TEActivate /* (TEHandle hTE @ [A7]) -> void */
+label000002FC:
+000002FC  2F0C                     move.l     -[A7], A4
+000002FE  A923                     syscall    EndUpdate /* (WindowRef window @ [A7]) -> void */
+00000300  2F2D 942C                move.l     -[A7], [A5 - 0x6BD4]
+00000304  A873                     syscall    SetPort /* (GrafPtr port @ [A7]) -> void */
+label00000306:
+00000306  4CDF 1C00                movem.l    (A2-A4), [A7]+
+0000030A  4E5E                     unlink     A6
+0000030C  205F                     movea.l    A0, [A7]+
+0000030E  4FEF 0004                lea.l      A7, [A7 + 0x04]
+00000312  4ED0                     jmp        [A0]
+fn00000314:
+00000314  4E56 FFF4                link       A6, -0x0000000C
+00000318  48E7 0338                movem.l    -[A7], (A4-A2, D7-D6)
+0000031C  286E 0008                movea.l    A4, [A6 + 0x08]
+00000320  266C 0098                movea.l    A3, [A4 + 0x98]
+00000324  486C 0010                pea.l      [A4 + 0x10]
+00000328  A87B                     syscall    ClipRect /* (const Rect* r @ [A7]) -> void */
+0000032A  2D6B 0008 FFFC           move.l     [A6 - 0x04], [A3 + 0x08]
+00000330  6700 008A                beq        +0x8C /* 000003BC */
+00000334  302C 0016                move.w     D0, [A4 + 0x16]
+00000338  5240                     addq.w     D0, 1
+0000033A  3D40 FFFA                move.w     [A6 - 0x06], D0
+0000033E  302C 0016                move.w     D0, [A4 + 0x16]
+00000342  0640 FFF1                addi.w     D0, 0xFFF1
+00000346  3D40 FFF6                move.w     [A6 - 0x0A], D0
+0000034A  302C 0014                move.w     D0, [A4 + 0x14]
+0000034E  0640 FFF2                addi.w     D0, 0xFFF2
+00000352  3D40 FFF8                move.w     [A6 - 0x08], D0
+00000356  70FF                     moveq.l    D0, -1
+00000358  3D40 FFF4                move.w     [A6 - 0x0C], D0
+0000035C  206E FFFC                movea.l    A0, [A6 - 0x04]
+00000360  2050                     movea.l    A0, [A0]
+00000362  5088                     addq.l     A0, 8
+00000364  43EE FFF4                lea.l      A1, [A6 - 0x0C]
+00000368  20D9                     move.l     [A0]+, [A1]+
+0000036A  20D9                     move.l     [A0]+, [A1]+
+0000036C  206B 0004                movea.l    A0, [A3 + 0x04]
+00000370  2450                     movea.l    A2, [A0]
+00000372  356E FFF6 000E           move.w     [A2 + 0x0E], [A6 - 0x0A]
+00000378  356C 0014 000C           move.w     [A2 + 0x0C], [A4 + 0x14]
+0000037E  356E FFF6 0006           move.w     [A2 + 0x06], [A6 - 0x0A]
+00000384  2F2B 0004                move.l     -[A7], [A3 + 0x04]
+00000388  A9D0                     syscall    TECalText /* (TEHandle hTE @ [A7]) -> void */
+0000038A  302A 000C                move.w     D0, [A2 + 0x0C]
+0000038E  906A 0008                sub.w      D0, [A2 + 0x08]
+00000392  48C0                     ext.l      D0
+00000394  81EA 0018                divs.w     D0, [A2 + 0x18]
+00000398  3E00                     move.w     D7, D0
+0000039A  3740 0010                move.w     [A3 + 0x10], D0
+0000039E  7C00                     moveq.l    D6, 0
+000003A0  BE6A 005E                cmp.w      D7, [A2 + 0x5E]
+000003A4  6C08                     bge        +0xA /* 000003AE */
+000003A6  302A 005E                move.w     D0, [A2 + 0x5E]
+000003AA  9047                     sub.w      D0, D7
+000003AC  3C00                     move.w     D6, D0
+label000003AE:
+000003AE  2F2E FFFC                move.l     -[A7], [A6 - 0x04]
+000003B2  3F06                     move.w     -[A7], D6
+000003B4  A965                     syscall    SetControlMaximum /* (ControlRef theControl @ [A7 + 2], SInt16 newMaximum @ [A7]) -> void */
+000003B6  2F2E FFFC                move.l     -[A7], [A6 - 0x04]
+000003BA  A96D                     syscall    Draw1Control /* (ControlRef theControl @ [A7]) -> void */
+label000003BC:
+000003BC  206B 0004                movea.l    A0, [A3 + 0x04]
+000003C0  2450                     movea.l    A2, [A0]
+000003C2  302A 0018                move.w     D0, [A2 + 0x18]
+000003C6  C1C7                     muls.w     D0, D7
+000003C8  D06A 0008                add.w      D0, [A2 + 0x08]
+000003CC  3540 000C                move.w     [A2 + 0x0C], D0
+000003D0  41EE FFF4                lea.l      A0, [A6 - 0x0C]
+000003D4  43EA 0008                lea.l      A1, [A2 + 0x08]
+000003D8  20D9                     move.l     [A0]+, [A1]+
+000003DA  20D9                     move.l     [A0]+, [A1]+
+000003DC  3D6E FFF8 FFF4           move.w     [A6 - 0x0C], [A6 - 0x08]
+000003E2  206D FFCA                movea.l    A0, [A5 - 0x36]
+000003E6  3D68 0014 FFF8           move.w     [A6 - 0x08], [A0 + 0x14]
+000003EC  486E FFF4                pea.l      [A6 - 0x0C]
+000003F0  A8A3                     syscall    EraseRect /* (const Rect* r @ [A7]) -> void */
+000003F2  4CDF 1CC0                movem.l    (D6-D7, A2-A4), [A7]+
+000003F6  4E5E                     unlink     A6
+000003F8  4E75                     rts
+fn000003FA:
+000003FA  4E56 0000                link       A6, 0x00000000
+000003FE  48E7 0018                movem.l    -[A7], (A4-A3)
+00000402  206E 0008                movea.l    A0, [A6 + 0x08]
+00000406  2868 0098                movea.l    A4, [A0 + 0x98]
+0000040A  4AAC 0008                tst.l      [A4 + 0x08]
+0000040E  6738                     beq        +0x3A /* 00000448 */
+00000410  42A7                     clr.l      -[A7]
+00000412  A8D8                     syscall    NewRgn /* () -> RgnHandle @ [A7] */
+00000414  205F                     movea.l    A0, [A7]+
+00000416  2648                     movea.l    A3, A0
+00000418  4850                     pea.l      [A0]
+0000041A  A87A                     syscall    GetClip /* (RgnHandle rgn @ [A7]) -> void */
+0000041C  206C 0008                movea.l    A0, [A4 + 0x08]
+00000420  2050                     movea.l    A0, [A0]
+00000422  4868 0008                pea.l      [A0 + 0x08]
+00000426  A87B                     syscall    ClipRect /* (const Rect* r @ [A7]) -> void */
+00000428  206C 0008                movea.l    A0, [A4 + 0x08]
+0000042C  2050                     movea.l    A0, [A0]
+0000042E  4868 0008                pea.l      [A0 + 0x08]
+00000432  A8A3                     syscall    EraseRect /* (const Rect* r @ [A7]) -> void */
+00000434  206C 0008                movea.l    A0, [A4 + 0x08]
+00000438  2050                     movea.l    A0, [A0]
+0000043A  4868 0008                pea.l      [A0 + 0x08]
+0000043E  A928                     syscall    InvalRect /* (const Rect* badRect @ [A7]) -> void */
+00000440  2F0B                     move.l     -[A7], A3
+00000442  A879                     syscall    SetClip /* (RgnHandle rgn @ [A7]) -> void */
+00000444  2F0B                     move.l     -[A7], A3
+00000446  A8D9                     syscall    DisposeRgn /* (RgnHandle rgn @ [A7]) -> void */
+label00000448:
+00000448  4CDF 1800                movem.l    (A3-A4), [A7]+
+0000044C  4E5E                     unlink     A6
+0000044E  4E75                     rts
+00000450  4E56 0000                link       A6, 0x00000000
+00000454  48E7 0038                movem.l    -[A7], (A4-A2)
+00000458  266E 0008                movea.l    A3, [A6 + 0x08]
+0000045C  286E 000C                movea.l    A4, [A6 + 0x0C]
+00000460  246C 0098                movea.l    A2, [A4 + 0x98]
+00000464  486D 942C                pea.l      [A5 - 0x6BD4]
+00000468  A874                     syscall    GetPort /* (GrafPtr* port @ [A7]) -> void */
+0000046A  2F0C                     move.l     -[A7], A4
+0000046C  A873                     syscall    SetPort /* (GrafPtr port @ [A7]) -> void */
+0000046E  2F0C                     move.l     -[A7], A4
+00000470  3F2B 0002                move.w     -[A7], [A3 + 0x02]
+00000474  3F13                     move.w     -[A7], [A3]
+00000476  4267                     clr.w      -[A7]
+00000478  A91B                     syscall    MoveWindow /* (WindowRef window @ [A7 + 6], short hGlobal @ [A7 + 4], short vGlobal @ [A7 + 2], Boolean front @ [A7]) -> void */
+0000047A  2F0C                     move.l     -[A7], A4
+0000047C  4EBA FF7C                jsr        [PC - 0x84] /* 000003FA */
+00000480  588F                     addq.l     A7, 4
+00000482  302B 0006                move.w     D0, [A3 + 0x06]
+00000486  906B 0002                sub.w      D0, [A3 + 0x02]
+0000048A  322B 0004                move.w     D1, [A3 + 0x04]
+0000048E  9253                     sub.w      D1, [A3]
+00000490  2F0C                     move.l     -[A7], A4
+00000492  3F00                     move.w     -[A7], D0
+00000494  3F01                     move.w     -[A7], D1
+00000496  1F3C 0001                move.b     -[A7], 0x01
+0000049A  A91D                     syscall    SizeWindow /* (WindowRef window @ [A7 + 6], short w @ [A7 + 4], short h @ [A7 + 2], Boolean fUpdate @ [A7]) -> void */
+0000049C  2F0C                     move.l     -[A7], A4
+0000049E  4EBA FE74                jsr        [PC - 0x018C] /* 00000314 */
+000004A2  588F                     addq.l     A7, 4
+000004A4  2F0C                     move.l     -[A7], A4
+000004A6  4EBA FD6E                jsr        [PC - 0x0292] /* 00000216 */
+000004AA  2F0C                     move.l     -[A7], A4
+000004AC  4EBA FF4C                jsr        [PC - 0xB4] /* 000003FA */
+000004B0  588F                     addq.l     A7, 4
+000004B2  486C 0010                pea.l      [A4 + 0x10]
+000004B6  A928                     syscall    InvalRect /* (const Rect* badRect @ [A7]) -> void */
+000004B8  2F2D 942C                move.l     -[A7], [A5 - 0x6BD4]
+000004BC  A873                     syscall    SetPort /* (GrafPtr port @ [A7]) -> void */
+000004BE  4CDF 1C00                movem.l    (A2-A4), [A7]+
+000004C2  4E5E                     unlink     A6
+000004C4  205F                     movea.l    A0, [A7]+
+000004C6  4FEF 0008                lea.l      A7, [A7 + 0x08]
+000004CA  4ED0                     jmp        [A0]
+fn000004CC:
+000004CC  4E56 FFF0                link       A6, -0x00000010
+000004D0  48E7 0018                movem.l    -[A7], (A4-A3)
+000004D4  41ED 940E                lea.l      A0, [A5 - 0x6BF2]
+000004D8  2848                     movea.l    A4, A0
+000004DA  28AE 0008                move.l     [A4], [A6 + 0x08]
+000004DE  206E 0008                movea.l    A0, [A6 + 0x08]
+000004E2  43EE FFF8                lea.l      A1, [A6 - 0x08]
+000004E6  41E8 0010                lea.l      A0, [A0 + 0x10]
+000004EA  22D8                     move.l     [A1]+, [A0]+
+000004EC  22D8                     move.l     [A1]+, [A0]+
+000004EE  7005                     moveq.l    D0, 5
+000004F0  3D40 FFF8                move.w     [A6 - 0x08], D0
+000004F4  7006                     moveq.l    D0, 6
+000004F6  3D40 FFFA                move.w     [A6 - 0x06], D0
+000004FA  066E FFF0 FFFE           addi.w     [A6 - 0x02], 0xFFF0
+00000500  426C 000E                clr.w      [A4 + 0x0E]
+00000504  396E 000C 000C           move.w     [A4 + 0x0C], [A6 + 0x0C]
+0000050A  42AC 001A                clr.l      [A4 + 0x1A]
+0000050E  41EE FFF0                lea.l      A0, [A6 - 0x10]
+00000512  43EE FFF8                lea.l      A1, [A6 - 0x08]
+00000516  20D9                     move.l     [A0]+, [A1]+
+00000518  20D9                     move.l     [A0]+, [A1]+
+0000051A  3D7C 7FFF FFF4           move.w     [A6 - 0x0C], 0x7FFF
+00000520  42A7                     clr.l      -[A7]
+00000522  486E FFF0                pea.l      [A6 - 0x10]
+00000526  486E FFF8                pea.l      [A6 - 0x08]
+0000052A  A9D2                     syscall    TENew /* (const Rect* destRect @ [A7 + 4], const Rect* viewRect @ [A7]) -> TEHandle @ [A7] */
+0000052C  205F                     movea.l    A0, [A7]+
+0000052E  2648                     movea.l    A3, A0
+00000530  2948 0004                move.l     [A4 + 0x04], A0
+00000534  206C 0004                movea.l    A0, [A4 + 0x04]
+00000538  2050                     movea.l    A0, [A0]
+0000053A  43EE FFF8                lea.l      A1, [A6 - 0x08]
+0000053E  5088                     addq.l     A0, 8
+00000540  22D8                     move.l     [A1]+, [A0]+
+00000542  22D8                     move.l     [A1]+, [A0]+
+00000544  302E FFFC                move.w     D0, [A6 - 0x04]
+00000548  906E FFF8                sub.w      D0, [A6 - 0x08]
+0000054C  2053                     movea.l    A0, [A3]
+0000054E  48C0                     ext.l      D0
+00000550  81E8 0018                divs.w     D0, [A0 + 0x18]
+00000554  3940 0010                move.w     [A4 + 0x10], D0
+00000558  2053                     movea.l    A0, [A3]
+0000055A  3028 0018                move.w     D0, [A0 + 0x18]
+0000055E  C1EC 0010                muls.w     D0, [A4 + 0x10]
+00000562  D06E FFF8                add.w      D0, [A6 - 0x08]
+00000566  3D40 FFFC                move.w     [A6 - 0x04], D0
+0000056A  2053                     movea.l    A0, [A3]
+0000056C  5088                     addq.l     A0, 8
+0000056E  43EE FFF8                lea.l      A1, [A6 - 0x08]
+00000572  20D9                     move.l     [A0]+, [A1]+
+00000574  20D9                     move.l     [A0]+, [A1]+
+00000576  2053                     movea.l    A0, [A3]
+00000578  70FF                     moveq.l    D0, -1
+0000057A  3140 0048                move.w     [A0 + 0x48], D0
+0000057E  200C                     move.l     D0, A4
+00000580  4CDF 1800                movem.l    (A3-A4), [A7]+
+00000584  4E5E                     unlink     A6
+00000586  4E75                     rts
+fn00000588:
+00000588  4E56 FFF6                link       A6, -0x0000000A
+0000058C  48E7 0038                movem.l    -[A7], (A4-A2)
+00000590  41EE FFF6                lea.l      A0, [A6 - 0x0A]
+00000594  2448                     movea.l    A2, A0
+00000596  422E FFFF                clr.b      [A6 - 0x01]
+0000059A  486E FFF6                pea.l      [A6 - 0x0A]
+0000059E  3F3C 000A                move.w     -[A7], 0x0A /* '\n' */
+000005A2  3F3C 0032                move.w     -[A7], 0x32 /* '2' */
+000005A6  3F3C 01F4                move.w     -[A7], 0x01F4
+000005AA  3F3C 0118                move.w     -[A7], 0x0118
+000005AE  A8A7                     syscall    SetRect /* (Rect* r @ [A7 + 8], short left @ [A7 + 6], short top @ [A7 + 4], short right @ [A7 + 2], short bottom @ [A7]) -> void */
+000005B0  4EBA FC58                jsr        [PC - 0x03A8] /* 0000020A */
+000005B4  42A7                     clr.l      -[A7]
+000005B6  486D 9372                pea.l      [A5 - 0x6C8E]
+000005BA  486E FFF6                pea.l      [A6 - 0x0A]
+000005BE  2F00                     move.l     -[A7], D0
+000005C0  4267                     clr.w      -[A7]
+000005C2  3F3C 0008                move.w     -[A7], 0x08
+000005C6  42A7                     clr.l      -[A7]
+000005C8  1F3C 0001                move.b     -[A7], 0x01
+000005CC  42A7                     clr.l      -[A7]
+000005CE  A913                     syscall    NewWindow /* (void* wStorage @ [A7 + 22], const Rect* boundsRect @ [A7 + 18], ConstStr255Param title @ [A7 + 14], Boolean visible @ [A7 + 12], short theProc @ [A7 + 10], WindowRef behind @ [A7 + 6], Boolean goAwayFlag @ [A7 + 4], long refCon @ [A7]) -> WindowRef @ [A7] */
+000005D0  205F                     movea.l    A0, [A7]+
+000005D2  2848                     movea.l    A4, A0
+000005D4  486D 942C                pea.l      [A5 - 0x6BD4]
+000005D8  A874                     syscall    GetPort /* (GrafPtr* port @ [A7]) -> void */
+000005DA  2F0C                     move.l     -[A7], A4
+000005DC  A873                     syscall    SetPort /* (GrafPtr port @ [A7]) -> void */
+000005DE  3F2E 000C                move.w     -[A7], [A6 + 0x0C]
+000005E2  A887                     syscall    TextFont /* (short font @ [A7]) -> void */
+000005E4  3F2E 000A                move.w     -[A7], [A6 + 0x0A]
+000005E8  A88A                     syscall    TextSize /* (short size @ [A7]) -> void */
+000005EA  397C 7FFE 006C           move.w     [A4 + 0x6C], 0x7FFE
+000005F0  3F2E 0008                move.w     -[A7], [A6 + 0x08]
+000005F4  2F0C                     move.l     -[A7], A4
+000005F6  4EBA FED4                jsr        [PC - 0x012C] /* 000004CC */
+000005FA  5C8F                     addq.l     A7, 6
+000005FC  2640                     movea.l    A3, D0
+000005FE  2F0C                     move.l     -[A7], A4
+00000600  2F00                     move.l     -[A7], D0
+00000602  A918                     syscall    SetWRefCon /* (WindowRef window @ [A7 + 4], long data @ [A7]) -> void */
+00000604  41D2                     lea.l      A0, [A2]
+00000606  43EC 0010                lea.l      A1, [A4 + 0x10]
+0000060A  20D9                     move.l     [A0]+, [A1]+
+0000060C  20D9                     move.l     [A0]+, [A1]+
+0000060E  526A 0006                addq.w     [A2 + 0x06], 1
+00000612  302A 0006                move.w     D0, [A2 + 0x06]
+00000616  0640 FFF1                addi.w     D0, 0xFFF1
+0000061A  3540 0002                move.w     [A2 + 0x02], D0
+0000061E  066A FFF2 0004           addi.w     [A2 + 0x04], 0xFFF2
+00000624  70FF                     moveq.l    D0, -1
+00000626  3480                     move.w     [A2], D0
+00000628  42A7                     clr.l      -[A7]
+0000062A  2F0C                     move.l     -[A7], A4
+0000062C  2F0A                     move.l     -[A7], A2
+0000062E  486E FFFF                pea.l      [A6 - 0x01]
+00000632  1F3C 0001                move.b     -[A7], 0x01
+00000636  4267                     clr.w      -[A7]
+00000638  4267                     clr.w      -[A7]
+0000063A  4267                     clr.w      -[A7]
+0000063C  3F3C 0010                move.w     -[A7], 0x10
+00000640  4878 0056                push.l     0x56 /* 'V' */
+00000644  A954                     syscall    NewControl /* (WindowRef owningWindow @ [A7 + 22], const Rect* boundsRect @ [A7 + 18], ConstStr255Param controlTitle @ [A7 + 14], Boolean initiallyVisible @ [A7 + 12], SInt16 initialValue @ [A7 + 10], SInt16 minimumValue @ [A7 + 8], SInt16 maximumValue @ [A7 + 6], SInt16 procID @ [A7 + 4], SInt32 controlReference @ [A7]) -> ControlRef @ [A7] */
+00000646  205F                     movea.l    A0, [A7]+
+00000648  2748 0008                move.l     [A3 + 0x08], A0
+0000064C  2F0C                     move.l     -[A7], A4
+0000064E  4EBA FCC4                jsr        [PC - 0x033C] /* 00000314 */
+00000652  588F                     addq.l     A7, 4
+00000654  2F2B 0004                move.l     -[A7], [A3 + 0x04]
+00000658  A9D8                     syscall    TEActivate /* (TEHandle hTE @ [A7]) -> void */
+0000065A  2F2D 942C                move.l     -[A7], [A5 - 0x6BD4]
+0000065E  A873                     syscall    SetPort /* (GrafPtr port @ [A7]) -> void */
+00000660  200C                     move.l     D0, A4
+00000662  4CDF 1C00                movem.l    (A2-A4), [A7]+
+00000666  4E5E                     unlink     A6
+00000668  205F                     movea.l    A0, [A7]+
+0000066A  4FEF 0006                lea.l      A7, [A7 + 0x06]
+0000066E  2E80                     move.l     [A7], D0
+00000670  4ED0                     jmp        [A0]
+fn00000672:
+00000672  4E56 0000                link       A6, 0x00000000
+00000676  48E7 0118                movem.l    -[A7], (A4-A3, D7)
+0000067A  286E 0008                movea.l    A4, [A6 + 0x08]
+0000067E  266C 0004                movea.l    A3, [A4 + 0x04]
+00000682  2053                     movea.l    A0, [A3]
+00000684  3E28 0024                move.w     D7, [A0 + 0x24]
+00000688  486D 942C                pea.l      [A5 - 0x6BD4]
+0000068C  A874                     syscall    GetPort /* (GrafPtr* port @ [A7]) -> void */
+0000068E  2F14                     move.l     -[A7], [A4]
+00000690  A873                     syscall    SetPort /* (GrafPtr port @ [A7]) -> void */
+00000692  2F0B                     move.l     -[A7], A3
+00000694  A9D9                     syscall    TEDeactivate /* (TEHandle hTE @ [A7]) -> void */
+00000696  42A7                     clr.l      -[A7]
+00000698  4878 7FFF                push.l     0x7FFF
+0000069C  2F0B                     move.l     -[A7], A3
+0000069E  A9D1                     syscall    TESetSelect /* (long selStart @ [A7 + 8], long selEnd @ [A7 + 4], TEHandle hTE @ [A7]) -> void */
+000006A0  2F0B                     move.l     -[A7], A3
+000006A2  A9D7                     syscall    TEDelete /* (TEHandle hTE @ [A7]) -> void */
+000006A4  4A47                     tst.w      D7
+000006A6  6704                     beq        +0x6 /* 000006AC */
+000006A8  2F0B                     move.l     -[A7], A3
+000006AA  A9D8                     syscall    TEActivate /* (TEHandle hTE @ [A7]) -> void */
+label000006AC:
+000006AC  2F2D 942C                move.l     -[A7], [A5 - 0x6BD4]
+000006B0  A873                     syscall    SetPort /* (GrafPtr port @ [A7]) -> void */
+000006B2  4CDF 1880                movem.l    (D7, A3-A4), [A7]+
+000006B6  4E5E                     unlink     A6
+000006B8  4E75                     rts
+export_33:
+fn000006BA:
+000006BA  4E56 0000                link       A6, 0x00000000
+000006BE  206E 0008                movea.l    A0, [A6 + 0x08]
+000006C2  2068 0026                movea.l    A0, [A0 + 0x26]
+000006C6  2F28 0098                move.l     -[A7], [A0 + 0x98]
+000006CA  4EBA FFA6                jsr        [PC - 0x5A] /* 00000672 */
+000006CE  588F                     addq.l     A7, 4
+000006D0  4E5E                     unlink     A6
+000006D2  4E75                     rts
+fn000006D4:
+000006D4  4E56 FFFA                link       A6, -0x00000006
+000006D8  48E7 0018                movem.l    -[A7], (A4-A3)
+000006DC  206E 0008                movea.l    A0, [A6 + 0x08]
+000006E0  2868 0026                movea.l    A4, [A0 + 0x26]
+000006E4  266C 0098                movea.l    A3, [A4 + 0x98]
+000006E8  3F3C 0008                move.w     -[A7], 0x08
+000006EC  2F2B 0004                move.l     -[A7], [A3 + 0x04]
+000006F0  A9DC                     syscall    TEKey /* (CharParameter key @ [A7 + 4], TEHandle hTE @ [A7]) -> void */
+000006F2  206D 932A                movea.l    A0, [A5 - 0x6CD6]
+000006F6  3D68 000E FFFA           move.w     [A6 - 0x06], [A0 + 0x0E]
+000006FC  6724                     beq        +0x26 /* 00000722 */
+000006FE  4267                     clr.w      -[A7]
+00000700  3F2E FFFA                move.w     -[A7], [A6 - 0x06]
+00000704  486E FFFC                pea.l      [A6 - 0x04]
+00000708  4EBA 0E24                jsr        [PC + 0x0E24] /* 0000152E */
+0000070C  301F                     move.w     D0, [A7]+
+0000070E  53AE FFFC                subq.l     [A6 - 0x04], 1
+00000712  4267                     clr.w      -[A7]
+00000714  3F2E FFFA                move.w     -[A7], [A6 - 0x06]
+00000718  2F2E FFFC                move.l     -[A7], [A6 - 0x04]
+0000071C  4EBA 0E32                jsr        [PC + 0x0E32] /* 00001550 */
+00000720  301F                     move.w     D0, [A7]+
+label00000722:
+00000722  206D 932A                movea.l    A0, [A5 - 0x6CD6]
+00000726  3D68 0010 FFFA           move.w     [A6 - 0x06], [A0 + 0x10]
+0000072C  6724                     beq        +0x26 /* 00000752 */
+0000072E  4267                     clr.w      -[A7]
+00000730  3F2E FFFA                move.w     -[A7], [A6 - 0x06]
+00000734  486E FFFC                pea.l      [A6 - 0x04]
+00000738  4EBA 0DF4                jsr        [PC + 0x0DF4] /* 0000152E */
+0000073C  301F                     move.w     D0, [A7]+
+0000073E  53AE FFFC                subq.l     [A6 - 0x04], 1
+00000742  4267                     clr.w      -[A7]
+00000744  3F2E FFFA                move.w     -[A7], [A6 - 0x06]
+00000748  2F2E FFFC                move.l     -[A7], [A6 - 0x04]
+0000074C  4EBA 0E02                jsr        [PC + 0x0E02] /* 00001550 */
+00000750  301F                     move.w     D0, [A7]+
+label00000752:
+00000752  4CDF 1800                movem.l    (A3-A4), [A7]+
+00000756  4E5E                     unlink     A6
+00000758  205F                     movea.l    A0, [A7]+
+0000075A  4FEF 0004                lea.l      A7, [A7 + 0x04]
+0000075E  4ED0                     jmp        [A0]
+fn00000760:
+00000760  4E56 0000                link       A6, 0x00000000
+00000764  48E7 0018                movem.l    -[A7], (A4-A3)
+00000768  2878 09D6                movea.l    A4, [0x000009D6] /* WindowList */
+0000076C  200C                     move.l     D0, A4
+0000076E  6700 003A                beq        +0x3C /* 000007AA */
+00000772  0C6C 7FFE 006C           cmpi.w     [A4 + 0x6C], 0x7FFE
+00000778  6600 0030                bne        +0x32 /* 000007AA */
+0000077C  266C 0098                movea.l    A3, [A4 + 0x98]
+00000780  302E 0008                move.w     D0, [A6 + 0x08]
+00000784  4EBA 0314                jsr        [PC + 0x0314] /* 00000A9A */
+00000788  0000 0002                ori.b      D0, 0x02
+0000078C  001E 0006                ori.b      [A6]+, 0x06
+00000790  000C 0012                .invalid   A4
+00000794  2F2B 0004                move.l     -[A7], [A3 + 0x04]
+00000798  A9DA                     syscall    TEIdle /* (TEHandle hTE @ [A7]) -> void */
+0000079A  600E                     bra        +0x10 /* 000007AA */
+0000079C  2F2B 0004                move.l     -[A7], [A3 + 0x04]
+000007A0  A9D8                     syscall    TEActivate /* (TEHandle hTE @ [A7]) -> void */
+000007A2  6006                     bra        +0x8 /* 000007AA */
+000007A4  2F2B 0004                move.l     -[A7], [A3 + 0x04]
+000007A8  A9D9                     syscall    TEDeactivate /* (TEHandle hTE @ [A7]) -> void */
+label000007AA:
+000007AA  4CDF 1800                movem.l    (A3-A4), [A7]+
+000007AE  4E5E                     unlink     A6
+000007B0  205F                     movea.l    A0, [A7]+
+000007B2  4FEF 0002                lea.l      A7, [A7 + 0x02]
+000007B6  4ED0                     jmp        [A0]
+fn000007B8:
+000007B8  4E56 FFFC                link       A6, -0x00000004
+000007BC  48E7 0018                movem.l    -[A7], (A4-A3)
+000007C0  2878 09D6                movea.l    A4, [0x000009D6] /* WindowList */
+000007C4  266D 932A                movea.l    A3, [A5 - 0x6CD6]
+000007C8  6032                     bra        +0x34 /* 000007FC */
+label000007CA:
+000007CA  0C6C 7FFE 006C           cmpi.w     [A4 + 0x6C], 0x7FFE
+000007D0  6626                     bne        +0x28 /* 000007F8 */
+000007D2  4AAC 0086                tst.l      [A4 + 0x86]
+000007D6  6720                     beq        +0x22 /* 000007F8 */
+000007D8  206C 0086                movea.l    A0, [A4 + 0x86]
+000007DC  2D50 FFFC                move.l     [A6 - 0x04], [A0]
+000007E0  4EBA FA28                jsr        [PC - 0x05D8] /* 0000020A */
+000007E4  2F00                     move.l     -[A7], D0
+000007E6  2F2E FFFC                move.l     -[A7], [A6 - 0x04]
+000007EA  4EBA 07B8                jsr        [PC + 0x07B8] /* 00000FA4 */
+000007EE  508F                     addq.l     A7, 8
+000007F0  4A40                     tst.w      D0
+000007F2  6604                     bne        +0x6 /* 000007F8 */
+000007F4  200C                     move.l     D0, A4
+000007F6  601E                     bra        +0x20 /* 00000816 */
+label000007F8:
+000007F8  286C 0090                movea.l    A4, [A4 + 0x90]
+label000007FC:
+000007FC  200C                     move.l     D0, A4
+000007FE  66CA                     bne        -0x34 /* 000007CA */
+00000800  42A7                     clr.l      -[A7]
+00000802  3F2B 0008                move.w     -[A7], [A3 + 0x08]
+00000806  3F2B 000A                move.w     -[A7], [A3 + 0x0A]
+0000080A  3F2B 000C                move.w     -[A7], [A3 + 0x0C]
+0000080E  4EBA FD78                jsr        [PC - 0x0288] /* 00000588 */
+00000812  205F                     movea.l    A0, [A7]+
+00000814  2008                     move.l     D0, A0
+label00000816:
+00000816  4CDF 1800                movem.l    (A3-A4), [A7]+
+0000081A  4E5E                     unlink     A6
+0000081C  205F                     movea.l    A0, [A7]+
+0000081E  2E80                     move.l     [A7], D0
+00000820  4ED0                     jmp        [A0]
+fn00000822:
+00000822  4E56 FFF4                link       A6, -0x0000000C
+00000826  48E7 0738                movem.l    -[A7], (A4-A2, D7-D5)
+0000082A  286E 0008                movea.l    A4, [A6 + 0x08]
+0000082E  266E 000C                movea.l    A3, [A6 + 0x0C]
+00000832  3E2E 0010                move.w     D7, [A6 + 0x10]
+00000836  246C 0004                movea.l    A2, [A4 + 0x04]
+0000083A  2052                     movea.l    A0, [A2]
+0000083C  3C28 0024                move.w     D6, [A0 + 0x24]
+00000840  7A00                     moveq.l    D5, 0
+00000842  41EE FFF4                lea.l      A0, [A6 - 0x0C]
+00000846  43ED 9430                lea.l      A1, [A5 - 0x6BD0]
+0000084A  20D9                     move.l     [A0]+, [A1]+
+0000084C  20D9                     move.l     [A0]+, [A1]+
+0000084E  2052                     movea.l    A0, [A2]
+00000850  3028 003C                move.w     D0, [A0 + 0x3C]
+00000854  D047                     add.w      D0, D7
+00000856  B06C 000C                cmp.w      D0, [A4 + 0x0C]
+0000085A  6F00 0078                ble        +0x7A /* 000008D4 */
+0000085E  2F0A                     move.l     -[A7], A2
+00000860  A9D9                     syscall    TEDeactivate /* (TEHandle hTE @ [A7]) -> void */
+label00000862:
+00000862  3005                     move.w     D0, D5
+00000864  5245                     addq.w     D5, 1
+00000866  48C0                     ext.l      D0
+00000868  D080                     add.l      D0, D0
+0000086A  D092                     add.l      D0, [A2]
+0000086C  2040                     movea.l    A0, D0
+0000086E  BE68 0060                cmp.w      D7, [A0 + 0x60]
+00000872  6EEE                     bgt        -0x10 /* 00000862 */
+00000874  3005                     move.w     D0, D5
+00000876  48C0                     ext.l      D0
+00000878  D080                     add.l      D0, D0
+0000087A  D092                     add.l      D0, [A2]
+0000087C  42A7                     clr.l      -[A7]
+0000087E  2040                     movea.l    A0, D0
+00000880  3068 0060                movea.w    A0, [A0 + 0x60]
+00000884  2F08                     move.l     -[A7], A0
+00000886  2F0A                     move.l     -[A7], A2
+00000888  A9D1                     syscall    TESetSelect /* (long selStart @ [A7 + 8], long selEnd @ [A7 + 4], TEHandle hTE @ [A7]) -> void */
+0000088A  42A7                     clr.l      -[A7]
+0000088C  A8D8                     syscall    NewRgn /* () -> RgnHandle @ [A7] */
+0000088E  205F                     movea.l    A0, [A7]+
+00000890  2D48 FFFC                move.l     [A6 - 0x04], A0
+00000894  2F2E FFFC                move.l     -[A7], [A6 - 0x04]
+00000898  A87A                     syscall    GetClip /* (RgnHandle rgn @ [A7]) -> void */
+0000089A  486E FFF4                pea.l      [A6 - 0x0C]
+0000089E  A87B                     syscall    ClipRect /* (const Rect* r @ [A7]) -> void */
+000008A0  2F0A                     move.l     -[A7], A2
+000008A2  A9D7                     syscall    TEDelete /* (TEHandle hTE @ [A7]) -> void */
+000008A4  2052                     movea.l    A0, [A2]
+000008A6  3028 0018                move.w     D0, [A0 + 0x18]
+000008AA  C1C5                     muls.w     D0, D5
+000008AC  4267                     clr.w      -[A7]
+000008AE  3F00                     move.w     -[A7], D0
+000008B0  2F0A                     move.l     -[A7], A2
+000008B2  A9DD                     syscall    TEScroll /* (short dh @ [A7 + 6], short dv @ [A7 + 4], TEHandle hTE @ [A7]) -> void */
+000008B4  2F2E FFFC                move.l     -[A7], [A6 - 0x04]
+000008B8  A879                     syscall    SetClip /* (RgnHandle rgn @ [A7]) -> void */
+000008BA  2F2E FFFC                move.l     -[A7], [A6 - 0x04]
+000008BE  A8D9                     syscall    DisposeRgn /* (RgnHandle rgn @ [A7]) -> void */
+000008C0  4878 7FFF                push.l     0x7FFF
+000008C4  4878 7FFF                push.l     0x7FFF
+000008C8  2F0A                     move.l     -[A7], A2
+000008CA  A9D1                     syscall    TESetSelect /* (long selStart @ [A7 + 8], long selEnd @ [A7 + 4], TEHandle hTE @ [A7]) -> void */
+000008CC  4A46                     tst.w      D6
+000008CE  6704                     beq        +0x6 /* 000008D4 */
+000008D0  2F0A                     move.l     -[A7], A2
+000008D2  A9D8                     syscall    TEActivate /* (TEHandle hTE @ [A7]) -> void */
+label000008D4:
+000008D4  3047                     movea.w    A0, D7
+000008D6  2F0B                     move.l     -[A7], A3
+000008D8  2F08                     move.l     -[A7], A0
+000008DA  2F0A                     move.l     -[A7], A2
+000008DC  A9DE                     syscall    TEInsert /* (const void* text @ [A7 + 8], long length @ [A7 + 4], TEHandle hTE @ [A7]) -> void */
+000008DE  3005                     move.w     D0, D5
+000008E0  4CDF 1CE0                movem.l    (D5-D7, A2-A4), [A7]+
+000008E4  4E5E                     unlink     A6
+000008E6  4E75                     rts
+fn000008E8:
+000008E8  4E56 FFEA                link       A6, -0x00000016
+000008EC  48E7 1F18                movem.l    -[A7], (A4-A3, D7-D3)
+000008F0  206E 000C                movea.l    A0, [A6 + 0x0C]
+000008F4  2D68 0026 FFFC           move.l     [A6 - 0x04], [A0 + 0x26]
+000008FA  206E FFFC                movea.l    A0, [A6 - 0x04]
+000008FE  2868 0098                movea.l    A4, [A0 + 0x98]
+00000902  266C 0008                movea.l    A3, [A4 + 0x08]
+00000906  2D6C 0004 FFF8           move.l     [A6 - 0x08], [A4 + 0x04]
+0000090C  206C 0004                movea.l    A0, [A4 + 0x04]
+00000910  2050                     movea.l    A0, [A0]
+00000912  3E28 0018                move.w     D7, [A0 + 0x18]
+00000916  486D 942C                pea.l      [A5 - 0x6BD4]
+0000091A  A874                     syscall    GetPort /* (GrafPtr* port @ [A7]) -> void */
+0000091C  2F2E FFFC                move.l     -[A7], [A6 - 0x04]
+00000920  A873                     syscall    SetPort /* (GrafPtr port @ [A7]) -> void */
+00000922  4267                     clr.w      -[A7]
+00000924  2F0B                     move.l     -[A7], A3
+00000926  A962                     syscall    GetControlMaximum /* (ControlRef theControl @ [A7]) -> SInt16 @ [A7] */
+00000928  301F                     move.w     D0, [A7]+
+0000092A  3600                     move.w     D3, D0
+0000092C  4267                     clr.w      -[A7]
+0000092E  2F0B                     move.l     -[A7], A3
+00000930  A960                     syscall    GetControlValue /* (ControlRef theControl @ [A7]) -> SInt16 @ [A7] */
+00000932  301F                     move.w     D0, [A7]+
+00000934  B043                     cmp.w      D0, D3
+00000936  6706                     beq        +0x8 /* 0000093E */
+00000938  2F0B                     move.l     -[A7], A3
+0000093A  3F03                     move.w     -[A7], D3
+0000093C  A963                     syscall    SetControlValue /* (ControlRef theControl @ [A7 + 2], SInt16 newValue @ [A7]) -> void */
+label0000093E:
+0000093E  42A7                     clr.l      -[A7]
+00000940  A8D8                     syscall    NewRgn /* () -> RgnHandle @ [A7] */
+00000942  205F                     movea.l    A0, [A7]+
+00000944  2D48 FFF4                move.l     [A6 - 0x0C], A0
+00000948  A856                     syscall    ObscureCursor /* () -> void */
+0000094A  206E 0008                movea.l    A0, [A6 + 0x08]
+0000094E  7000                     moveq.l    D0, 0
+00000950  1010                     move.b     D0, [A0]
+00000952  3F00                     move.w     -[A7], D0
+00000954  206E 0008                movea.l    A0, [A6 + 0x08]
+00000958  4868 0001                pea.l      [A0 + 0x01]
+0000095C  2F0C                     move.l     -[A7], A4
+0000095E  4EBA FEC2                jsr        [PC - 0x013E] /* 00000822 */
+00000962  4FEF 000A                lea.l      A7, [A7 + 0x0A]
+00000966  916C 000E                sub.w      [A4 + 0x0E], D0
+0000096A  206E FFF8                movea.l    A0, [A6 - 0x08]
+0000096E  2050                     movea.l    A0, [A0]
+00000970  3828 005E                move.w     D4, [A0 + 0x5E]
+00000974  3C2C 0010                move.w     D6, [A4 + 0x10]
+00000978  6012                     bra        +0x14 /* 0000098C */
+label0000097A:
+0000097A  3007                     move.w     D0, D7
+0000097C  4440                     neg.w      D0
+0000097E  4267                     clr.w      -[A7]
+00000980  3F00                     move.w     -[A7], D0
+00000982  2F2E FFF8                move.l     -[A7], [A6 - 0x08]
+00000986  A9DD                     syscall    TEScroll /* (short dh @ [A7 + 6], short dv @ [A7 + 4], TEHandle hTE @ [A7]) -> void */
+00000988  526C 000E                addq.w     [A4 + 0x0E], 1
+label0000098C:
+0000098C  302C 000E                move.w     D0, [A4 + 0x0E]
+00000990  D046                     add.w      D0, D6
+00000992  B044                     cmp.w      D0, D4
+00000994  6FE4                     ble        -0x1A /* 0000097A */
+00000996  4AAC 0008                tst.l      [A4 + 0x08]
+0000099A  6700 005A                beq        +0x5C /* 000009F6 */
+0000099E  2F2E FFF4                move.l     -[A7], [A6 - 0x0C]
+000009A2  A87A                     syscall    GetClip /* (RgnHandle rgn @ [A7]) -> void */
+000009A4  4A43                     tst.w      D3
+000009A6  6714                     beq        +0x16 /* 000009BC */
+000009A8  42A7                     clr.l      -[A7]
+000009AA  A8D8                     syscall    NewRgn /* () -> RgnHandle @ [A7] */
+000009AC  205F                     movea.l    A0, [A7]+
+000009AE  2D48 FFF0                move.l     [A6 - 0x10], A0
+000009B2  4850                     pea.l      [A0]
+000009B4  A879                     syscall    SetClip /* (RgnHandle rgn @ [A7]) -> void */
+000009B6  2F2E FFF0                move.l     -[A7], [A6 - 0x10]
+000009BA  A8D9                     syscall    DisposeRgn /* (RgnHandle rgn @ [A7]) -> void */
+label000009BC:
+000009BC  7A00                     moveq.l    D5, 0
+000009BE  B846                     cmp.w      D4, D6
+000009C0  6F08                     ble        +0xA /* 000009CA */
+000009C2  3004                     move.w     D0, D4
+000009C4  9046                     sub.w      D0, D6
+000009C6  5240                     addq.w     D0, 1
+000009C8  3A00                     move.w     D5, D0
+label000009CA:
+000009CA  2F0B                     move.l     -[A7], A3
+000009CC  3F05                     move.w     -[A7], D5
+000009CE  A965                     syscall    SetControlMaximum /* (ControlRef theControl @ [A7 + 2], SInt16 newMaximum @ [A7]) -> void */
+000009D0  2F0B                     move.l     -[A7], A3
+000009D2  3F05                     move.w     -[A7], D5
+000009D4  A963                     syscall    SetControlValue /* (ControlRef theControl @ [A7 + 2], SInt16 newValue @ [A7]) -> void */
+000009D6  2F2E FFF4                move.l     -[A7], [A6 - 0x0C]
+000009DA  A879                     syscall    SetClip /* (RgnHandle rgn @ [A7]) -> void */
+000009DC  4A45                     tst.w      D5
+000009DE  57C0                     seq        D0
+000009E0  4400                     neg.b      D0
+000009E2  4880                     ext.w      D0
+000009E4  4A43                     tst.w      D3
+000009E6  57C1                     seq        D1
+000009E8  4401                     neg.b      D1
+000009EA  4881                     ext.w      D1
+000009EC  B041                     cmp.w      D0, D1
+000009EE  6706                     beq        +0x8 /* 000009F6 */
+000009F0  2F2C 0008                move.l     -[A7], [A4 + 0x08]
+000009F4  A96D                     syscall    Draw1Control /* (ControlRef theControl @ [A7]) -> void */
+label000009F6:
+000009F6  2F2E FFF4                move.l     -[A7], [A6 - 0x0C]
+000009FA  A8D9                     syscall    DisposeRgn /* (RgnHandle rgn @ [A7]) -> void */
+000009FC  2F2D 942C                move.l     -[A7], [A5 - 0x6BD4]
+00000A00  A873                     syscall    SetPort /* (GrafPtr port @ [A7]) -> void */
+00000A02  206E 0008                movea.l    A0, [A6 + 0x08]
+00000A06  7000                     moveq.l    D0, 0
+00000A08  1010                     move.b     D0, [A0]
+00000A0A  2D40 FFEC                move.l     [A6 - 0x14], D0
+00000A0E  206D 932A                movea.l    A0, [A5 - 0x6CD6]
+00000A12  3D68 000E FFEA           move.w     [A6 - 0x16], [A0 + 0x0E]
+00000A18  6718                     beq        +0x1A /* 00000A32 */
+00000A1A  4267                     clr.w      -[A7]
+00000A1C  3F2E FFEA                move.w     -[A7], [A6 - 0x16]
+00000A20  486E FFEC                pea.l      [A6 - 0x14]
+00000A24  206E 0008                movea.l    A0, [A6 + 0x08]
+00000A28  4868 0001                pea.l      [A0 + 0x01]
+00000A2C  4EBA 0A1A                jsr        [PC + 0x0A1A] /* 00001448 */
+00000A30  301F                     move.w     D0, [A7]+
+label00000A32:
+00000A32  206D 932A                movea.l    A0, [A5 - 0x6CD6]
+00000A36  3D68 0010 FFEA           move.w     [A6 - 0x16], [A0 + 0x10]
+00000A3C  6718                     beq        +0x1A /* 00000A56 */
+00000A3E  4267                     clr.w      -[A7]
+00000A40  3F2E FFEA                move.w     -[A7], [A6 - 0x16]
+00000A44  486E FFEC                pea.l      [A6 - 0x14]
+00000A48  206E 0008                movea.l    A0, [A6 + 0x08]
+00000A4C  4868 0001                pea.l      [A0 + 0x01]
+00000A50  4EBA 09F6                jsr        [PC + 0x09F6] /* 00001448 */
+00000A54  301F                     move.w     D0, [A7]+
+label00000A56:
+00000A56  4CDF 18F8                movem.l    (D3-D7, A3-A4), [A7]+
+00000A5A  4E5E                     unlink     A6
+00000A5C  205F                     movea.l    A0, [A7]+
+00000A5E  4FEF 0008                lea.l      A7, [A7 + 0x08]
+00000A62  4ED0                     jmp        [A0]
+export_34:
+00000A64  48E7 E0C0                movem.l    -[A7], (A1-A0, D2-D0)
+00000A68  226F 0018                movea.l    A1, [A7 + 0x18]
+00000A6C  206F 001C                movea.l    A0, [A7 + 0x1C]
+00000A70  2F6F 0014 001C           move.l     [A7 + 0x1C], [A7 + 0x14]
+00000A76  7000                     moveq.l    D0, 0
+00000A78  1018                     move.b     D0, [A0]+
+00000A7A  3400                     move.w     D2, D0
+00000A7C  1219                     move.b     D1, [A1]+
+00000A7E  B200                     cmp.b      D1, D0
+00000A80  6402                     bcc        +0x4 /* 00000A84 */
+00000A82  1401                     move.b     D2, D1
+label00000A84:
+00000A84  5342                     subq.w     D2, 1
+00000A86  6D08                     blt        +0xA /* 00000A90 */
+label00000A88:
+00000A88  B308                     cmpm.b     [A1]+, [A0]+
+00000A8A  56CA FFFC                dbne       D2, -0x2 /* 00000A88 */
+00000A8E  6602                     bne        +0x4 /* 00000A92 */
+label00000A90:
+00000A90  B200                     cmp.b      D1, D0
+label00000A92:
+00000A92  4CDF 0307                movem.l    (D0-D2, A0-A1), [A7]+
+00000A96  508F                     addq.l     A7, 8
+00000A98  4E75                     rts
+fn00000A9A:
+00000A9A  205F                     movea.l    A0, [A7]+
+00000A9C  3218                     move.w     D1, [A0]+
+00000A9E  3418                     move.w     D2, [A0]+
+00000AA0  B042                     cmp.w      D0, D2
+00000AA2  6E0A                     bgt        +0xC /* 00000AAE */
+00000AA4  9041                     sub.w      D0, D1
+00000AA6  6D06                     blt        +0x8 /* 00000AAE */
+00000AA8  D040                     add.w      D0, D0
+00000AAA  41F0 0002                lea.l      A0, [A0 + D0.w + 0x02]
+label00000AAE:
+00000AAE  3010                     move.w     D0, [A0]
+label00000AB0:
+00000AB0  67FE                     beq        -0x0 /* 00000AB0 */
+00000AB2  4EF0 0000                jmp        [A0 + D0.w]
+export_35:
+00000AB6  48E7 0308                movem.l    -[A7], (A4, D7-D6)
+00000ABA  41ED 95BC                lea.l      A0, [A5 - 0x6A44]
+00000ABE  2848                     movea.l    A4, A0
+00000AC0  4EBA 047E                jsr        [PC + 0x047E] /* 00000F40 */
+00000AC4  2E0F                     move.l     D7, A7
+00000AC6  2C0E                     move.l     D6, A6
+00000AC8  601A                     bra        +0x1C /* 00000AE4 */
+label00000ACA:
+00000ACA  BE94                     cmp.l      D7, [A4]
+00000ACC  6C14                     bge        +0x16 /* 00000AE2 */
+00000ACE  BC94                     cmp.l      D6, [A4]
+00000AD0  6F10                     ble        +0x12 /* 00000AE2 */
+00000AD2  4267                     clr.w      -[A7]
+00000AD4  2F14                     move.l     -[A7], [A4]
+00000AD6  4EBA 017C                jsr        [PC + 0x017C] /* 00000C54 */
+00000ADA  301F                     move.w     D0, [A7]+
+00000ADC  2054                     movea.l    A0, [A4]
+00000ADE  2890                     move.l     [A4], [A0]
+00000AE0  6002                     bra        +0x4 /* 00000AE4 */
+label00000AE2:
+00000AE2  2854                     movea.l    A4, [A4]
+label00000AE4:
+00000AE4  4A94                     tst.l      [A4]
+00000AE6  66E2                     bne        -0x1C /* 00000ACA */
+00000AE8  4CDF 10C0                movem.l    (D6-D7, A4), [A7]+
+00000AEC  205F                     movea.l    A0, [A7]+
+00000AEE  4ED0                     jmp        [A0]
+fn00000AF0:
+00000AF0  42AD 9444                clr.l      [A5 - 0x6BBC]
+00000AF4  7001                     moveq.l    D0, 1
+00000AF6  1B40 9448                move.b     [A5 - 0x6BB8], D0
+00000AFA  422D 9449                clr.b      [A5 - 0x6BB7]
+00000AFE  700D                     moveq.l    D0, 13
+00000B00  1B40 944E                move.b     [A5 - 0x6BB2], D0
+00000B04  7001                     moveq.l    D0, 1
+00000B06  3B40 9442                move.w     [A5 - 0x6BBE], D0
+00000B0A  7001                     moveq.l    D0, 1
+00000B0C  1B40 944D                move.b     [A5 - 0x6BB3], D0
+00000B10  422D 944A                clr.b      [A5 - 0x6BB6]
+00000B14  422D 944B                clr.b      [A5 - 0x6BB5]
+00000B18  422D 944C                clr.b      [A5 - 0x6BB4]
+00000B1C  422D 944F                clr.b      [A5 - 0x6BB1]
+00000B20  7001                     moveq.l    D0, 1
+00000B22  3B40 943C                move.w     [A5 - 0x6BC4], D0
+00000B26  42AD 9456                clr.l      [A5 - 0x6BAA]
+00000B2A  41ED 015A                lea.l      A0, [A5 + 0x015A] /* export_39, CODE:1 @ 00000D38 */
+00000B2E  2B48 9452                move.l     [A5 - 0x6BAE], A0
+00000B32  41ED 012A                lea.l      A0, [A5 + 0x012A] /* export_33, CODE:1 @ 000006BA */
+00000B36  2B48 945A                move.l     [A5 - 0x6BA6], A0
+00000B3A  42A7                     clr.l      -[A7]
+00000B3C  4EBA FC7A                jsr        [PC - 0x0386] /* 000007B8 */
+00000B40  205F                     movea.l    A0, [A7]+
+00000B42  2B48 945E                move.l     [A5 - 0x6BA2], A0
+00000B46  486D 9438                pea.l      [A5 - 0x6BC8]
+00000B4A  4EBA 008A                jsr        [PC + 0x8A] /* 00000BD6 */
+00000B4E  205F                     movea.l    A0, [A7]+
+00000B50  4ED0                     jmp        [A0]
+fn00000B52:
+00000B52  42AD 9480                clr.l      [A5 - 0x6B80]
+00000B56  422D 9484                clr.b      [A5 - 0x6B7C]
+00000B5A  7001                     moveq.l    D0, 1
+00000B5C  1B40 9485                move.b     [A5 - 0x6B7B], D0
+00000B60  700D                     moveq.l    D0, 13
+00000B62  1B40 948A                move.b     [A5 - 0x6B76], D0
+00000B66  7001                     moveq.l    D0, 1
+00000B68  3B40 947E                move.w     [A5 - 0x6B82], D0
+00000B6C  7001                     moveq.l    D0, 1
+00000B6E  1B40 9489                move.b     [A5 - 0x6B77], D0
+00000B72  422D 948B                clr.b      [A5 - 0x6B75]
+00000B76  7002                     moveq.l    D0, 2
+00000B78  3B40 9478                move.w     [A5 - 0x6B88], D0
+00000B7C  41ED 017A                lea.l      A0, [A5 + 0x017A] /* export_43, CODE:1 @ 00000FB8 */
+00000B80  2B48 9492                move.l     [A5 - 0x6B6E], A0
+00000B84  42AD 948E                clr.l      [A5 - 0x6B72]
+00000B88  41ED 012A                lea.l      A0, [A5 + 0x012A] /* export_33, CODE:1 @ 000006BA */
+00000B8C  2B48 9496                move.l     [A5 - 0x6B6A], A0
+00000B90  42A7                     clr.l      -[A7]
+00000B92  4EBA FC24                jsr        [PC - 0x03DC] /* 000007B8 */
+00000B96  205F                     movea.l    A0, [A7]+
+00000B98  2B48 949A                move.l     [A5 - 0x6B66], A0
+00000B9C  486D 9474                pea.l      [A5 - 0x6B8C]
+00000BA0  4EBA 0034                jsr        [PC + 0x34] /* 00000BD6 */
+00000BA4  205F                     movea.l    A0, [A7]+
+00000BA6  4ED0                     jmp        [A0]
+export_36:
+00000BA8  2F0A                     move.l     -[A7], A2
+00000BAA  226F 0008                movea.l    A1, [A7 + 0x08]
+00000BAE  246F 000C                movea.l    A2, [A7 + 0x0C]
+00000BB2  302F 0010                move.w     D0, [A7 + 0x10]
+00000BB6  3400                     move.w     D2, D0
+00000BB8  121A                     move.b     D1, [A2]+
+00000BBA  B202                     cmp.b      D1, D2
+00000BBC  6402                     bcc        +0x4 /* 00000BC0 */
+00000BBE  1401                     move.b     D2, D1
+label00000BC0:
+00000BC0  12C2                     move.b     [A1]+, D2
+00000BC2  6002                     bra        +0x4 /* 00000BC6 */
+label00000BC4:
+00000BC4  12DA                     move.b     [A1]+, [A2]+
+label00000BC6:
+00000BC6  51CA FFFC                dbf        D2, -0x2 /* 00000BC4 */
+00000BCA  B001                     cmp.b      D0, D1
+00000BCC  245F                     movea.l    A2, [A7]+
+00000BCE  205F                     movea.l    A0, [A7]+
+00000BD0  4FEF 000A                lea.l      A7, [A7 + 0x0A]
+00000BD4  4ED0                     jmp        [A0]
+fn00000BD6:
+00000BD6  4E56 0000                link       A6, 0x00000000
+00000BDA  2F0C                     move.l     -[A7], A4
+00000BDC  286E 0008                movea.l    A4, [A6 + 0x08]
+00000BE0  28AD 95BC                move.l     [A4], [A5 - 0x6A44]
+00000BE4  2B4C 95BC                move.l     [A5 - 0x6A44], A4
+00000BE8  285F                     movea.l    A4, [A7]+
+00000BEA  4E5E                     unlink     A6
+00000BEC  205F                     movea.l    A0, [A7]+
+00000BEE  4FEF 0004                lea.l      A7, [A7 + 0x04]
+00000BF2  4ED0                     jmp        [A0]
+fn00000BF4:
+00000BF4  4E56 0000                link       A6, 0x00000000
+00000BF8  7007                     moveq.l    D0, 7
+00000BFA  1B40 94B0                move.b     [A5 - 0x6B50], D0
+00000BFE  704C                     moveq.l    D0, 76
+00000C00  1B40 94B1                move.b     [A5 - 0x6B4F], D0
+00000C04  7053                     moveq.l    D0, 83
+00000C06  1B40 94B2                move.b     [A5 - 0x6B4E], D0
+00000C0A  7050                     moveq.l    D0, 80
+00000C0C  1B40 94B3                move.b     [A5 - 0x6B4D], D0
+00000C10  7044                     moveq.l    D0, 68
+00000C12  1B40 94B4                move.b     [A5 - 0x6B4C], D0
+00000C16  7046                     moveq.l    D0, 70
+00000C18  1B40 94B5                move.b     [A5 - 0x6B4B], D0
+00000C1C  306E 0008                movea.w    A0, [A6 + 0x08]
+00000C20  2008                     move.l     D0, A0
+00000C22  81FC 000A                divs.w     D0, 0x0A /* '\n' */
+00000C26  0640 0030                addi.w     D0, 0x30 /* '0' */
+00000C2A  1B40 94B6                move.b     [A5 - 0x6B4A], D0
+00000C2E  306E 0008                movea.w    A0, [A6 + 0x08]
+00000C32  2008                     move.l     D0, A0
+00000C34  81FC 000A                divs.w     D0, 0x0A /* '\n' */
+00000C38  4840                     swap.w     D0
+00000C3A  0640 0030                addi.w     D0, 0x30 /* '0' */
+00000C3E  1B40 94B7                move.b     [A5 - 0x6B49], D0
+00000C42  41ED 94B0                lea.l      A0, [A5 - 0x6B50]
+00000C46  2008                     move.l     D0, A0
+00000C48  4E5E                     unlink     A6
+00000C4A  205F                     movea.l    A0, [A7]+
+00000C4C  4FEF 0002                lea.l      A7, [A7 + 0x02]
+00000C50  2E80                     move.l     [A7], D0
+00000C52  4ED0                     jmp        [A0]
+fn00000C54:
+00000C54  4E56 0000                link       A6, 0x00000000
+00000C58  48E7 0108                movem.l    -[A7], (A4, D7)
+00000C5C  286E 0008                movea.l    A4, [A6 + 0x08]
+00000C60  4A6C 0004                tst.w      [A4 + 0x04]
+00000C64  6704                     beq        +0x6 /* 00000C6A */
+00000C66  7000                     moveq.l    D0, 0
+00000C68  6046                     bra        +0x48 /* 00000CB0 */
+label00000C6A:
+00000C6A  3B6C 0006 95EC           move.w     [A5 - 0x6A14], [A4 + 0x06]
+00000C70  4267                     clr.w      -[A7]
+00000C72  486D 95D4                pea.l      [A5 - 0x6A2C]
+00000C76  4267                     clr.w      -[A7]
+00000C78  4EBA 074C                jsr        [PC + 0x074C] /* 000013C6 */
+00000C7C  301F                     move.w     D0, [A7]+
+00000C7E  3E00                     move.w     D7, D0
+00000C80  4A47                     tst.w      D7
+00000C82  662A                     bne        +0x2C /* 00000CAE */
+00000C84  4A2C 0017                tst.b      [A4 + 0x17]
+00000C88  6724                     beq        +0x26 /* 00000CAE */
+00000C8A  42A7                     clr.l      -[A7]
+00000C8C  3F2C 0018                move.w     -[A7], [A4 + 0x18]
+00000C90  4EBA FF62                jsr        [PC - 0x9E] /* 00000BF4 */
+00000C94  205F                     movea.l    A0, [A7]+
+00000C96  2B48 95E6                move.l     [A5 - 0x6A1A], A0
+00000C9A  426D 95EA                clr.w      [A5 - 0x6A16]
+00000C9E  4267                     clr.w      -[A7]
+00000CA0  486D 95D4                pea.l      [A5 - 0x6A2C]
+00000CA4  4267                     clr.w      -[A7]
+00000CA6  4EBA 0730                jsr        [PC + 0x0730] /* 000013D8 */
+00000CAA  301F                     move.w     D0, [A7]+
+00000CAC  3E00                     move.w     D7, D0
+label00000CAE:
+00000CAE  3007                     move.w     D0, D7
+label00000CB0:
+00000CB0  4CDF 1080                movem.l    (D7, A4), [A7]+
+00000CB4  4E5E                     unlink     A6
+00000CB6  205F                     movea.l    A0, [A7]+
+00000CB8  4FEF 0004                lea.l      A7, [A7 + 0x04]
+00000CBC  3E80                     move.w     [A7], D0
+00000CBE  4ED0                     jmp        [A0]
+00000CC0  588F                     addq.l     A7, 4
+00000CC2  301F                     move.w     D0, [A7]+
+00000CC4  4267                     clr.w      -[A7]
+00000CC6  3F00                     move.w     -[A7], D0
+00000CC8  202D 9336                move.l     D0, [A5 - 0x6CCA]
+00000CCC  671A                     beq        +0x1C /* 00000CE8 */
+00000CCE  2040                     movea.l    A0, D0
+00000CD0  202D 933A                move.l     D0, [A5 - 0x6CC6]
+00000CD4  6702                     beq        +0x4 /* 00000CD8 */
+00000CD6  2F00                     move.l     -[A7], D0
+label00000CD8:
+00000CD8  4E90                     jsr        [A0]
+00000CDA  4A57                     tst.w      [A7]
+00000CDC  660A                     bne        +0xC /* 00000CE8 */
+00000CDE  4CED DDF8 933E           movem.l    (D3-D7, A0, A2-A4, A6-A7), [A5 - 0x6CC2]
+00000CE4  4ED0                     jmp        [A0]
+export_37:
+00000CE6  3F00                     move.w     -[A7], D0
+label00000CE8:
+00000CE8  303C 07D1                move.w     D0, 0x07D1
+00000CEC  4EBA 0208                jsr        [PC + 0x0208] /* 00000EF6 */
+00000CF0  660A                     bne        +0xC /* 00000CFC */
+00000CF2  303C 07D2                move.w     D0, 0x07D2
+00000CF6  4EBA 01FE                jsr        [PC + 0x01FE] /* 00000EF6 */
+00000CFA  6708                     beq        +0xA /* 00000D04 */
+label00000CFC:
+00000CFC  2050                     movea.l    A0, [A0]
+00000CFE  4E90                     jsr        [A0]
+00000D00  4EFA F346                jmp        [PC - 0x0CBA] /* 00000048 */
+label00000D04:
+00000D04  487A 0006                pea.l      [PC + 0x06] /* 0x00000D0C; value 0x0D52554E '\rRUN'; pstring "RUNTIME ERROR" */
+00000D08  ABFF                     syscall    DebugStr /* (ConstStr255Param debuggerMsg @ [A7]) -> void */
+00000D0A  A9F4                     syscall    ExitToShell /* () -> void */
+00000D0C  0D52                     bchg       [A2], D6
+00000D0E  554E                     subq.w     A6, 2
+00000D10  5449                     addq.w     A1, 2
+00000D12  4D45                     .invalid   // Invalid opcode 4 with bit 8 set
+00000D14  2045                     movea.l    A0, D5
+00000D16  5252                     addq.w     [A2], 1
+00000D18  4F52                     .invalid   // Invalid opcode 4 with bit 8 set
+export_38:
+00000D1A  2F0C                     move.l     -[A7], A4
+00000D1C  286D 95BC                movea.l    A4, [A5 - 0x6A44]
+00000D20  600C                     bra        +0xE /* 00000D2E */
+label00000D22:
+00000D22  4267                     clr.w      -[A7]
+00000D24  2F0C                     move.l     -[A7], A4
+00000D26  4EBA FF2C                jsr        [PC - 0xD4] /* 00000C54 */
+00000D2A  301F                     move.w     D0, [A7]+
+00000D2C  2854                     movea.l    A4, [A4]
+label00000D2E:
+00000D2E  200C                     move.l     D0, A4
+00000D30  66F0                     bne        -0xE /* 00000D22 */
+00000D32  285F                     movea.l    A4, [A7]+
+00000D34  205F                     movea.l    A0, [A7]+
+00000D36  4ED0                     jmp        [A0]
+export_39:
+00000D38  4E56 FFEA                link       A6, -0x00000016
+00000D3C  48E7 0108                movem.l    -[A7], (A4, D7)
+00000D40  286E 0008                movea.l    A4, [A6 + 0x08]
+00000D44  4EBA 0252                jsr        [PC + 0x0252] /* 00000F98 */
+00000D48  0C40 0002                cmpi.w     D0, 0x02
+00000D4C  6708                     beq        +0xA /* 00000D56 */
+00000D4E  303C 001E                move.w     D0, 0x1E
+00000D52  4EED 014A                jmp        [A5 + 0x014A] /* export_37, CODE:1 @ 00000CE6 */
+label00000D56:
+00000D56  4A2C 0012                tst.b      [A4 + 0x12]
+00000D5A  6600 0192                bne        +0x194 /* 00000EEE */
+00000D5E  486E FFEA                pea.l      [A6 - 0x16]
+00000D62  A874                     syscall    GetPort /* (GrafPtr* port @ [A7]) -> void */
+00000D64  4EBA F48A                jsr        [PC - 0x0B76] /* 000001F0 */
+00000D68  7000                     moveq.l    D0, 0
+00000D6A  102C 0016                move.b     D0, [A4 + 0x16]
+00000D6E  0C40 000D                cmpi.w     D0, 0x0D /* '\r' */
+00000D72  6600 0140                bne        +0x142 /* 00000EB4 */
+00000D76  41ED 94B8                lea.l      A0, [A5 - 0x6B48]
+00000D7A  2B48 95B8                move.l     [A5 - 0x6A48], A0
+00000D7E  3F3C 0001                move.w     -[A7], 0x01
+00000D82  4EBA F9DC                jsr        [PC - 0x0624] /* 00000760 */
+label00000D86:
+00000D86  4267                     clr.w      -[A7]
+00000D88  4EBA F9D6                jsr        [PC - 0x062A] /* 00000760 */
+00000D8C  4A2D 9371                tst.b      [A5 - 0x6C8F]
+00000D90  672E                     beq        +0x30 /* 00000DC0 */
+00000D92  4EBA 020A                jsr        [PC + 0x020A] /* 00000F9E */
+00000D96  4A00                     tst.b      D0
+00000D98  6726                     beq        +0x28 /* 00000DC0 */
+00000D9A  7001                     moveq.l    D0, 1
+00000D9C  1D40 FFEE                move.b     [A6 - 0x12], D0
+00000DA0  700D                     moveq.l    D0, 13
+00000DA2  1D40 FFEF                move.b     [A6 - 0x11], D0
+00000DA6  2F0C                     move.l     -[A7], A4
+00000DA8  486E FFEE                pea.l      [A6 - 0x12]
+00000DAC  4EBA FB3A                jsr        [PC - 0x04C6] /* 000008E8 */
+00000DB0  3F3C 0002                move.w     -[A7], 0x02
+00000DB4  4EBA F9AA                jsr        [PC - 0x0656] /* 00000760 */
+00000DB8  303C 0007                move.w     D0, 0x07
+00000DBC  4EED 014A                jmp        [A5 + 0x014A] /* export_37, CODE:1 @ 00000CE6 */
+label00000DC0:
+00000DC0  4267                     clr.w      -[A7]
+00000DC2  3F3C FFFF                move.w     -[A7], 0xFFFF
+00000DC6  486E FFF0                pea.l      [A6 - 0x10]
+00000DCA  A970                     syscall    GetNextEvent /* (EventMask eventMask @ [A7 + 4], EventRecord* theEvent @ [A7]) -> Boolean @ [A7] */
+00000DCC  101F                     move.b     D0, [A7]+
+00000DCE  4A00                     tst.b      D0
+00000DD0  67B4                     beq        -0x4A /* 00000D86 */
+00000DD2  0C6E 0003 FFF0           cmpi.w     [A6 - 0x10], 0x03
+00000DD8  6708                     beq        +0xA /* 00000DE2 */
+00000DDA  0C6E 0005 FFF0           cmpi.w     [A6 - 0x10], 0x05
+00000DE0  66A4                     bne        -0x5A /* 00000D86 */
+label00000DE2:
+00000DE2  7001                     moveq.l    D0, 1
+00000DE4  1D40 FFEE                move.b     [A6 - 0x12], D0
+00000DE8  1E2E FFF5                move.b     D7, [A6 - 0x0B]
+00000DEC  1D47 FFEF                move.b     [A6 - 0x11], D7
+00000DF0  7000                     moveq.l    D0, 0
+00000DF2  1007                     move.b     D0, D7
+00000DF4  0C40 0003                cmpi.w     D0, 0x03
+00000DF8  6634                     bne        +0x36 /* 00000E2E */
+00000DFA  41ED 94B8                lea.l      A0, [A5 - 0x6B48]
+00000DFE  B1ED 95B8                cmpa.l     A0, [A5 - 0x6A48]
+00000E02  6618                     bne        +0x1A /* 00000E1C */
+00000E04  7001                     moveq.l    D0, 1
+00000E06  1940 0012                move.b     [A4 + 0x12], D0
+00000E0A  3F3C 0002                move.w     -[A7], 0x02
+00000E0E  4EBA F950                jsr        [PC - 0x06B0] /* 00000760 */
+00000E12  2F2E FFEA                move.l     -[A7], [A6 - 0x16]
+00000E16  A873                     syscall    SetPort /* (GrafPtr port @ [A7]) -> void */
+00000E18  6000 00D4                bra        +0xD6 /* 00000EEE */
+label00000E1C:
+00000E1C  4267                     clr.w      -[A7]
+00000E1E  3F3C 0003                move.w     -[A7], 0x03
+00000E22  4878 0003                push.l     0x03
+00000E26  4EBA 076E                jsr        [PC + 0x076E] /* 00001596 */
+00000E2A  301F                     move.w     D0, [A7]+
+00000E2C  6036                     bra        +0x38 /* 00000E64 */
+label00000E2E:
+00000E2E  7000                     moveq.l    D0, 0
+00000E30  1007                     move.b     D0, D7
+00000E32  0C40 0008                cmpi.w     D0, 0x08
+00000E36  6622                     bne        +0x24 /* 00000E5A */
+00000E38  41ED 94B8                lea.l      A0, [A5 - 0x6B48]
+00000E3C  B1ED 95B8                cmpa.l     A0, [A5 - 0x6A48]
+00000E40  640E                     bcc        +0x10 /* 00000E50 */
+00000E42  53AD 95B8                subq.l     [A5 - 0x6A48], 1
+00000E46  2F0C                     move.l     -[A7], A4
+00000E48  4EBA F88A                jsr        [PC - 0x0776] /* 000006D4 */
+00000E4C  6000 FF38                bra        -0xC6 /* 00000D86 */
+label00000E50:
+00000E50  3F3C 0005                move.w     -[A7], 0x05
+00000E54  A9C8                     syscall    SysBeep /* (short duration @ [A7]) -> void */
+00000E56  6000 FF2E                bra        -0xD0 /* 00000D86 */
+label00000E5A:
+00000E5A  7000                     moveq.l    D0, 0
+00000E5C  1007                     move.b     D0, D7
+00000E5E  0C40 000D                cmpi.w     D0, 0x0D /* '\r' */
+00000E62  661C                     bne        +0x1E /* 00000E80 */
+label00000E64:
+00000E64  206D 95B8                movea.l    A0, [A5 - 0x6A48]
+00000E68  52AD 95B8                addq.l     [A5 - 0x6A48], 1
+00000E6C  700D                     moveq.l    D0, 13
+00000E6E  1D40 FFEF                move.b     [A6 - 0x11], D0
+00000E72  1080                     move.b     [A0], D0
+00000E74  2F0C                     move.l     -[A7], A4
+00000E76  486E FFEE                pea.l      [A6 - 0x12]
+00000E7A  4EBA FA6C                jsr        [PC - 0x0594] /* 000008E8 */
+00000E7E  6024                     bra        +0x26 /* 00000EA4 */
+label00000E80:
+00000E80  41ED 95B7                lea.l      A0, [A5 - 0x6A49]
+00000E84  B1ED 95B8                cmpa.l     A0, [A5 - 0x6A48]
+00000E88  6300 FEFC                bls        -0x102 /* 00000D86 */
+00000E8C  206D 95B8                movea.l    A0, [A5 - 0x6A48]
+00000E90  52AD 95B8                addq.l     [A5 - 0x6A48], 1
+00000E94  1087                     move.b     [A0], D7
+00000E96  2F0C                     move.l     -[A7], A4
+00000E98  486E FFEE                pea.l      [A6 - 0x12]
+00000E9C  4EBA FA4A                jsr        [PC - 0x05B6] /* 000008E8 */
+00000EA0  6000 FEE4                bra        -0x11A /* 00000D86 */
+label00000EA4:
+00000EA4  41ED 94B8                lea.l      A0, [A5 - 0x6B48]
+00000EA8  2B48 95B8                move.l     [A5 - 0x6A48], A0
+00000EAC  3F3C 0002                move.w     -[A7], 0x02
+00000EB0  4EBA F8AE                jsr        [PC - 0x0752] /* 00000760 */
+label00000EB4:
+00000EB4  206D 95B8                movea.l    A0, [A5 - 0x6A48]
+00000EB8  52AD 95B8                addq.l     [A5 - 0x6A48], 1
+00000EBC  1010                     move.b     D0, [A0]
+00000EBE  1940 003A                move.b     [A4 + 0x3A], D0
+00000EC2  1940 0016                move.b     [A4 + 0x16], D0
+00000EC6  0240 00FF                andi.w     D0, 0xFF
+00000ECA  0C40 000D                cmpi.w     D0, 0x0D /* '\r' */
+00000ECE  660E                     bne        +0x10 /* 00000EDE */
+00000ED0  7001                     moveq.l    D0, 1
+00000ED2  1940 0014                move.b     [A4 + 0x14], D0
+00000ED6  7020                     moveq.l    D0, 32
+00000ED8  1940 003A                move.b     [A4 + 0x3A], D0
+00000EDC  6004                     bra        +0x6 /* 00000EE2 */
+label00000EDE:
+00000EDE  422C 0014                clr.b      [A4 + 0x14]
+label00000EE2:
+00000EE2  7001                     moveq.l    D0, 1
+00000EE4  1940 0013                move.b     [A4 + 0x13], D0
+00000EE8  2F2E FFEA                move.l     -[A7], [A6 - 0x16]
+00000EEC  A873                     syscall    SetPort /* (GrafPtr port @ [A7]) -> void */
+label00000EEE:
+00000EEE  4CDF 1080                movem.l    (D7, A4), [A7]+
+00000EF2  4E5E                     unlink     A6
+00000EF4  4E75                     rts
+fn00000EF6:
+00000EF6  598F                     subq.l     A7, 4
+00000EF8  2F3C 4C53 5020           move.l     -[A7], 0x4C535020 /* 'LSP ' */
+00000EFE  3F00                     move.w     -[A7], D0
+00000F00  A9A0                     syscall    GetResource /* (ResType theType @ [A7 + 2], short theID @ [A7]) -> Handle @ [A7] */
+00000F02  205F                     movea.l    A0, [A7]+
+00000F04  2008                     move.l     D0, A0
+00000F06  4E75                     rts
+export_40:
+00000F08  48E7 0308                movem.l    -[A7], (A4, D7-D6)
+00000F0C  41ED 95BC                lea.l      A0, [A5 - 0x6A44]
+00000F10  2848                     movea.l    A4, A0
+00000F12  2E0F                     move.l     D7, A7
+00000F14  2C2E FFFC                move.l     D6, [A6 - 0x04]
+00000F18  601A                     bra        +0x1C /* 00000F34 */
+label00000F1A:
+00000F1A  BE94                     cmp.l      D7, [A4]
+00000F1C  6C14                     bge        +0x16 /* 00000F32 */
+00000F1E  BC94                     cmp.l      D6, [A4]
+00000F20  6F10                     ble        +0x12 /* 00000F32 */
+00000F22  4267                     clr.w      -[A7]
+00000F24  2F14                     move.l     -[A7], [A4]
+00000F26  4EBA FD2C                jsr        [PC - 0x02D4] /* 00000C54 */
+00000F2A  301F                     move.w     D0, [A7]+
+00000F2C  2054                     movea.l    A0, [A4]
+00000F2E  2890                     move.l     [A4], [A0]
+00000F30  6002                     bra        +0x4 /* 00000F34 */
+label00000F32:
+00000F32  2854                     movea.l    A4, [A4]
+label00000F34:
+00000F34  4A94                     tst.l      [A4]
+00000F36  66E2                     bne        -0x1C /* 00000F1A */
+00000F38  4CDF 10C0                movem.l    (D6-D7, A4), [A7]+
+00000F3C  205F                     movea.l    A0, [A7]+
+00000F3E  4ED0                     jmp        [A0]
+export_41:
+fn00000F40:
+00000F40  426D 936C                clr.w      [A5 - 0x6C94]
+00000F44  4A2D 9370                tst.b      [A5 - 0x6C90]
+00000F48  664A                     bne        +0x4C /* 00000F94 */
+00000F4A  42AD 95BC                clr.l      [A5 - 0x6A44]
+00000F4E  2B7C 4441 5441 95C4      move.l     [A5 - 0x6A3C], 0x44415441 /* 'DATA' */
+00000F56  2B7C 4A4F 484E 95C8      move.l     [A5 - 0x6A38], 0x4A4F484E /* 'JOHN' */
+00000F5E  42AD 95CC                clr.l      [A5 - 0x6A34]
+00000F62  426D 95D0                clr.w      [A5 - 0x6A30]
+00000F66  426D 95D2                clr.w      [A5 - 0x6A2E]
+00000F6A  422D 95EE                clr.b      [A5 - 0x6A12]
+00000F6E  426D 95EA                clr.w      [A5 - 0x6A16]
+00000F72  42AD 95E0                clr.l      [A5 - 0x6A20]
+00000F76  41ED 0162                lea.l      A0, [A5 + 0x0162] /* export_40, CODE:1 @ 00000F08 */
+00000F7A  2B48 9332                move.l     [A5 - 0x6CCE], A0
+00000F7E  41ED 0152                lea.l      A0, [A5 + 0x0152] /* export_38, CODE:1 @ 00000D1A */
+00000F82  2B48 932E                move.l     [A5 - 0x6CD2], A0
+00000F86  7001                     moveq.l    D0, 1
+00000F88  1B40 9370                move.b     [A5 - 0x6C90], D0
+00000F8C  4EBA FB62                jsr        [PC - 0x049E] /* 00000AF0 */
+00000F90  4EBA FBC0                jsr        [PC - 0x0440] /* 00000B52 */
+label00000F94:
+00000F94  205F                     movea.l    A0, [A7]+
+00000F96  4ED0                     jmp        [A0]
+fn00000F98:
+00000F98  302D FFDC                move.w     D0, [A5 - 0x24]
+00000F9C  4E75                     rts
+fn00000F9E:
+00000F9E  102D FFD6                move.b     D0, [A5 - 0x2A]
+00000FA2  4E75                     rts
+export_42:
+fn00000FA4:
+00000FA4  206F 0004                movea.l    A0, [A7 + 0x04]
+00000FA8  226F 0008                movea.l    A1, [A7 + 0x08]
+00000FAC  7000                     moveq.l    D0, 0
+00000FAE  1018                     move.b     D0, [A0]+
+00000FB0  4840                     swap.w     D0
+00000FB2  1019                     move.b     D0, [A1]+
+00000FB4  A03C                     syscall    CmpString /* (const char* a @ A0, const char* a @ A1, UInt32 strSizes @ D0) -> Int32 @ D0 */
+00000FB6  4E75                     rts
+export_43:
+00000FB8  4E56 0000                link       A6, 0x00000000
+00000FBC  48E7 0018                movem.l    -[A7], (A4-A3)
+00000FC0  286E 0008                movea.l    A4, [A6 + 0x08]
+00000FC4  266E 000C                movea.l    A3, [A6 + 0x0C]
+00000FC8  1013                     move.b     D0, [A3]
+00000FCA  0280 0000 00FF           andi.l     D0, 0xFF
+00000FD0  D1AC 000C                add.l      [A4 + 0x0C], D0
+00000FD4  7000                     moveq.l    D0, 0
+00000FD6  1013                     move.b     D0, [A3]
+00000FD8  4840                     swap.w     D0
+00000FDA  4240                     clr.w      D0
+00000FDC  4840                     swap.w     D0
+00000FDE  D08B                     add.l      D0, A3
+00000FE0  2040                     movea.l    A0, D0
+00000FE2  1010                     move.b     D0, [A0]
+00000FE4  1940 0016                move.b     [A4 + 0x16], D0
+00000FE8  0240 00FF                andi.w     D0, 0xFF
+00000FEC  0C40 000C                cmpi.w     D0, 0x0C
+00000FF0  660A                     bne        +0xC /* 00000FFC */
+00000FF2  2F0C                     move.l     -[A7], A4
+00000FF4  4EBA F6C4                jsr        [PC - 0x093C] /* 000006BA */
+00000FF8  588F                     addq.l     A7, 4
+00000FFA  6008                     bra        +0xA /* 00001004 */
+label00000FFC:
+00000FFC  2F0C                     move.l     -[A7], A4
+00000FFE  2F0B                     move.l     -[A7], A3
+00001000  4EBA F8E6                jsr        [PC - 0x071A] /* 000008E8 */
+label00001004:
+00001004  4CDF 1800                movem.l    (A3-A4), [A7]+
+00001008  4E5E                     unlink     A6
+0000100A  4E75                     rts
+export_44:
+0000100C  4E75                     rts
+export_45:
+0000100E  4A78 028E                tst.w      [0x0000028E] /* ROM85 */
+00001012  6B22                     bmi        +0x24 /* 00001036 */
+00001014  303C 0090                move.w     D0, 0x90
+00001018  A346                     syscall    GetOSTrapAddress /* (UInt16 trapNum @ D0) -> UniversalProcPtr @ A0 */
+0000101A  2248                     movea.l    A1, A0
+0000101C  303C 009F                move.w     D0, 0x9F
+00001020  A746                     syscall    GetToolboxTrapAddress/GetToolTrapAddress /* (UInt16 trapNum @ D0) -> UniversalProcPtr @ A0 */
+00001022  B3C8                     cmpa.l     A1, A0
+00001024  6710                     beq        +0x12 /* 00001036 */
+00001026  225F                     movea.l    A1, [A7]+
+00001028  205F                     movea.l    A0, [A7]+
+0000102A  301F                     move.w     D0, [A7]+
+0000102C  2F09                     move.l     -[A7], A1
+0000102E  A090                     syscall    SysEnvirons /* (short versionRequested @ D0, SysEnvRec* theWorld @ A0) -> OSErr @ D0 */
+00001030  3F40 0004                move.w     [A7 + 0x04], D0
+00001034  4E75                     rts
+label00001036:
+00001036  206F 0004                movea.l    A0, [A7 + 0x04]
+0000103A  303C 0001                move.w     D0, 0x01
+0000103E  2248                     movea.l    A1, A0
+00001040  6006                     bra        +0x8 /* 00001048 */
+00001042  0313                     btst       [A3], D1
+00001044  0B02                     btst       D2, D5
+00001046  0100                     btst       D0, D0
+label00001048:
+00001048  303C 0010                move.w     D0, 0x10
+0000104C  E240                     asr.w      D0, 1
+0000104E  5340                     subq.w     D0, 1
+label00001050:
+00001050  4258                     clr.w      [A0]+
+00001052  51C8 FFFC                dbf        D0, -0x2 /* 00001050 */
+00001056  32BC 0001                move.w     [A1], 0x01
+0000105A  2078 02AE                movea.l    A0, [0x000002AE] /* ROMBase */
+0000105E  337C FFFE 0002           move.w     [A1 + 0x02], 0xFFFE
+00001064  0C28 00FF 0009           cmpi.b     [A0 + 0x09], 0xFF
+0000106A  6742                     beq        +0x44 /* 000010AE */
+0000106C  4A28 0008                tst.b      [A0 + 0x08]
+00001070  6E20                     bgt        +0x22 /* 00001092 */
+00001072  337C FFFF 0002           move.w     [A1 + 0x02], 0xFFFF
+00001078  4A78 028E                tst.w      [0x0000028E] /* ROM85 */
+0000107C  6B30                     bmi        +0x32 /* 000010AE */
+0000107E  337C 0001 0002           move.w     [A1 + 0x02], 0x01
+00001084  4A78 0B22                tst.w      [0x00000B22] /* HWCfgFlags */
+00001088  6A24                     bpl        +0x26 /* 000010AE */
+0000108A  337C 0002 0002           move.w     [A1 + 0x02], 0x02
+00001090  601C                     bra        +0x1E /* 000010AE */
+label00001092:
+00001092  4269 0002                clr.w      [A1 + 0x02]
+00001096  0C28 0002 0008           cmpi.b     [A0 + 0x08], 0x02
+0000109C  6E10                     bgt        +0x12 /* 000010AE */
+0000109E  6708                     beq        +0xA /* 000010A8 */
+000010A0  337C 0004 0002           move.w     [A1 + 0x02], 0x04
+000010A6  6006                     bra        +0x8 /* 000010AE */
+label000010A8:
+000010A8  337C 0003 0002           move.w     [A1 + 0x02], 0x03
+label000010AE:
+000010AE  4269 0004                clr.w      [A1 + 0x04]
+000010B2  0C38 0002 012F           cmpi.b     [0x0000012F] /* CPUFlag */, 0x02
+000010B8  6E0A                     bgt        +0xC /* 000010C4 */
+000010BA  1038 012F                move.b     D0, [0x0000012F] /* CPUFlag */
+000010BE  5240                     addq.w     D0, 1
+000010C0  1340 0007                move.b     [A1 + 0x07], D0
+label000010C4:
+000010C4  4A78 028E                tst.w      [0x0000028E] /* ROM85 */
+000010C8  6B0E                     bmi        +0x10 /* 000010D8 */
+000010CA  0838 0004 0B22           btst       [0x00000B22] /* HWCfgFlags */, 0x04
+000010D0  6706                     beq        +0x8 /* 000010D8 */
+000010D2  137C 0001 0008           move.b     [A1 + 0x08], 0x01
+label000010D8:
+000010D8  0C78 3FFF 028E           cmpi.w     [0x0000028E] /* ROM85 */, 0x3FFF
+000010DE  6206                     bhi        +0x8 /* 000010E6 */
+000010E0  137C 0001 0009           move.b     [A1 + 0x09], 0x01
+label000010E6:
+000010E6  1038 021E                move.b     D0, [0x0000021E] /* KbdType */
+000010EA  41FA FF5B                lea.l      A0, [PC - 0xA5] /* 0x00001047; value 0x00303C00 '0<\0'; cstring "" */
+000010EE  323C 0004                move.w     D1, 0x04
+label000010F2:
+000010F2  B020                     cmp.b      D0, -[A0]
+000010F4  57C9 FFFC                dbeq       D1, -0x2 /* 000010F2 */
+000010F8  5241                     addq.w     D1, 1
+000010FA  3341 000A                move.w     [A1 + 0x0A], D1
+000010FE  4A38 0291                tst.b      [0x00000291] /* PortBUse */
+00001102  6B18                     bmi        +0x1A /* 0000111C */
+00001104  1238 01FB                move.b     D1, [0x000001FB] /* SPConfig */
+00001108  0201 000F                andi.b     D1, 0x0F
+0000110C  0C01 0001                cmpi.b     D1, 0x01
+00001110  660A                     bne        +0xC /* 0000111C */
+00001112  2078 02DC                movea.l    A0, [0x000002DC] /* ABusDCE */
+00001116  1368 0007 000D           move.b     [A1 + 0x0D], [A0 + 0x07]
+label0000111C:
+0000111C  3378 0210 000E           move.w     [A1 + 0x0E], [0x00000210] /* BootDrive */
+00001122  4A78 03F6                tst.w      [0x000003F6] /* FSFCBLen */
+00001126  6D44                     blt        +0x46 /* 0000116C */
+00001128  4269 000E                clr.w      [A1 + 0x0E]
+0000112C  323C 003C                move.w     D1, 0x3C /* '<' */
+label00001130:
+00001130  4267                     clr.w      -[A7]
+00001132  51C9 FFFC                dbf        D1, -0x2 /* 00001130 */
+00001136  204F                     movea.l    A0, A7
+00001138  3178 0A58 0018           move.w     [A0 + 0x18], [0x00000A58] /* SysMap */
+0000113E  7008                     moveq.l    D0, 8
+00001140  A260                     syscall    PBIterateForksAsync, flags=2 /* (FSForkIOParam* paramBlock @ A0) -> void */
+00001142  6624                     bne        +0x26 /* 00001168 */
+00001144  3168 0034 0016           move.w     [A0 + 0x16], [A0 + 0x34]
+0000114A  A207                     syscall    PBHGetVInfoSync /* (HParmBlkPtr paramBlock @ A0) -> OSErr @ D0 */
+0000114C  661A                     bne        +0x1C /* 00001168 */
+0000114E  2168 005A 0030           move.l     [A0 + 0x30], [A0 + 0x5A]
+00001154  217C 4552 494B 001C      move.l     [A0 + 0x1C], 0x4552494B /* 'ERIK' */
+0000115C  7001                     moveq.l    D0, 1
+0000115E  A260                     syscall    PBIterateForksAsync, flags=2 /* (FSForkIOParam* paramBlock @ A0) -> void */
+00001160  6606                     bne        +0x8 /* 00001168 */
+00001162  3368 0016 000E           move.w     [A1 + 0x0E], [A0 + 0x16]
+label00001168:
+00001168  4FEF 007A                lea.l      A7, [A7 + 0x7A]
+label0000116C:
+0000116C  2049                     movea.l    A0, A1
+0000116E  225F                     movea.l    A1, [A7]+
+00001170  5C4F                     addq.w     A7, 6
+00001172  3EBC EA84                move.w     [A7], 0xEA84
+00001176  4ED1                     jmp        [A1]
+export_46:
+00001178  4E56 0000                link       A6, 0x00000000
+0000117C  203C 0000 A89F           move.l     D0, 0xA89F
+00001182  A746                     syscall    GetToolboxTrapAddress/GetToolTrapAddress /* (UInt16 trapNum @ D0) -> UniversalProcPtr @ A0 */
+00001184  2F08                     move.l     -[A7], A0
+00001186  203C 0000 A0AD           move.l     D0, 0xA0AD
+0000118C  A346                     syscall    GetOSTrapAddress /* (UInt16 trapNum @ D0) -> UniversalProcPtr @ A0 */
+0000118E  B1DF                     cmpa.l     A0, [A7]+
+00001190  670E                     beq        +0x10 /* 000011A0 */
+00001192  202E 000C                move.l     D0, [A6 + 0x0C]
+00001196  A1AD                     syscall    Gestalt /* (OSType selector @ D0, long* response @ A1) -> OSErr @ A0 */
+00001198  226E 0008                movea.l    A1, [A6 + 0x08]
+0000119C  2288                     move.l     [A1], A0
+0000119E  6026                     bra        +0x28 /* 000011C6 */
+label000011A0:
+000011A0  41FA 0036                lea.l      A0, [PC + 0x36] /* 0x000011D8; value 0x76657273 'vers'; cstring "vers" */
+000011A4  303C EA51                move.w     D0, 0xEA51
+000011A8  222E 000C                move.l     D1, [A6 + 0x0C]
+label000011AC:
+000011AC  B298                     cmp.l      D1, [A0]+
+000011AE  6706                     beq        +0x8 /* 000011B6 */
+000011B0  4A98                     tst.l      [A0]+
+000011B2  6712                     beq        +0x14 /* 000011C6 */
+000011B4  60F6                     bra        -0x8 /* 000011AC */
+label000011B6:
+000011B6  43FA 0020                lea.l      A1, [PC + 0x20] /* 0x000011D8; value 0x76657273 'vers'; cstring "vers" */
+000011BA  D3D0                     adda.l     A1, [A0]
+000011BC  4ED1                     jmp        [A1]
+label000011BE:
+000011BE  226E 0008                movea.l    A1, [A6 + 0x08]
+000011C2  2280                     move.l     [A1], D0
+000011C4  4240                     clr.w      D0
+label000011C6:
+000011C6  3D40 0010                move.w     [A6 + 0x10], D0
+000011CA  4E5E                     unlink     A6
+000011CC  205F                     movea.l    A0, [A7]+
+000011CE  508F                     addq.l     A7, 8
+000011D0  4ED0                     jmp        [A0]
+label000011D2:
+000011D2  303C EA52                move.w     D0, 0xEA52
+000011D6  60EE                     bra        -0x10 /* 000011C6 */
+000011D8  7665                     moveq.l    D3, 101
+000011DA  7273                     moveq.l    D1, 115
+000011DC  0000 0060                ori.b      D0, 0x60 /* '`' */
+000011E0  6D61                     blt        +0x63 /* 00001243 */
+000011E2  6368                     bls        +0x6A /* 0000124C */
+000011E4  0000 0064                ori.b      D0, 0x64 /* 'd' */
+000011E8  7379                     .invalid   // Invalid opcode 7/1
+000011EA  7376                     .invalid   // Invalid opcode 7/1
+000011EC  0000 0088                ori.b      D0, 0x88
+000011F0  7072                     moveq.l    D0, 114
+000011F2  6F63                     ble        +0x65 /* 00001257 */
+000011F4  0000 0092                ori.b      D0, 0x92
+000011F8  6670                     bne        +0x72 /* 0000126A */
+000011FA  7520                     .invalid   // Invalid opcode 7/1
+000011FC  0000 009E                ori.b      D0, 0x9E
+00001200  7164                     .invalid   // Invalid opcode 7/1
+00001202  2020                     move.l     D0, -[A0]
+00001204  0000 00E8                ori.b      D0, 0xE8
+00001208  6B62                     bmi        +0x64 /* 0000126C */
+0000120A  6420                     bcc        +0x22 /* 0000122C */
+0000120C  0000 011A                ori.b      D0, 0x011A
+00001210  6174                     bsr        +0x76 /* 00001286 */
+00001212  6C6B                     bge        +0x6D /* 0000127F */
+00001214  0000 0142                ori.b      D0, 0x0142
+00001218  6D6D                     blt        +0x6F /* 00001287 */
+0000121A  7520                     .invalid   // Invalid opcode 7/1
+0000121C  0000 0164                ori.b      D0, 0x0164
+00001220  7261                     moveq.l    D1, 97
+00001222  6D20                     blt        +0x22 /* 00001244 */
+00001224  0000 0188                ori.b      D0, 0x0188
+00001228  6C72                     bge        +0x74 /* 0000129C */
+0000122A  616D                     bsr        +0x6F /* 00001299 */
+label0000122C:
+0000122C  0000 0188                ori.b      D0, 0x0188
+00001230  0000 0000                ori.b      D0, 0x00
+00001234  0000 0000                ori.b      D0, 0x00
+00001238  7001                     moveq.l    D0, 1
+0000123A  6082                     bra        -0x7C /* 000011BE */
+0000123C  2278 02AE                movea.l    A1, [0x000002AE] /* ROMBase */
+00001240  7004                     moveq.l    D0, 4
+00001242  0C69 0075 0008           cmpi.w     [A1 + 0x08], 0x75 /* 'u' */
+// begin alternate branch 00001244-0000124C
+label00001244:
+00001244  0075 0008 6712 0C69      ori.w      [[A5 + D6.w * 8] + 0x0C69], 0x08
+// end alternate branch 00001244-0000124C
+label00001244: // (misaligned)
+00001248  6712                     beq        +0x14 /* 0000125C */
+0000124A  0C69 0276 0008           cmpi.w     [A1 + 0x08], 0x0276
+// begin alternate branch 0000124C-00001252
+label0000124C:
+0000124C  0276 0008 6604           andi.w     [A6 + D6.w * 8 + 0x04], 0x08
+// end alternate branch 0000124C-00001252
+label0000124C: // (misaligned)
+00001250  6604                     bne        +0x6 /* 00001256 */
+00001252  5240                     addq.w     D0, 1
+00001254  6006                     bra        +0x8 /* 0000125C */
+label00001256:
+00001256  1038 0CB3                move.b     D0, [0x00000CB3] /* MMUFluff/MachineType */
+0000125A  5C80                     addq.l     D0, 6
+label0000125C:
+0000125C  6000 FF60                bra        -0x9E /* 000011BE */
+00001260  7000                     moveq.l    D0, 0
+00001262  3038 015A                move.w     D0, [0x0000015A] /* SysVersion */
+00001266  6000 FF56                bra        -0xA8 /* 000011BE */
+label0000126A:
+0000126A  7000                     moveq.l    D0, 0
+label0000126C:
+0000126C  1038 012F                move.b     D0, [0x0000012F] /* CPUFlag */
+00001270  5240                     addq.w     D0, 1
+00001272  6000 FF4A                bra        -0xB4 /* 000011BE */
+00001276  0C38 0004 012F           cmpi.b     [0x0000012F] /* CPUFlag */, 0x04
+0000127C  6738                     beq        +0x3A /* 000012B6 */
+0000127E  0838 0004 0B22           btst       [0x00000B22] /* HWCfgFlags */, 0x04
+00001284  6734                     beq        +0x36 /* 000012BA */
+fn00001286:
+00001286  204F                     movea.l    A0, A7
+00001288  F280 0000                fbf        +0x2 /* 0000128A */
+// begin alternate branch 0000128A-0000128E
+label0000128A:
+0000128A  0000 F327                ori.b      D0, 0xF327
+// end alternate branch 0000128A-0000128E
+label0000128A: // (misaligned)
+0000128C  F327                     fsave      -[A7]
+0000128E  3017                     move.w     D0, [A7]
+00001290  2E48                     movea.l    A7, A0
+00001292  0C40 1F18                cmpi.w     D0, 0x1F18
+00001296  6716                     beq        +0x18 /* 000012AE */
+00001298  0C40 3F18                cmpi.w     D0, 0x3F18
+label0000129C:
+0000129C  6710                     beq        +0x12 /* 000012AE */
+0000129E  0C40 3F38                cmpi.w     D0, 0x3F38 /* '?8' */
+000012A2  670E                     beq        +0x10 /* 000012B2 */
+000012A4  0C40 1F38                cmpi.w     D0, 0x1F38
+000012A8  6708                     beq        +0xA /* 000012B2 */
+000012AA  7000                     moveq.l    D0, 0
+000012AC  600E                     bra        +0x10 /* 000012BC */
+label000012AE:
+000012AE  7001                     moveq.l    D0, 1
+000012B0  600A                     bra        +0xC /* 000012BC */
+label000012B2:
+000012B2  7002                     moveq.l    D0, 2
+000012B4  6006                     bra        +0x8 /* 000012BC */
+label000012B6:
+000012B6  7003                     moveq.l    D0, 3
+000012B8  6002                     bra        +0x4 /* 000012BC */
+label000012BA:
+000012BA  7000                     moveq.l    D0, 0
+label000012BC:
+000012BC  6000 FF00                bra        -0xFE /* 000011BE */
+000012C0  0C78 3FFF 028E           cmpi.w     [0x0000028E] /* ROM85 */, 0x3FFF
+000012C6  6E1C                     bgt        +0x1E /* 000012E4 */
+000012C8  303C A89F                move.w     D0, 0xA89F
+000012CC  A746                     syscall    GetToolboxTrapAddress/GetToolTrapAddress /* (UInt16 trapNum @ D0) -> UniversalProcPtr @ A0 */
+000012CE  2408                     move.l     D2, A0
+000012D0  203C 0000 AB03           move.l     D0, 0xAB03
+000012D6  A746                     syscall    GetToolboxTrapAddress/GetToolTrapAddress /* (UInt16 trapNum @ D0) -> UniversalProcPtr @ A0 */
+000012D8  203C 0000 0100           move.l     D0, 0x0100
+000012DE  B488                     cmp.l      D2, A0
+000012E0  6606                     bne        +0x8 /* 000012E8 */
+000012E2  600A                     bra        +0xC /* 000012EE */
+label000012E4:
+000012E4  7000                     moveq.l    D0, 0
+000012E6  6006                     bra        +0x8 /* 000012EE */
+label000012E8:
+000012E8  203C 0000 0200           move.l     D0, 0x0200
+label000012EE:
+000012EE  6000 FECE                bra        -0x130 /* 000011BE */
+000012F2  1038 021E                move.b     D0, [0x0000021E] /* KbdType */
+000012F6  41FA 0016                lea.l      A0, [PC + 0x16] /* 0x0000130E; value 0x03130B02 */
+000012FA  2248                     movea.l    A1, A0
+label000012FC:
+000012FC  1218                     move.b     D1, [A0]+
+000012FE  6700 FED2                beq        -0x12C /* 000011D2 */
+00001302  B200                     cmp.b      D1, D0
+00001304  66F6                     bne        -0x8 /* 000012FC */
+00001306  91C9                     suba.l     A0, A1
+00001308  2008                     move.l     D0, A0
+0000130A  6000 FEB2                bra        -0x14C /* 000011BE */
+0000130E  0313                     btst       [A3], D1
+00001310  0B02                     btst       D2, D5
+00001312  0106                     btst       D6, D0
+00001314  0704                     btst       D4, D3
+00001316  0508 0900                movep.w    D4, [A0 + 0x900]
+0000131A  7000                     moveq.l    D0, 0
+0000131C  4A38 0291                tst.b      [0x00000291] /* PortBUse */
+00001320  6B16                     bmi        +0x18 /* 00001338 */
+00001322  1238 01FB                move.b     D1, [0x000001FB] /* SPConfig */
+00001326  0201 000F                andi.b     D1, 0x0F
+0000132A  0C01 0001                cmpi.b     D1, 0x01
+0000132E  6608                     bne        +0xA /* 00001338 */
+00001330  2078 02DC                movea.l    A0, [0x000002DC] /* ABusDCE */
+00001334  1028 0007                move.b     D0, [A0 + 0x07]
+label00001338:
+00001338  6000 FE84                bra        -0x17A /* 000011BE */
+0000133C  0C38 0002 012F           cmpi.b     [0x0000012F] /* CPUFlag */, 0x02
+00001342  6D16                     blt        +0x18 /* 0000135A */
+00001344  7000                     moveq.l    D0, 0
+00001346  1038 0CB1                move.b     D0, [0x00000CB1] /* MMUType */
+0000134A  0C00 0001                cmpi.b     D0, 0x01
+0000134E  670C                     beq        +0xE /* 0000135C */
+00001350  0C00 0003                cmpi.b     D0, 0x03
+00001354  6D04                     blt        +0x6 /* 0000135A */
+00001356  5340                     subq.w     D0, 1
+00001358  6002                     bra        +0x4 /* 0000135C */
+label0000135A:
+0000135A  7000                     moveq.l    D0, 0
+label0000135C:
+0000135C  6000 FE60                bra        -0x19E /* 000011BE */
+00001360  303C A89F                move.w     D0, 0xA89F
+00001364  A746                     syscall    GetToolboxTrapAddress/GetToolTrapAddress /* (UInt16 trapNum @ D0) -> UniversalProcPtr @ A0 */
+00001366  2408                     move.l     D2, A0
+00001368  203C 0000 A88F           move.l     D0, 0xA88F
+0000136E  A746                     syscall    GetToolboxTrapAddress/GetToolTrapAddress /* (UInt16 trapNum @ D0) -> UniversalProcPtr @ A0 */
+00001370  2038 0108                move.l     D0, [0x00000108] /* MemTop */
+00001374  B488                     cmp.l      D2, A0
+00001376  670A                     beq        +0xC /* 00001382 */
+00001378  598F                     subq.l     A7, 4
+0000137A  3F3C 0016                move.w     -[A7], 0x16
+0000137E  A88F                     syscall    LaunchControlPanel /* (const FSSpec* pFileSpec @ [A7 + 2]) -> OSErr @ [A7] */
+00001380  201F                     move.l     D0, [A7]+
+label00001382:
+00001382  6000 FE3A                bra        -0x1C4 /* 000011BE */
+export_47:
+00001386  225F                     movea.l    A1, [A7]+
+00001388  201F                     move.l     D0, [A7]+
+0000138A  A122                     syscall    NewHandle /* (Size byteCount @ D0) -> (Handle @ A0, OSErr @ D0) */
+0000138C  2E88                     move.l     [A7], A0
+0000138E  4ED1                     jmp        [A1]
+export_48:
+00001390  225F                     movea.l    A1, [A7]+
+00001392  301F                     move.w     D0, [A7]+
+00001394  A146                     syscall    GetTrapAddress /* (UInt16 trapNum @ D0) -> UniversalProcPtr @ A0 */
+00001396  2E88                     move.l     [A7], A0
+00001398  4ED1                     jmp        [A1]
+export_49:
+0000139A  225F                     movea.l    A1, [A7]+
+0000139C  121F                     move.b     D1, [A7]+
+0000139E  301F                     move.w     D0, [A7]+
+000013A0  4A01                     tst.b      D1
+000013A2  6704                     beq        +0x6 /* 000013A8 */
+000013A4  A746                     syscall    GetToolboxTrapAddress/GetToolTrapAddress /* (UInt16 trapNum @ D0) -> UniversalProcPtr @ A0 */
+000013A6  6002                     bra        +0x4 /* 000013AA */
+label000013A8:
+000013A8  A346                     syscall    GetOSTrapAddress /* (UInt16 trapNum @ D0) -> UniversalProcPtr @ A0 */
+label000013AA:
+000013AA  2E88                     move.l     [A7], A0
+000013AC  4ED1                     jmp        [A1]
+export_50:
+000013AE  225F                     movea.l    A1, [A7]+
+000013B0  205F                     movea.l    A0, [A7]+
+000013B2  20B8 020C                move.l     [A0], [0x0000020C] /* Time */
+000013B6  4ED1                     jmp        [A1]
+export_51:
+000013B8  201F                     move.l     D0, [A7]+
+000013BA  225F                     movea.l    A1, [A7]+
+000013BC  205F                     movea.l    A0, [A7]+
+000013BE  2F00                     move.l     -[A7], D0
+000013C0  A03B                     syscall    Delay /* (unsigned long numTicks @ A0, unsigned long* finalTicks @ A1) -> unsigned long @ D0 */
+000013C2  2280                     move.l     [A1], D0
+000013C4  4E75                     rts
+fn000013C6:
+000013C6  225F                     movea.l    A1, [A7]+
+000013C8  101F                     move.b     D0, [A7]+
+000013CA  205F                     movea.l    A0, [A7]+
+000013CC  6604                     bne        +0x6 /* 000013D2 */
+000013CE  A001                     syscall    PBCloseSync /* (ParmBlkPtr paramBlock @ A0) -> OSErr @ D0 */
+000013D0  6002                     bra        +0x4 /* 000013D4 */
+label000013D2:
+000013D2  A401                     syscall    PBCloseAsync /* (ParmBlkPtr paramBlock @ A0) -> OSErr @ D0 */
+label000013D4:
+000013D4  3E80                     move.w     [A7], D0
+000013D6  4ED1                     jmp        [A1]
+fn000013D8:
+000013D8  225F                     movea.l    A1, [A7]+
+000013DA  101F                     move.b     D0, [A7]+
+000013DC  205F                     movea.l    A0, [A7]+
+000013DE  6604                     bne        +0x6 /* 000013E4 */
+000013E0  A009                     syscall    PBDeleteSync /* (ParmBlkPtr paramBlock @ A0) -> OSErr @ D0 */
+000013E2  6002                     bra        +0x4 /* 000013E6 */
+label000013E4:
+000013E4  A409                     syscall    PBDeleteAsync /* (ParmBlkPtr paramBlock @ A0) -> OSErr @ D0 */
+label000013E6:
+000013E6  3E80                     move.w     [A7], D0
+000013E8  4ED1                     jmp        [A1]
+export_52:
+000013EA  4E56 FFCE                link       A6, -0x00000032
+000013EE  204F                     movea.l    A0, A7
+000013F0  216E 000E 0012           move.l     [A0 + 0x12], [A6 + 0x0E]
+000013F6  316E 000C 0016           move.w     [A0 + 0x16], [A6 + 0x0C]
+000013FC  4228 001A                clr.b      [A0 + 0x1A]
+00001400  4228 001B                clr.b      [A0 + 0x1B]
+00001404  42A8 001C                clr.l      [A0 + 0x1C]
+00001408  701A                     moveq.l    D0, 26
+0000140A  A060                     syscall    PBIterateForksAsync, flags=0 /* (FSForkIOParam* paramBlock @ A0) -> void */
+0000140C  0C40 FFCE                cmpi.w     D0, 0xFFCE
+00001410  6602                     bne        +0x4 /* 00001414 */
+00001412  A000                     syscall    PBOpenSync /* (ParmBlkPtr paramBlock @ A0) -> OSErr @ D0 */
+label00001414:
+00001414  226E 0008                movea.l    A1, [A6 + 0x08]
+00001418  32A8 0018                move.w     [A1], [A0 + 0x18]
+0000141C  3D40 0012                move.w     [A6 + 0x12], D0
+00001420  4E5E                     unlink     A6
+00001422  205F                     movea.l    A0, [A7]+
+00001424  4FEF 000A                lea.l      A7, [A7 + 0x0A]
+00001428  4ED0                     jmp        [A0]
+export_53:
+0000142A  4E56 FFCE                link       A6, -0x00000032
+0000142E  204F                     movea.l    A0, A7
+00001430  316E 0008 0018           move.w     [A0 + 0x18], [A6 + 0x08]
+00001436  A001                     syscall    PBCloseSync /* (ParmBlkPtr paramBlock @ A0) -> OSErr @ D0 */
+00001438  3D40 000A                move.w     [A6 + 0x0A], D0
+0000143C  4E5E                     unlink     A6
+0000143E  205F                     movea.l    A0, [A7]+
+00001440  548F                     addq.l     A7, 2
+00001442  4ED0                     jmp        [A0]
+export_54:
+00001444  51C1                     sf         D1
+00001446  6002                     bra        +0x4 /* 0000144A */
+export_55:
+fn00001448:
+00001448  50C1                     st         D1
+label0000144A:
+0000144A  4E56 FFCE                link       A6, -0x00000032
+0000144E  204F                     movea.l    A0, A7
+00001450  216E 0008 0020           move.l     [A0 + 0x20], [A6 + 0x08]
+00001456  316E 0010 0018           move.w     [A0 + 0x18], [A6 + 0x10]
+0000145C  226E 000C                movea.l    A1, [A6 + 0x0C]
+00001460  2151 0024                move.l     [A0 + 0x24], [A1]
+00001464  4268 002C                clr.w      [A0 + 0x2C]
+00001468  42A8 002E                clr.l      [A0 + 0x2E]
+0000146C  4A01                     tst.b      D1
+0000146E  6604                     bne        +0x6 /* 00001474 */
+00001470  A002                     syscall    PBReadSync /* (ParmBlkPtr paramBlock @ A0) -> OSErr @ D0 */
+00001472  6002                     bra        +0x4 /* 00001476 */
+label00001474:
+00001474  A003                     syscall    PBWriteSync /* (ParmBlkPtr paramBlock @ A0) -> OSErr @ D0 */
+label00001476:
+00001476  3D40 0012                move.w     [A6 + 0x12], D0
+0000147A  226E 000C                movea.l    A1, [A6 + 0x0C]
+0000147E  22A8 0028                move.l     [A1], [A0 + 0x28]
+00001482  4E5E                     unlink     A6
+00001484  225F                     movea.l    A1, [A7]+
+00001486  4FEF 000A                lea.l      A7, [A7 + 0x0A]
+0000148A  4ED1                     jmp        [A1]
+export_56:
+0000148C  4E56 FFC0                link       A6, -0x00000040
+00001490  204F                     movea.l    A0, A7
+00001492  216E 000A 0012           move.l     [A0 + 0x12], [A6 + 0x0A]
+00001498  316E 0008 0016           move.w     [A0 + 0x16], [A6 + 0x08]
+0000149E  A015                     syscall    PBSetVolSync /* (ParmBlkPtr paramBlock @ A0) -> OSErr @ D0 */
+000014A0  3D40 000E                move.w     [A6 + 0x0E], D0
+000014A4  4E5E                     unlink     A6
+000014A6  225F                     movea.l    A1, [A7]+
+000014A8  5C8F                     addq.l     A7, 6
+000014AA  4ED1                     jmp        [A1]
+export_57:
+000014AC  4E56 FFC0                link       A6, -0x00000040
+000014B0  204F                     movea.l    A0, A7
+000014B2  316E 0008 0016           move.w     [A0 + 0x16], [A6 + 0x08]
+000014B8  216E 000A 0012           move.l     [A0 + 0x12], [A6 + 0x0A]
+000014BE  A013                     syscall    PBFlushVolSync /* (ParmBlkPtr paramBlock @ A0) -> OSErr @ D0 */
+000014C0  3D40 000E                move.w     [A6 + 0x0E], D0
+000014C4  4E5E                     unlink     A6
+000014C6  225F                     movea.l    A1, [A7]+
+000014C8  5C8F                     addq.l     A7, 6
+000014CA  4ED1                     jmp        [A1]
+export_58:
+000014CC  4E56 FFB0                link       A6, -0x00000050
+000014D0  204F                     movea.l    A0, A7
+000014D2  216E 0012 0012           move.l     [A0 + 0x12], [A6 + 0x12]
+000014D8  316E 0010 0016           move.w     [A0 + 0x16], [A6 + 0x10]
+000014DE  4228 001A                clr.b      [A0 + 0x1A]
+000014E2  A008                     syscall    PBCreateSync /* (ParmBlkPtr paramBlock @ A0) -> OSErr @ D0 */
+000014E4  6616                     bne        +0x18 /* 000014FC */
+000014E6  4268 001C                clr.w      [A0 + 0x1C]
+000014EA  A00C                     syscall    PBGetFInfoSync /* (ParmBlkPtr paramBlock @ A0) -> OSErr @ D0 */
+000014EC  660E                     bne        +0x10 /* 000014FC */
+000014EE  43E8 0020                lea.l      A1, [A0 + 0x20]
+000014F2  22EE 0008                move.l     [A1]+, [A6 + 0x08]
+000014F6  22AE 000C                move.l     [A1], [A6 + 0x0C]
+000014FA  A00D                     syscall    PBSetFInfoSync /* (ParmBlkPtr paramBlock @ A0) -> OSErr @ D0 */
+label000014FC:
+000014FC  3D40 0016                move.w     [A6 + 0x16], D0
+00001500  4E5E                     unlink     A6
+00001502  225F                     movea.l    A1, [A7]+
+00001504  4FEF 000E                lea.l      A7, [A7 + 0x0E]
+00001508  4ED1                     jmp        [A1]
+export_59:
+0000150A  4E56 FFCE                link       A6, -0x00000032
+0000150E  204F                     movea.l    A0, A7
+00001510  216E 000A 0012           move.l     [A0 + 0x12], [A6 + 0x0A]
+00001516  316E 0008 0016           move.w     [A0 + 0x16], [A6 + 0x08]
+0000151C  4228 001A                clr.b      [A0 + 0x1A]
+00001520  A009                     syscall    PBDeleteSync /* (ParmBlkPtr paramBlock @ A0) -> OSErr @ D0 */
+00001522  3D40 000E                move.w     [A6 + 0x0E], D0
+00001526  4E5E                     unlink     A6
+00001528  225F                     movea.l    A1, [A7]+
+0000152A  5C8F                     addq.l     A7, 6
+0000152C  4ED1                     jmp        [A1]
+fn0000152E:
+0000152E  4E56 FFCE                link       A6, -0x00000032
+00001532  204F                     movea.l    A0, A7
+00001534  316E 000C 0018           move.w     [A0 + 0x18], [A6 + 0x0C]
+0000153A  A011                     syscall    PBGetEOFSync /* (ParmBlkPtr paramBlock @ A0) -> OSErr @ D0 */
+0000153C  3D40 000E                move.w     [A6 + 0x0E], D0
+00001540  226E 0008                movea.l    A1, [A6 + 0x08]
+00001544  22A8 001C                move.l     [A1], [A0 + 0x1C]
+00001548  4E5E                     unlink     A6
+0000154A  225F                     movea.l    A1, [A7]+
+0000154C  5C8F                     addq.l     A7, 6
+0000154E  4ED1                     jmp        [A1]
+fn00001550:
+00001550  4E56 FFCE                link       A6, -0x00000032
+00001554  204F                     movea.l    A0, A7
+00001556  316E 000C 0018           move.w     [A0 + 0x18], [A6 + 0x0C]
+0000155C  216E 0008 001C           move.l     [A0 + 0x1C], [A6 + 0x08]
+00001562  A012                     syscall    PBSetEOFSync /* (ParmBlkPtr paramBlock @ A0) -> OSErr @ D0 */
+00001564  3D40 000E                move.w     [A6 + 0x0E], D0
+00001568  4E5E                     unlink     A6
+0000156A  225F                     movea.l    A1, [A7]+
+0000156C  5C8F                     addq.l     A7, 6
+0000156E  4ED1                     jmp        [A1]
+export_60:
+00001570  4E56 FFCE                link       A6, -0x00000032
+00001574  204F                     movea.l    A0, A7
+00001576  316E 000E 0018           move.w     [A0 + 0x18], [A6 + 0x0E]
+0000157C  316E 000C 002C           move.w     [A0 + 0x2C], [A6 + 0x0C]
+00001582  216E 0008 002E           move.l     [A0 + 0x2E], [A6 + 0x08]
+00001588  A044                     syscall    PBSetFPosSync /* (ParmBlkPtr paramBlock @ A0) -> OSErr @ D0 */
+0000158A  3D40 0010                move.w     [A6 + 0x10], D0
+0000158E  4E5E                     unlink     A6
+00001590  225F                     movea.l    A1, [A7]+
+00001592  508F                     addq.l     A7, 8
+00001594  4ED1                     jmp        [A1]
+fn00001596:
+00001596  225F                     movea.l    A1, [A7]+
+00001598  201F                     move.l     D0, [A7]+
+0000159A  305F                     movea.w    A0, [A7]+
+0000159C  A02F                     syscall    PostEvent /* (EventKind eventNum @ A0, UInt32 eventMsg @ D0) -> OSErr @ D0 */
+0000159E  3E80                     move.w     [A7], D0
+000015A0  4ED1                     jmp        [A1]
+export_61:
+000015A2  226F 0004                movea.l    A1, [A7 + 0x04]
+000015A6  4251                     clr.w      [A1]
+000015A8  2078 0AEC                movea.l    A0, [0x00000AEC] /* AppParmHandle */
+000015AC  A025                     syscall    GetHandleSize /* (Handle h @ A0) -> Size @ D0 */
+000015AE  4A80                     tst.l      D0
+000015B0  6F0E                     ble        +0x10 /* 000015C0 */
+000015B2  2050                     movea.l    A0, [A0]
+000015B4  226F 0008                movea.l    A1, [A7 + 0x08]
+000015B8  3298                     move.w     [A1], [A0]+
+000015BA  226F 0004                movea.l    A1, [A7 + 0x04]
+000015BE  3290                     move.w     [A1], [A0]
+label000015C0:
+000015C0  205F                     movea.l    A0, [A7]+
+000015C2  504F                     addq.w     A7, 8
+000015C4  4ED0                     jmp        [A0]
+export_62:
+000015C6  48E7 0030                movem.l    -[A7], (A3-A2)
+000015CA  226F 000C                movea.l    A1, [A7 + 0x0C]
+000015CE  42A9 0002                clr.l      [A1 + 0x02]
+000015D2  2078 0AEC                movea.l    A0, [0x00000AEC] /* AppParmHandle */
+000015D6  A025                     syscall    GetHandleSize /* (Handle h @ A0) -> Size @ D0 */
+000015D8  4A80                     tst.l      D0
+000015DA  6F26                     ble        +0x28 /* 00001602 */
+000015DC  2450                     movea.l    A2, [A0]
+000015DE  544A                     addq.w     A2, 2
+000015E0  322F 0010                move.w     D1, [A7 + 0x10]
+000015E4  B25A                     cmp.w      D1, [A2]+
+000015E6  6E1A                     bgt        +0x1C /* 00001602 */
+000015E8  5341                     subq.w     D1, 1
+label000015EA:
+000015EA  6D16                     blt        +0x18 /* 00001602 */
+000015EC  204A                     movea.l    A0, A2
+000015EE  7002                     moveq.l    D0, 2
+000015F0  D028 0008                add.b      D0, [A0 + 0x08]
+000015F4  0240 FFFE                andi.w     D0, 0xFFFE
+000015F8  5040                     addq.w     D0, 8
+000015FA  D4C0                     adda.w     A2, D0
+000015FC  A02E                     syscall    BlockMove /* (const void* srcPtr @ A0, void* destPtr @ A1, Size byteCount @ D0) -> OSErr @ D0 */
+000015FE  5341                     subq.w     D1, 1
+00001600  60E8                     bra        -0x16 /* 000015EA */
+label00001602:
+00001602  4CDF 0C00                movem.l    (A2-A3), [A7]+
+00001606  205F                     movea.l    A0, [A7]+
+00001608  5C4F                     addq.w     A7, 6
+0000160A  4ED0                     jmp        [A0]
+export_63:
+0000160C  2078 0AEC                movea.l    A0, [0x00000AEC] /* AppParmHandle */
+00001610  A025                     syscall    GetHandleSize /* (Handle h @ A0) -> Size @ D0 */
+00001612  4A80                     tst.l      D0
+00001614  6F28                     ble        +0x2A /* 0000163E */
+00001616  2050                     movea.l    A0, [A0]
+00001618  5448                     addq.w     A0, 2
+0000161A  322F 0004                move.w     D1, [A7 + 0x04]
+0000161E  B258                     cmp.w      D1, [A0]+
+00001620  6E1C                     bgt        +0x1E /* 0000163E */
+00001622  5341                     subq.w     D1, 1
+label00001624:
+00001624  6D18                     blt        +0x1A /* 0000163E */
+00001626  6712                     beq        +0x14 /* 0000163A */
+00001628  7002                     moveq.l    D0, 2
+0000162A  D028 0008                add.b      D0, [A0 + 0x08]
+0000162E  0240 FFFE                andi.w     D0, 0xFFFE
+00001632  5040                     addq.w     D0, 8
+00001634  D0C0                     adda.w     A0, D0
+00001636  5341                     subq.w     D1, 1
+00001638  60EA                     bra        -0x14 /* 00001624 */
+label0000163A:
+0000163A  42A8 0002                clr.l      [A0 + 0x02]
+label0000163E:
+0000163E  205F                     movea.l    A0, [A7]+
+00001640  544F                     addq.w     A7, 2
+00001642  4ED0                     jmp        [A0]
+fn00001644:
+00001644  A063                     syscall    MaxApplZone /* () -> OSErr @ D0 */
+00001646  4E75                     rts
+00001648  7402                     moveq.l    D2, 2
+label0000164A:
+0000164A  205F                     movea.l    A0, [A7]+
+0000164C  3F02                     move.w     -[A7], D2
+0000164E  2F08                     move.l     -[A7], A0
+00001650  ADE9                     syscall    DIReformat, auto_pop /* (short drvNum @ [A7 + 10], short fsid @ [A7 + 8], ConstStr255Param volName @ [A7 + 4], ConstStr255Param msgText @ [A7]) -> OSErr @ [A7] */
+export_64:
+00001652  7400                     moveq.l    D2, 0
+00001654  4EFA FFF4                jmp        [PC - 0x0C] /* 0000164A */
+export_65:
+00001658  206F 0004                movea.l    A0, [A7 + 0x04]
+0000165C  202F 0008                move.l     D0, [A7 + 0x08]
+00001660  4267                     clr.w      -[A7]
+00001662  A9EE                     syscall    CStr2Dec
+00001664  205F                     movea.l    A0, [A7]+
+00001666  504F                     addq.w     A7, 8
+00001668  4ED0                     jmp        [A0]
+export_66:
+0000166A  6118                     bsr        +0x1A /* 00001684 */
+0000166C  A9DB                     syscall    TEPaste /* (TEHandle hTE @ [A7]) -> void */
+label0000166E:
+0000166E  2E9F                     move.l     [A7], [A7]+
+00001670  4E75                     rts
+export_68:
+00001672  6110                     bsr        +0x12 /* 00001684 */
+00001674  A9D6                     syscall    TECut /* (TEHandle hTE @ [A7]) -> void */
+00001676  60F6                     bra        -0x8 /* 0000166E */
+export_67:
+00001678  610A                     bsr        +0xC /* 00001684 */
+0000167A  A9D5                     syscall    TECopy /* (TEHandle hTE @ [A7]) -> void */
+0000167C  60F0                     bra        -0xE /* 0000166E */
+0000167E  6104                     bsr        +0x6 /* 00001684 */
+00001680  A9D7                     syscall    TEDelete /* (TEHandle hTE @ [A7]) -> void */
+00001682  60EA                     bra        -0x14 /* 0000166E */
+fn00001684:
+00001684  206F 0008                movea.l    A0, [A7 + 0x08]
+00001688  4A68 00A4                tst.w      [A0 + 0xA4]
+0000168C  6B08                     bmi        +0xA /* 00001696 */
+0000168E  225F                     movea.l    A1, [A7]+
+00001690  2F28 00A0                move.l     -[A7], [A0 + 0xA0]
+00001694  4ED1                     jmp        [A1]
+label00001696:
+00001696  4CDF 0301                movem.l    (D0, A0-A1), [A7]+
+0000169A  4ED0                     jmp        [A0]
+export_69:
+0000169C  2F17                     move.l     -[A7], [A7]
+0000169E  2F7C 0400 0C00 0004      move.l     [A7 + 0x04], 0x04000C00
+000016A6  4EFA 008E                jmp        [PC + 0x8E] /* 00001736 */
+export_70:
+000016AA  2F17                     move.l     -[A7], [A7]
+000016AC  2F7C 0800 0484 0004      move.l     [A7 + 0x04], 0x08000484
+000016B4  4EFA 0080                jmp        [PC + 0x80] /* 00001736 */
+export_71:
+000016B8  2F17                     move.l     -[A7], [A7]
+000016BA  2F7C 1000 0808 0004      move.l     [A7 + 0x04], 0x10000808
+000016C2  4EFA 0072                jmp        [PC + 0x72] /* 00001736 */
+export_72:
+000016C6  2F17                     move.l     -[A7], [A7]
+000016C8  2F7C 1800 040C 0004      move.l     [A7 + 0x04], 0x1800040C
+000016D0  4EFA 0064                jmp        [PC + 0x64] /* 00001736 */
+export_73:
+000016D4  2F17                     move.l     -[A7], [A7]
+000016D6  2F7C 2004 0480 0004      move.l     [A7 + 0x04], 0x20040480
+000016DE  4EFA 0056                jmp        [PC + 0x56] /* 00001736 */
+export_74:
+000016E2  2F17                     move.l     -[A7], [A7]
+000016E4  2F7C 2A04 0484 0004      move.l     [A7 + 0x04], 0x2A040484
+000016EC  4EFA 0048                jmp        [PC + 0x48] /* 00001736 */
+export_75:
+000016F0  2F17                     move.l     -[A7], [A7]
+000016F2  2F7C 3204 0488 0004      move.l     [A7 + 0x04], 0x32040488
+000016FA  4EFA 003A                jmp        [PC + 0x3A] /* 00001736 */
+export_76:
+000016FE  2F17                     move.l     -[A7], [A7]
+00001700  2F7C 6005 1480 0004      move.l     [A7 + 0x04], 0x60051480
+00001708  4EFA 002C                jmp        [PC + 0x2C] /* 00001736 */
+export_77:
+0000170C  2F17                     move.l     -[A7], [A7]
+0000170E  2F7C BA00 0000 0004      move.l     [A7 + 0x04], -0x46000000
+00001716  4EFA 001E                jmp        [PC + 0x1E] /* 00001736 */
+export_78:
+0000171A  2F17                     move.l     -[A7], [A7]
+0000171C  2F7C C800 0000 0004      move.l     [A7 + 0x04], -0x38000000
+00001724  4EFA 0010                jmp        [PC + 0x10] /* 00001736 */
+export_79:
+00001728  2F17                     move.l     -[A7], [A7]
+0000172A  2F7C D000 0000 0004      move.l     [A7 + 0x04], -0x30000000
+00001732  4EFA 0002                jmp        [PC + 0x02] /* 00001736 */
+fn00001736:
+00001736  2F0B                     move.l     -[A7], A3
+00001738  203C 0000 A89F           move.l     D0, 0xA89F
+0000173E  A146                     syscall    GetTrapAddress /* (UInt16 trapNum @ D0) -> UniversalProcPtr @ A0 */
+00001740  2648                     movea.l    A3, A0
+00001742  203C 0000 A8FD           move.l     D0, 0xA8FD
+00001748  A146                     syscall    GetTrapAddress /* (UInt16 trapNum @ D0) -> UniversalProcPtr @ A0 */
+0000174A  B7C8                     cmpa.l     A3, A0
+0000174C  6746                     beq        +0x48 /* 00001794 */
+0000174E  265F                     movea.l    A3, [A7]+
+00001750  4E56 0000                link       A6, 0x00000000
+00001754  41EE 0008                lea.l      A0, [A6 + 0x08]
+00001758  7007                     moveq.l    D0, 7
+0000175A  C02E 0008                and.b      D0, [A6 + 0x08]
+0000175E  D02E 000A                add.b      D0, [A6 + 0x0A]
+00001762  5800                     addq.b     D0, 4
+00001764  9EC0                     suba.w     A7, D0
+00001766  224F                     movea.l    A1, A7
+00001768  A02E                     syscall    BlockMove /* (const void* srcPtr @ A0, void* destPtr @ A1, Size byteCount @ D0) -> OSErr @ D0 */
+0000176A  A8FD                     syscall    PrLoadDriver /* () -> short @ [A7] */
+0000176C  7200                     moveq.l    D1, 0
+0000176E  122E 000A                move.b     D1, [A6 + 0x0A]
+00001772  7007                     moveq.l    D0, 7
+00001774  C02E 0008                and.b      D0, [A6 + 0x08]
+00001778  6710                     beq        +0x12 /* 0000178A */
+0000177A  204F                     movea.l    A0, A7
+0000177C  43F6 100C                lea.l      A1, [A6 + D1.w + 0x0C]
+00001780  E248                     lsr.w      D0, 1
+00001782  6002                     bra        +0x4 /* 00001786 */
+label00001784:
+00001784  32DF                     move.w     [A1]+, [A7]+
+label00001786:
+00001786  51C8 FFFC                dbf        D0, -0x2 /* 00001784 */
+label0000178A:
+0000178A  4E5E                     unlink     A6
+0000178C  205F                     movea.l    A0, [A7]+
+0000178E  DFC1                     adda.l     A7, D1
+00001790  584F                     addq.w     A7, 4
+00001792  4ED0                     jmp        [A0]
+label00001794:
+00001794  265F                     movea.l    A3, [A7]+
+00001796  4E56 0000                link       A6, 0x00000000
+0000179A  48E7 0018                movem.l    -[A7], (A4-A3)
+0000179E  7200                     moveq.l    D1, 0
+000017A0  122E 0008                move.b     D1, [A6 + 0x08]
+000017A4  E609                     lsr.b      D1, 3
+000017A6  6718                     beq        +0x1A /* 000017C0 */
+000017A8  4A2E 0008                tst.b      [A6 + 0x08]
+000017AC  6B00 00C2                bmi        +0xC4 /* 00001870 */
+000017B0  7400                     moveq.l    D2, 0
+000017B2  142E 0009                move.b     D2, [A6 + 0x09]
+000017B6  661E                     bne        +0x20 /* 000017D6 */
+000017B8  7403                     moveq.l    D2, 3
+000017BA  C438 0946                and.b      D2, [0x00000946] /* ChooserBits */
+000017BE  6016                     bra        +0x18 /* 000017D6 */
+label000017C0:
+000017C0  206E 0014                movea.l    A0, [A6 + 0x14]
+000017C4  2050                     movea.l    A0, [A0]
+000017C6  7403                     moveq.l    D2, 3
+000017C8  C428 0044                and.b      D2, [A0 + 0x44]
+000017CC  0238 00FC 0946           andi.b     [0x00000946] /* ChooserBits */, 0xFC
+000017D2  8538 0946                or.b       [0x00000946] /* ChooserBits */, D2
+label000017D6:
+000017D6  3678 0A5A                movea.w    A3, [0x00000A5A] /* CurMap */
+000017DA  42A7                     clr.l      -[A7]
+000017DC  2F3C 5044 4546           move.l     -[A7], 0x50444546 /* 'PDEF' */
+000017E2  3F02                     move.w     -[A7], D2
+000017E4  A9A0                     syscall    GetResource /* (ResType theType @ [A7 + 2], short theID @ [A7]) -> Handle @ [A7] */
+000017E6  201F                     move.l     D0, [A7]+
+000017E8  4A80                     tst.l      D0
+000017EA  664A                     bne        +0x4C /* 00001836 */
+000017EC  0C78 FFFF 0952           cmpi.w     [0x00000952] /* PrRefNum */, 0xFFFF
+000017F2  670C                     beq        +0xE /* 00001800 */
+000017F4  3F38 0952                move.w     -[A7], [0x00000952] /* PrRefNum */
+000017F8  A998                     syscall    UseResFile /* (short refNum @ [A7]) -> void */
+000017FA  4A78 0A60                tst.w      [0x00000A60] /* ResErr */
+000017FE  6716                     beq        +0x18 /* 00001816 */
+label00001800:
+00001800  6100 01D0                bsr        +0x1D2 /* 000019D2 */
+00001804  4A40                     tst.w      D0
+00001806  6708                     beq        +0xA /* 00001810 */
+00001808  31C0 0944                move.w     [0x00000944] /* PrintErr */, D0
+0000180C  6000 00B0                bra        +0xB2 /* 000018BE */
+label00001810:
+00001810  3F38 0952                move.w     -[A7], [0x00000952] /* PrRefNum */
+00001814  A998                     syscall    UseResFile /* (short refNum @ [A7]) -> void */
+label00001816:
+00001816  42A7                     clr.l      -[A7]
+00001818  2F3C 5044 4546           move.l     -[A7], 0x50444546 /* 'PDEF' */
+0000181E  3F02                     move.w     -[A7], D2
+00001820  A9A0                     syscall    GetResource /* (ResType theType @ [A7 + 2], short theID @ [A7]) -> Handle @ [A7] */
+00001822  201F                     move.l     D0, [A7]+
+00001824  4A80                     tst.l      D0
+00001826  660E                     bne        +0x10 /* 00001836 */
+00001828  3F0B                     move.w     -[A7], A3
+0000182A  A998                     syscall    UseResFile /* (short refNum @ [A7]) -> void */
+0000182C  31FC FF40 0944           move.w     [0x00000944] /* PrintErr */, 0xFF40
+00001832  6000 008A                bra        +0x8C /* 000018BE */
+label00001836:
+00001836  2840                     movea.l    A4, D0
+00001838  204C                     movea.l    A0, A4
+0000183A  A029                     syscall    HLock /* (Handle h @ A0) -> OSErr @ D0 */
+0000183C  3F0B                     move.w     -[A7], A3
+0000183E  A998                     syscall    UseResFile /* (short refNum @ [A7]) -> void */
+00001840  41EE 000C                lea.l      A0, [A6 + 0x0C]
+00001844  7007                     moveq.l    D0, 7
+00001846  C02E 0008                and.b      D0, [A6 + 0x08]
+0000184A  D02E 000A                add.b      D0, [A6 + 0x0A]
+0000184E  9EC0                     suba.w     A7, D0
+00001850  224F                     movea.l    A1, A7
+00001852  A02E                     syscall    BlockMove /* (const void* srcPtr @ A0, void* destPtr @ A1, Size byteCount @ D0) -> OSErr @ D0 */
+00001854  102E 000B                move.b     D0, [A6 + 0x0B]
+00001858  0200 007F                andi.b     D0, 0x7F
+0000185C  2054                     movea.l    A0, [A4]
+0000185E  4EB0 0000                jsr        [A0 + D0.w]
+00001862  102E 000B                move.b     D0, [A6 + 0x0B]
+00001866  6A04                     bpl        +0x6 /* 0000186C */
+00001868  204C                     movea.l    A0, A4
+0000186A  A02A                     syscall    HUnlock /* (Handle h @ A0) -> OSErr @ D0 */
+label0000186C:
+0000186C  6000 011A                bra        +0x11C /* 00001988 */
+label00001870:
+00001870  9EFC 0032                suba.w     A7, 0x32 /* '2' */
+00001874  41FA 0194                lea.l      A0, [PC + 0x0194] /* 0x00001A0A; value 0x072E5072; pstring ".Print " */
+00001878  2F48 0012                move.l     [A7 + 0x12], A0
+0000187C  3F7C FFFD 0018           move.w     [A7 + 0x18], 0xFFFD
+00001882  422F 001B                clr.b      [A7 + 0x1B]
+00001886  204F                     movea.l    A0, A7
+00001888  7000                     moveq.l    D0, 0
+0000188A  0881 0004                bclr       D1, 0x04
+0000188E  D241                     add.w      D1, D1
+00001890  323B 1006                move.w     D1, [PC + D1.w + 0x06]
+00001894  4EFB 1002                jmp        [PC + D1.w + 0x02]
+00001898  0068 006C 0070           ori.w      [A0 + 0x70], 0x6C /* 'l' */
+0000189E  007A 008C 00A8           .invalid   [PC + 0xA8] /* 0x0000194A */
+000018A4  00BA 00DA 00E4 0030      .invalid   [PC + 0x30] /* 0x000018DA */
+000018AC  0044 0020                ori.w      D4, 0x20 /* ' ' */
+000018B0  0020 0020                ori.b      -[A0], 0x20 /* ' ' */
+000018B4  0020 0020                ori.b      -[A0], 0x20 /* ' ' */
+000018B8  31FC FFCE 0944           move.w     [0x00000944] /* PrintErr */, 0xFFCE
+label000018BE:
+000018BE  7200                     moveq.l    D1, 0
+000018C0  122E 000A                move.b     D1, [A6 + 0x0A]
+000018C4  6000 00E0                bra        +0xE2 /* 000019A6 */
+000018C8  2F3C 8000 0000           move.l     -[A7], -0x80000000
+000018CE  4EBA FE66                jsr        [PC - 0x019A] /* 00001736 */
+000018D2  3038 0944                move.w     D0, [0x00000944] /* PrintErr */
+000018D6  6624                     bne        +0x26 /* 000018FC */
+000018D8  7200                     moveq.l    D1, 0
+000018DA  6002                     bra        +0x4 /* 000018DE */
+000018DC  7201                     moveq.l    D1, 1
+label000018DE:
+000018DE  6100 00F2                bsr        +0xF4 /* 000019D2 */
+000018E2  4A40                     tst.w      D0
+000018E4  6616                     bne        +0x18 /* 000018FC */
+000018E6  3038 0952                move.w     D0, [0x00000952] /* PrRefNum */
+000018EA  4A78 0A60                tst.w      [0x00000A60] /* ResErr */
+000018EE  6608                     bne        +0xA /* 000018F8 */
+000018F0  4A41                     tst.w      D1
+000018F2  6704                     beq        +0x6 /* 000018F8 */
+000018F4  3F00                     move.w     -[A7], D0
+000018F6  A99A                     syscall    CloseResFile /* (short refNum @ [A7]) -> void */
+label000018F8:
+000018F8  3038 0A60                move.w     D0, [0x00000A60] /* ResErr */
+label000018FC:
+000018FC  6000 0082                bra        +0x84 /* 00001980 */
+00001900  A000                     syscall    PBOpenSync /* (ParmBlkPtr paramBlock @ A0) -> OSErr @ D0 */
+00001902  607C                     bra        +0x7E /* 00001980 */
+00001904  A001                     syscall    PBCloseSync /* (ParmBlkPtr paramBlock @ A0) -> OSErr @ D0 */
+00001906  6078                     bra        +0x7A /* 00001980 */
+00001908  615A                     bsr        +0x5C /* 00001964 */
+0000190A  4FEF 002E                lea.l      A7, [A7 + 0x2E]
+0000190E  2E88                     move.l     [A7], A0
+00001910  6076                     bra        +0x78 /* 00001988 */
+00001912  6150                     bsr        +0x52 /* 00001964 */
+00001914  2050                     movea.l    A0, [A0]
+00001916  7000                     moveq.l    D0, 0
+00001918  1028 0007                move.b     D0, [A0 + 0x07]
+0000191C  4FEF 0030                lea.l      A7, [A7 + 0x30]
+00001920  3E80                     move.w     [A7], D0
+00001922  6064                     bra        +0x66 /* 00001988 */
+00001924  216E 000C 0024           move.l     [A0 + 0x24], [A6 + 0x0C]
+0000192A  216E 0010 0020           move.l     [A0 + 0x20], [A6 + 0x10]
+00001930  216E 0014 001C           move.l     [A0 + 0x1C], [A6 + 0x14]
+00001936  316E 0018 001A           move.w     [A0 + 0x1A], [A6 + 0x18]
+0000193C  A004                     syscall    PBControlSync /* (ParmBlkPtr paramBlock @ A0) -> OSErr @ D0 */
+0000193E  6040                     bra        +0x42 /* 00001980 */
+00001940  6122                     bsr        +0x24 /* 00001964 */
+00001942  2050                     movea.l    A0, [A0]
+00001944  0828 0006 0005           btst       [A0 + 0x05], 0x06
+0000194A  6734                     beq        +0x36 /* 00001980 */
+0000194C  2050                     movea.l    A0, [A0]
+0000194E  A049                     syscall    HPurge /* (Handle h @ A0) -> OSErr @ D0 */
+00001950  602E                     bra        +0x30 /* 00001980 */
+00001952  6110                     bsr        +0x12 /* 00001964 */
+00001954  2050                     movea.l    A0, [A0]
+00001956  0828 0006 0005           btst       [A0 + 0x05], 0x06
+0000195C  6722                     beq        +0x24 /* 00001980 */
+0000195E  2050                     movea.l    A0, [A0]
+00001960  A04A                     syscall    HNoPurge /* (Handle h @ A0) -> OSErr @ D0 */
+00001962  601C                     bra        +0x1E /* 00001980 */
+fn00001964:
+00001964  317C 0001 001A           move.w     [A0 + 0x1A], 0x01
+0000196A  A005                     syscall    PBStatusSync /* (ParmBlkPtr paramBlock @ A0) -> OSErr @ D0 */
+0000196C  2068 001C                movea.l    A0, [A0 + 0x1C]
+00001970  4E75                     rts
+00001972  4FEF 0030                lea.l      A7, [A7 + 0x30]
+00001976  3EB8 0944                move.w     [A7], [0x00000944] /* PrintErr */
+0000197A  600C                     bra        +0xE /* 00001988 */
+0000197C  302E 000C                move.w     D0, [A6 + 0x0C]
+label00001980:
+00001980  4FEF 0032                lea.l      A7, [A7 + 0x32]
+00001984  31C0 0944                move.w     [0x00000944] /* PrintErr */, D0
+label00001988:
+00001988  7200                     moveq.l    D1, 0
+0000198A  122E 000A                move.b     D1, [A6 + 0x0A]
+0000198E  7007                     moveq.l    D0, 7
+00001990  C02E 0008                and.b      D0, [A6 + 0x08]
+00001994  6710                     beq        +0x12 /* 000019A6 */
+00001996  204F                     movea.l    A0, A7
+00001998  43F6 100C                lea.l      A1, [A6 + D1.w + 0x0C]
+0000199C  E248                     lsr.w      D0, 1
+0000199E  6002                     bra        +0x4 /* 000019A2 */
+label000019A0:
+000019A0  32DF                     move.w     [A1]+, [A7]+
+label000019A2:
+000019A2  51C8 FFFC                dbf        D0, -0x2 /* 000019A0 */
+label000019A6:
+000019A6  4CDF 1800                movem.l    (A3-A4), [A7]+
+000019AA  4E5E                     unlink     A6
+000019AC  205F                     movea.l    A0, [A7]+
+000019AE  DFC1                     adda.l     A7, D1
+000019B0  584F                     addq.w     A7, 4
+000019B2  4ED0                     jmp        [A0]
+fn000019B4:
+000019B4  7000                     moveq.l    D0, 0
+fn000019B6:
+000019B6  9EFC 0040                suba.w     A7, 0x40 /* '@' */
+000019BA  204F                     movea.l    A0, A7
+000019BC  3140 0016                move.w     [A0 + 0x16], D0
+000019C0  42A8 0012                clr.l      [A0 + 0x12]
+000019C4  A015                     syscall    PBSetVolSync /* (ParmBlkPtr paramBlock @ A0) -> OSErr @ D0 */
+000019C6  A014                     syscall    PBGetVolSync /* (ParmBlkPtr paramBlock @ A0) -> OSErr @ D0 */
+000019C8  3028 0016                move.w     D0, [A0 + 0x16]
+000019CC  4FEF 0040                lea.l      A7, [A7 + 0x40]
+000019D0  4E75                     rts
+fn000019D2:
+000019D2  594F                     subq.w     A7, 4
+000019D4  3F3C E000                move.w     -[A7], 0xE000
+000019D8  A9BA                     syscall    GetString /* (short stringID @ [A7]) -> StringHandle @ [A7] */
+000019DA  201F                     move.l     D0, [A7]+
+000019DC  6606                     bne        +0x8 /* 000019E4 */
+000019DE  303C FF40                move.w     D0, 0xFF40
+000019E2  6024                     bra        +0x26 /* 00001A08 */
+label000019E4:
+000019E4  2240                     movea.l    A1, D0
+000019E6  61CC                     bsr        -0x32 /* 000019B4 */
+000019E8  4841                     swap.w     D1
+000019EA  3200                     move.w     D1, D0
+000019EC  554F                     subq.w     A7, 2
+000019EE  2049                     movea.l    A0, A1
+000019F0  A029                     syscall    HLock /* (Handle h @ A0) -> OSErr @ D0 */
+000019F2  2F11                     move.l     -[A7], [A1]
+000019F4  A997                     syscall    OpenResFile /* (ConstStr255Param fileName @ [A7]) -> short @ [A7] */
+000019F6  31DF 0952                move.w     [0x00000952] /* PrRefNum */, [A7]+
+000019FA  2049                     movea.l    A0, A1
+000019FC  A02A                     syscall    HUnlock /* (Handle h @ A0) -> OSErr @ D0 */
+000019FE  3001                     move.w     D0, D1
+00001A00  4841                     swap.w     D1
+00001A02  61B2                     bsr        -0x4C /* 000019B6 */
+00001A04  3038 0A60                move.w     D0, [0x00000A60] /* ResErr */
+label00001A08:
+00001A08  4E75                     rts
+00001A0A  072E 5072                btst       [A6 + 0x5072], D3
+00001A0E  696E                     bvs        +0x70 /* 00001A7E */
+00001A10  7420                     moveq.l    D2, 32

@@ -1,0 +1,4 @@
+# 1 entries
+# item 0: BUTTON (0x04) enabled
+#   bounds: x1=149 y1=238 x2=214 y2=258
+#   text: "OK"

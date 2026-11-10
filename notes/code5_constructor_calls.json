@@ -1,0 +1,1289 @@
+{
+ "0000025E": [
+  {
+   "name": "A program error has occured.",
+   "args": [
+    "?",
+    "?",
+    "?"
+   ]
+  },
+  {
+   "name": "A program error has occured.",
+   "args": [
+    "?",
+    "?",
+    "?"
+   ]
+  },
+  {
+   "name": "A program error has occured.",
+   "args": [
+    "?",
+    "?",
+    "?"
+   ]
+  },
+  {
+   "name": "A program error has occured.",
+   "args": [
+    "?",
+    "?",
+    "?"
+   ]
+  },
+  {
+   "name": "Sorry...",
+   "args": [
+    "?",
+    "?",
+    "?"
+   ]
+  },
+  {
+   "name": "Sorry...",
+   "args": [
+    "?",
+    "?",
+    "?"
+   ]
+  },
+  {
+   "name": "Sorry...",
+   "args": [
+    "?",
+    "?",
+    "?"
+   ]
+  },
+  {
+   "name": "Sorry...",
+   "args": [
+    "?",
+    "?",
+    "?"
+   ]
+  },
+  {
+   "name": "Sorry...",
+   "args": [
+    "?",
+    "?",
+    "?"
+   ]
+  },
+  {
+   "name": "Sorry...",
+   "args": [
+    "?",
+    "?",
+    "?"
+   ]
+  },
+  {
+   "name": "Sorry...",
+   "args": [
+    "?",
+    "?",
+    "?"
+   ]
+  },
+  {
+   "name": " hit points.",
+   "args": [
+    2,
+    255,
+    "?",
+    "?",
+    "?",
+    "?",
+    "?",
+    "?"
+   ]
+  },
+  {
+   "name": "You character is already up to full hit points.",
+   "args": [
+    "?",
+    "?",
+    "?"
+   ]
+  },
+  {
+   "name": " hit points of damage.",
+   "args": [
+    2,
+    255,
+    "?",
+    "?",
+    "?",
+    "?",
+    "?",
+    "?"
+   ]
+  },
+  {
+   "name": "Your strength has been increased.",
+   "args": [
+    "?",
+    "?",
+    "?"
+   ]
+  },
+  {
+   "name": "Your strength has been increased.",
+   "args": [
+    "?",
+    "?",
+    "?"
+   ]
+  },
+  {
+   "name": "Sorry...",
+   "args": [
+    "?",
+    "?",
+    "?"
+   ]
+  },
+  {
+   "name": "Your intelligence has been increased.",
+   "args": [
+    "?",
+    "?",
+    "?"
+   ]
+  },
+  {
+   "name": "Sorry...",
+   "args": [
+    "?",
+    "?",
+    "?"
+   ]
+  },
+  {
+   "name": "Your Wisdom has been increased.",
+   "args": [
+    "?",
+    "?",
+    "?"
+   ]
+  },
+  {
+   "name": "Sorry...",
+   "args": [
+    "?",
+    "?",
+    "?"
+   ]
+  },
+  {
+   "name": "Your dexterity has been increased.",
+   "args": [
+    "?",
+    "?",
+    "?"
+   ]
+  },
+  {
+   "name": "Sorry...",
+   "args": [
+    "?",
+    "?",
+    "?"
+   ]
+  },
+  {
+   "name": "Your constitution has been increased.",
+   "args": [
+    "?",
+    "?",
+    "?"
+   ]
+  },
+  {
+   "name": "Sorry...",
+   "args": [
+    "?",
+    "?",
+    "?"
+   ]
+  },
+  {
+   "name": "Your charisma has been increased.",
+   "args": [
+    "?",
+    "?",
+    "?"
+   ]
+  },
+  {
+   "name": "Sorry...",
+   "args": [
+    "?",
+    "?",
+    "?"
+   ]
+  },
+  {
+   "name": "A program error has occured. Invalid constant used in the AttributeIncreased magic item field.",
+   "args": [
+    "?",
+    "?",
+    "?"
+   ]
+  },
+  {
+   "name": "Sorry...",
+   "args": [
+    "?",
+    "?",
+    "?"
+   ]
+  },
+  {
+   "name": "Sorry...",
+   "args": [
+    "?",
+    "?",
+    "?"
+   ]
+  },
+  {
+   "name": "Sorry...",
+   "args": [
+    "?",
+    "?",
+    "?"
+   ]
+  },
+  {
+   "name": "This item has no special function. You benifit from this item by possesing it.",
+   "args": [
+    "?",
+    "?",
+    "?"
+   ]
+  },
+  {
+   "name": "A program error has occured.",
+   "args": [
+    "?",
+    "?",
+    "?"
+   ]
+  },
+  {
+   "name": "Congratulations.",
+   "args": [
+    "?",
+    "?",
+    "?",
+    "?",
+    "?",
+    "?",
+    "?"
+   ]
+  },
+  {
+   "name": "A program error has occured.",
+   "args": [
+    "?",
+    "?",
+    "?"
+   ]
+  },
+  {
+   "name": "A program error has occured.",
+   "args": [
+    "?",
+    "?",
+    "?"
+   ]
+  },
+  {
+   "name": "A program error has occured.",
+   "args": [
+    "?",
+    "?",
+    "?"
+   ]
+  },
+  {
+   "name": "You have been level drained by the undead creature. Your level and hit points have been reduced.",
+   "args": [
+    "?",
+    "?",
+    "?"
+   ]
+  },
+  {
+   "name": "You have been level drained by the undead creature. You have been reduced so far that you are now an undead.",
+   "args": [
+    "?",
+    "?",
+    "?"
+   ]
+  },
+  {
+   "name": "You need a more powerful magical weapon to hit this creature. Your only chance is to surrender.",
+   "args": [
+    "?",
+    "?",
+    "?"
+   ]
+  },
+  {
+   "name": " gold pieces to surrender.",
+   "args": [
+    2,
+    255,
+    "?",
+    "?",
+    "?",
+    "?",
+    "?",
+    "?"
+   ]
+  },
+  {
+   "name": "You do not have enough gold to pay for the surrender penalty. The fight continues.",
+   "args": [
+    "?",
+    "?",
+    "?"
+   ]
+  }
+ ],
+ "000008A0": [
+  {
+   "name": "Bardiche",
+   "args": [
+    7,
+    0,
+    2,
+    8,
+    9
+   ]
+  },
+  {
+   "name": "Battle Axe",
+   "args": [
+    5,
+    0,
+    1,
+    8,
+    7
+   ]
+  },
+  {
+   "name": "Club",
+   "args": [
+    1,
+    0,
+    1,
+    6,
+    4
+   ]
+  },
+  {
+   "name": "Dagger",
+   "args": [
+    1,
+    0,
+    1,
+    4,
+    2
+   ]
+  },
+  {
+   "name": "Flail",
+   "args": [
+    15,
+    0,
+    2,
+    7,
+    7
+   ]
+  },
+  {
+   "name": "Halberd",
+   "args": [
+    10,
+    0,
+    1,
+    10,
+    9
+   ]
+  },
+  {
+   "name": "Hand Axe",
+   "args": [
+    1,
+    0,
+    1,
+    6,
+    4
+   ]
+  },
+  {
+   "name": "Khopesh",
+   "args": [
+    10,
+    0,
+    2,
+    8,
+    9
+   ]
+  },
+  {
+   "name": "Mace",
+   "args": [
+    8,
+    0,
+    2,
+    7,
+    7
+   ]
+  },
+  {
+   "name": "Morning Star",
+   "args": [
+    10,
+    0,
+    2,
+    8,
+    7
+   ]
+  },
+  {
+   "name": "Quarterstaff",
+   "args": [
+    1,
+    0,
+    1,
+    6,
+    4
+   ]
+  },
+  {
+   "name": "Sword, Short",
+   "args": [
+    10,
+    0,
+    1,
+    6,
+    3
+   ]
+  },
+  {
+   "name": "Sword, Long",
+   "args": [
+    15,
+    0,
+    1,
+    8,
+    5
+   ]
+  },
+  {
+   "name": "Sword, Bastard",
+   "args": [
+    25,
+    0,
+    2,
+    8,
+    8
+   ]
+  },
+  {
+   "name": "Sword, Two-Handed",
+   "args": [
+    50,
+    0,
+    1,
+    10,
+    10
+   ]
+  },
+  {
+   "name": "Warhammer",
+   "args": [
+    2,
+    0,
+    2,
+    5,
+    4
+   ]
+  },
+  {
+   "name": "Dagger +1",
+   "args": [
+    500,
+    1,
+    1,
+    4,
+    1
+   ]
+  },
+  {
+   "name": "Hand Axe +1",
+   "args": [
+    700,
+    1,
+    1,
+    6,
+    3
+   ]
+  },
+  {
+   "name": "Morning Star +1",
+   "args": [
+    1000,
+    1,
+    2,
+    8,
+    6
+   ]
+  },
+  {
+   "name": "Warhammer +1",
+   "args": [
+    600,
+    1,
+    2,
+    5,
+    3
+   ]
+  },
+  {
+   "name": "Sword, Long +1",
+   "args": [
+    1000,
+    1,
+    1,
+    8,
+    4
+   ]
+  },
+  {
+   "name": "Sword, Two-Handed +1",
+   "args": [
+    1500,
+    1,
+    1,
+    10,
+    9
+   ]
+  },
+  {
+   "name": "Sword, Long +2",
+   "args": [
+    2000,
+    2,
+    1,
+    8,
+    3
+   ]
+  },
+  {
+   "name": "Sword, Two-Handed +2",
+   "args": [
+    2500,
+    2,
+    1,
+    10,
+    8
+   ]
+  },
+  {
+   "name": "Sword, Long +3",
+   "args": [
+    2500,
+    3,
+    1,
+    8,
+    2
+   ]
+  },
+  {
+   "name": "Sword, Long +4",
+   "args": [
+    3000,
+    4,
+    1,
+    8,
+    1
+   ]
+  },
+  {
+   "name": "Sword, +5 Holy Avenger",
+   "args": [
+    6000,
+    5,
+    1,
+    8,
+    1
+   ]
+  }
+ ],
+ "0000139A": [
+  {
+   "name": "Leather",
+   "args": [
+    5,
+    65534
+   ]
+  },
+  {
+   "name": "Studded Leather",
+   "args": [
+    20,
+    65533
+   ]
+  },
+  {
+   "name": "Scale Mail",
+   "args": [
+    50,
+    65532
+   ]
+  },
+  {
+   "name": "Chain",
+   "args": [
+    75,
+    65531
+   ]
+  },
+  {
+   "name": "Splint",
+   "args": [
+    100,
+    65530
+   ]
+  },
+  {
+   "name": "Plate Mail",
+   "args": [
+    600,
+    65529
+   ]
+  },
+  {
+   "name": "Field Plate",
+   "args": [
+    900,
+    65528
+   ]
+  },
+  {
+   "name": "Full Plate",
+   "args": [
+    1200,
+    65527
+   ]
+  },
+  {
+   "name": "Full Plate +1",
+   "args": [
+    1800,
+    65526
+   ]
+  },
+  {
+   "name": "Full Plate +2",
+   "args": [
+    2000,
+    65525
+   ]
+  },
+  {
+   "name": "Full Plate +3",
+   "args": [
+    3000,
+    65524
+   ]
+  },
+  {
+   "name": "Full Plate +4",
+   "args": [
+    5000,
+    65523
+   ]
+  }
+ ],
+ "00001880": [
+  {
+   "name": "Potion of Healing",
+   "args": [
+    75,
+    0,
+    0,
+    0,
+    0,
+    1,
+    8,
+    1,
+    0
+   ]
+  },
+  {
+   "name": "Potion of Extra Healing",
+   "args": [
+    200,
+    0,
+    0,
+    0,
+    0,
+    4,
+    24,
+    1,
+    0
+   ]
+  },
+  {
+   "name": "Potion of Major Healing",
+   "args": [
+    1000,
+    0,
+    0,
+    0,
+    0,
+    8,
+    80,
+    1,
+    0
+   ]
+  },
+  {
+   "name": "Potion of Fiery Breath",
+   "args": [
+    200,
+    0,
+    0,
+    4,
+    24,
+    0,
+    0,
+    1,
+    0
+   ]
+  },
+  {
+   "name": "Ring of Protection +1",
+   "args": [
+    800,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "name": "Ring of Protection +2",
+   "args": [
+    1200,
+    2,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "name": "Ring of Protection +3",
+   "args": [
+    2000,
+    3,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "name": "Wand of Magic Missiles",
+   "args": [
+    1000,
+    0,
+    0,
+    8,
+    16,
+    0,
+    0,
+    10,
+    0
+   ]
+  },
+  {
+   "name": "Wand of Fire",
+   "args": [
+    1500,
+    0,
+    0,
+    4,
+    24,
+    0,
+    0,
+    10,
+    0
+   ]
+  },
+  {
+   "name": "Wand of Lightning",
+   "args": [
+    1850,
+    0,
+    0,
+    6,
+    36,
+    0,
+    0,
+    10,
+    0
+   ]
+  },
+  {
+   "name": "Tome of Strength",
+   "args": [
+    2000,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1
+   ]
+  },
+  {
+   "name": "Tome of Dexterity",
+   "args": [
+    2000,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    4
+   ]
+  },
+  {
+   "name": "Tome of Constitution",
+   "args": [
+    2000,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    5
+   ]
+  }
+ ],
+ "00003BC0": [
+  {
+   "name": "Rat, Giant",
+   "args": [
+    2,
+    2,
+    9,
+    20,
+    2,
+    1,
+    1,
+    4,
+    75,
+    10,
+    0,
+    0
+   ]
+  },
+  {
+   "name": "Kobold",
+   "args": [
+    4,
+    4,
+    8,
+    20,
+    4,
+    1,
+    1,
+    6,
+    90,
+    20,
+    0,
+    0
+   ]
+  },
+  {
+   "name": "Goblin",
+   "args": [
+    8,
+    8,
+    7,
+    19,
+    4,
+    1,
+    1,
+    6,
+    110,
+    25,
+    0,
+    0
+   ]
+  },
+  {
+   "name": "Orc",
+   "args": [
+    16,
+    16,
+    7,
+    19,
+    5,
+    1,
+    1,
+    8,
+    150,
+    30,
+    0,
+    0
+   ]
+  },
+  {
+   "name": "Bugbear",
+   "args": [
+    20,
+    20,
+    5,
+    18,
+    5,
+    1,
+    1,
+    8,
+    250,
+    40,
+    0,
+    0
+   ]
+  },
+  {
+   "name": "Gnoll",
+   "args": [
+    24,
+    24,
+    0,
+    18,
+    5,
+    1,
+    1,
+    8,
+    300,
+    50,
+    0,
+    0
+   ]
+  },
+  {
+   "name": "Minotaur",
+   "args": [
+    32,
+    32,
+    4,
+    16,
+    7,
+    1,
+    2,
+    8,
+    300,
+    55,
+    0,
+    0
+   ]
+  },
+  {
+   "name": "Ettin",
+   "args": [
+    35,
+    35,
+    4,
+    16,
+    5,
+    2,
+    1,
+    8,
+    300,
+    70,
+    0,
+    0
+   ]
+  },
+  {
+   "name": "Gargoyle",
+   "args": [
+    24,
+    24,
+    0,
+    14,
+    5,
+    3,
+    1,
+    6,
+    400,
+    180,
+    0,
+    1
+   ]
+  },
+  {
+   "name": "Ghoul",
+   "args": [
+    16,
+    16,
+    7,
+    16,
+    4,
+    1,
+    1,
+    4,
+    500,
+    400,
+    1,
+    0
+   ]
+  },
+  {
+   "name": "Wight",
+   "args": [
+    32,
+    32,
+    5,
+    14,
+    4,
+    1,
+    1,
+    8,
+    700,
+    500,
+    1,
+    1
+   ]
+  },
+  {
+   "name": "Quickling",
+   "args": [
+    16,
+    16,
+    65529,
+    15,
+    2,
+    2,
+    1,
+    4,
+    900,
+    600,
+    0,
+    0
+   ]
+  },
+  {
+   "name": "Hydra",
+   "args": [
+    50,
+    50,
+    2,
+    11,
+    6,
+    8,
+    1,
+    6,
+    800,
+    700,
+    0,
+    0
+   ]
+  },
+  {
+   "name": "Giant, Hill",
+   "args": [
+    80,
+    80,
+    2,
+    10,
+    7,
+    1,
+    10,
+    18,
+    1200,
+    800,
+    0,
+    0
+   ]
+  },
+  {
+   "name": "Giant, Fire",
+   "args": [
+    90,
+    90,
+    0,
+    8,
+    8,
+    1,
+    11,
+    19,
+    1400,
+    900,
+    0,
+    0
+   ]
+  },
+  {
+   "name": "Giant, Storm",
+   "args": [
+    100,
+    100,
+    65535,
+    7,
+    10,
+    1,
+    13,
+    22,
+    1600,
+    1000,
+    0,
+    0
+   ]
+  },
+  {
+   "name": "Elemental, Earth",
+   "args": [
+    90,
+    90,
+    65534,
+    4,
+    8,
+    1,
+    15,
+    40,
+    1800,
+    1500,
+    0,
+    1
+   ]
+  },
+  {
+   "name": "Troll",
+   "args": [
+    50,
+    50,
+    2,
+    11,
+    4,
+    5,
+    2,
+    8,
+    1800,
+    1500,
+    0,
+    0
+   ]
+  },
+  {
+   "name": "Dragon, Black",
+   "args": [
+    100,
+    100,
+    65533,
+    4,
+    9,
+    3,
+    3,
+    12,
+    6000,
+    3000,
+    0,
+    1
+   ]
+  },
+  {
+   "name": "Dragon, Red",
+   "args": [
+    150,
+    150,
+    65531,
+    3,
+    9,
+    3,
+    3,
+    18,
+    12000,
+    5000,
+    0,
+    2
+   ]
+  }
+ ],
+ "0000477A": [
+  {
+   "name": "You missed",
+   "args": []
+  },
+  {
+   "name": "You are defensive",
+   "args": []
+  },
+  {
+   "name": "You use an item",
+   "args": []
+  },
+  {
+   "name": "You surrender",
+   "args": []
+  },
+  {
+   "name": "You attempted to surrender.",
+   "args": []
+  }
+ ],
+ "000047B8": [
+  {
+   "name": "The creature missed",
+   "args": []
+  }
+ ],
+ "0000473C": [
+  {
+   "name": "You strike first",
+   "args": []
+  },
+  {
+   "name": "The creature strikes first",
+   "args": []
+  },
+  {
+   "name": "You strike first",
+   "args": []
+  },
+  {
+   "name": "The creature strikes first",
+   "args": []
+  }
+ ]
+}

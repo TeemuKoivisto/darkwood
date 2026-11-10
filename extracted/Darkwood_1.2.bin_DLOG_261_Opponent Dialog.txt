@@ -1,0 +1,7 @@
+Bounds: x1=96, y1=70, x2=466, y2=250
+ProcID: 1
+Visible: false
+GoAway: false
+RefCon: 261
+ItemsID: 261
+Title: 'Opponent Dialog'

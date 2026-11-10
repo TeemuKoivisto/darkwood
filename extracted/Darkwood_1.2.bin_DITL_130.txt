@@ -1,0 +1,10 @@
+# 3 entries
+# item 0: RESOURCE_CONTROL (0x07) enabled
+#   bounds: x1=227 y1=70 x2=388 y2=90
+#   CNTL resource ID: 230
+# item 1: RESOURCE_CONTROL (0x07) enabled
+#   bounds: x1=227 y1=110 x2=388 y2=130
+#   CNTL resource ID: 231
+# item 2: RESOURCE_CONTROL (0x07) enabled
+#   bounds: x1=227 y1=150 x2=388 y2=170
+#   CNTL resource ID: 232

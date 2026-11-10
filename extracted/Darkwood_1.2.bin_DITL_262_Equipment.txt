@@ -1,0 +1,7 @@
+# 2 entries
+# item 0: BUTTON (0x04) enabled
+#   bounds: x1=272 y1=153 x2=342 y2=173
+#   text: "OK"
+# item 1: BUTTON (0x04) enabled
+#   bounds: x1=188 y1=153 x2=258 y2=173
+#   text: "Magic"

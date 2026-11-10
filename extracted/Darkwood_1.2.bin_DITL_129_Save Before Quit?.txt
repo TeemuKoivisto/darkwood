@@ -1,0 +1,16 @@
+# 5 entries
+# item 0: BUTTON (0x04) enabled
+#   bounds: x1=190 y1=73 x2=258 y2=93
+#   text: "Yes"
+# item 1: BUTTON (0x04) enabled
+#   bounds: x1=110 y1=73 x2=178 y2=93
+#   text: "No"
+# item 2: BUTTON (0x04) enabled
+#   bounds: x1=29 y1=73 x2=97 y2=93
+#   text: "Cancel"
+# item 3: ICON (0xA0) disabled
+#   bounds: x1=9 y1=6 x2=41 y2=38
+#   ICON resource ID: 512
+# item 4: TEXT (0x88) disabled
+#   bounds: x1=49 y1=7 x2=253 y2=55
+#   text: "Do you wish to save the character before quitting?"

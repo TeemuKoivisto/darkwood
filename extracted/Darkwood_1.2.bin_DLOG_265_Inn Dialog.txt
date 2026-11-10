@@ -1,0 +1,7 @@
+Bounds: x1=126, y1=101, x2=440, y2=224
+ProcID: 1
+Visible: false
+GoAway: false
+RefCon: 258
+ItemsID: 265
+Title: 'Buy Weapons'

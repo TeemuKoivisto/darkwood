@@ -1,0 +1,7 @@
+Bounds: x1=156, y1=85, x2=436, y2=245
+ProcID: 1
+Visible: false
+GoAway: false
+RefCon: 263
+ItemsID: 263
+Title: 'Magic Items'

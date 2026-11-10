@@ -1,0 +1,10 @@
+Bounds: x1=0, y1=0, x2=31, y2=31
+Value: 0
+Visible: false
+Max: 1
+Min: 0
+ProcID: 2080
+RefCon: 130
+Title: 'Control for Dialog Simulation'
+
+Note: template did not parse all data in resource; remaining data: 0000

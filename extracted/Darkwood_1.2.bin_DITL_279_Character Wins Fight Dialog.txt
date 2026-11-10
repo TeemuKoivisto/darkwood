@@ -1,0 +1,7 @@
+# 2 entries
+# item 0: BUTTON (0x04) enabled
+#   bounds: x1=277 y1=165 x2=339 y2=185
+#   text: "OK"
+# item 1: TEXT (0x88) disabled
+#   bounds: x1=9 y1=8 x2=346 y2=75
+#   text: "^0\n^1\n^2\n^3"

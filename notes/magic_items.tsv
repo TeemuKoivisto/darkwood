@@ -1,0 +1,15 @@
+Name	Function	Cost
+Potion of Healing	Heals 1-8 hit points	75
+Potion of Extra Healing	Heals 4-24 hit points	200
+Potion of Extra Healing	Heals 8-80 hit points	1000
+Potion of Fiery Breath	Allows you to breath fire doing 4-24 points	200
+Ring of Protection +1	Improves your armor class by 1	800
+Ring of Protection +2	Improves your armor class by 2	1200
+Ring of Protection +3	Improves your armor class by 3	2000
+Wand of Magic Missiles (*)	Fires magical missile doing 8-16 points	1000
+Wand of Fire (*)	Shoots a fireball doing 4-24 points	1500
+Wand of Lightning (*)	Shoots a bolt of lightning doing 6-36 points	1850
+Tome of Strength	Permanently raises your Strength by 1	2000
+Tome of Dexterity	Permanently raises your Dexterity by 1	2000
+Tome of Constitution	Permanently raises your Constitution by1	2000
+ (*)	These items have charges allowing them to be used more than once.

@@ -1,0 +1,13 @@
+# 4 entries
+# item 0: BUTTON (0x04) enabled
+#   bounds: x1=190 y1=73 x2=258 y2=93
+#   text: "Yes"
+# item 1: BUTTON (0x04) enabled
+#   bounds: x1=110 y1=73 x2=178 y2=93
+#   text: "Cancel"
+# item 2: ICON (0xA0) disabled
+#   bounds: x1=9 y1=6 x2=41 y2=38
+#   ICON resource ID: 512
+# item 3: TEXT (0x88) disabled
+#   bounds: x1=49 y1=7 x2=253 y2=55
+#   text: "Are you sure you want to abandon this character for another?"

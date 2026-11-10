@@ -1,0 +1,742 @@
+{
+ "Weapons": [
+  {
+   "name": "Bardiche",
+   "cost": 7,
+   "magic_bonus": 0,
+   "dmg_dice": 2,
+   "dmg_sides": 8,
+   "speed": 9
+  },
+  {
+   "name": "Battle Axe",
+   "cost": 5,
+   "magic_bonus": 0,
+   "dmg_dice": 1,
+   "dmg_sides": 8,
+   "speed": 7
+  },
+  {
+   "name": "Club",
+   "cost": 1,
+   "magic_bonus": 0,
+   "dmg_dice": 1,
+   "dmg_sides": 6,
+   "speed": 4
+  },
+  {
+   "name": "Dagger",
+   "cost": 1,
+   "magic_bonus": 0,
+   "dmg_dice": 1,
+   "dmg_sides": 4,
+   "speed": 2
+  },
+  {
+   "name": "Flail",
+   "cost": 15,
+   "magic_bonus": 0,
+   "dmg_dice": 2,
+   "dmg_sides": 7,
+   "speed": 7
+  },
+  {
+   "name": "Halberd",
+   "cost": 10,
+   "magic_bonus": 0,
+   "dmg_dice": 1,
+   "dmg_sides": 10,
+   "speed": 9
+  },
+  {
+   "name": "Hand Axe",
+   "cost": 1,
+   "magic_bonus": 0,
+   "dmg_dice": 1,
+   "dmg_sides": 6,
+   "speed": 4
+  },
+  {
+   "name": "Khopesh",
+   "cost": 10,
+   "magic_bonus": 0,
+   "dmg_dice": 2,
+   "dmg_sides": 8,
+   "speed": 9
+  },
+  {
+   "name": "Mace",
+   "cost": 8,
+   "magic_bonus": 0,
+   "dmg_dice": 2,
+   "dmg_sides": 7,
+   "speed": 7
+  },
+  {
+   "name": "Morning Star",
+   "cost": 10,
+   "magic_bonus": 0,
+   "dmg_dice": 2,
+   "dmg_sides": 8,
+   "speed": 7
+  },
+  {
+   "name": "Quarterstaff",
+   "cost": 1,
+   "magic_bonus": 0,
+   "dmg_dice": 1,
+   "dmg_sides": 6,
+   "speed": 4
+  },
+  {
+   "name": "Sword, Short",
+   "cost": 10,
+   "magic_bonus": 0,
+   "dmg_dice": 1,
+   "dmg_sides": 6,
+   "speed": 3
+  },
+  {
+   "name": "Sword, Long",
+   "cost": 15,
+   "magic_bonus": 0,
+   "dmg_dice": 1,
+   "dmg_sides": 8,
+   "speed": 5
+  },
+  {
+   "name": "Sword, Bastard",
+   "cost": 25,
+   "magic_bonus": 0,
+   "dmg_dice": 2,
+   "dmg_sides": 8,
+   "speed": 8
+  },
+  {
+   "name": "Sword, Two-Handed",
+   "cost": 50,
+   "magic_bonus": 0,
+   "dmg_dice": 1,
+   "dmg_sides": 10,
+   "speed": 10
+  },
+  {
+   "name": "Warhammer",
+   "cost": 2,
+   "magic_bonus": 0,
+   "dmg_dice": 2,
+   "dmg_sides": 5,
+   "speed": 4
+  },
+  {
+   "name": "Dagger +1",
+   "cost": 500,
+   "magic_bonus": 1,
+   "dmg_dice": 1,
+   "dmg_sides": 4,
+   "speed": 1
+  },
+  {
+   "name": "Hand Axe +1",
+   "cost": 700,
+   "magic_bonus": 1,
+   "dmg_dice": 1,
+   "dmg_sides": 6,
+   "speed": 3
+  },
+  {
+   "name": "Morning Star +1",
+   "cost": 1000,
+   "magic_bonus": 1,
+   "dmg_dice": 2,
+   "dmg_sides": 8,
+   "speed": 6
+  },
+  {
+   "name": "Warhammer +1",
+   "cost": 600,
+   "magic_bonus": 1,
+   "dmg_dice": 2,
+   "dmg_sides": 5,
+   "speed": 3
+  },
+  {
+   "name": "Sword, Long +1",
+   "cost": 1000,
+   "magic_bonus": 1,
+   "dmg_dice": 1,
+   "dmg_sides": 8,
+   "speed": 4
+  },
+  {
+   "name": "Sword, Two-Handed +1",
+   "cost": 1500,
+   "magic_bonus": 1,
+   "dmg_dice": 1,
+   "dmg_sides": 10,
+   "speed": 9
+  },
+  {
+   "name": "Sword, Long +2",
+   "cost": 2000,
+   "magic_bonus": 2,
+   "dmg_dice": 1,
+   "dmg_sides": 8,
+   "speed": 3
+  },
+  {
+   "name": "Sword, Two-Handed +2",
+   "cost": 2500,
+   "magic_bonus": 2,
+   "dmg_dice": 1,
+   "dmg_sides": 10,
+   "speed": 8
+  },
+  {
+   "name": "Sword, Long +3",
+   "cost": 2500,
+   "magic_bonus": 3,
+   "dmg_dice": 1,
+   "dmg_sides": 8,
+   "speed": 2
+  },
+  {
+   "name": "Sword, Long +4",
+   "cost": 3000,
+   "magic_bonus": 4,
+   "dmg_dice": 1,
+   "dmg_sides": 8,
+   "speed": 1
+  },
+  {
+   "name": "Sword, +5 Holy Avenger",
+   "cost": 6000,
+   "magic_bonus": 5,
+   "dmg_dice": 1,
+   "dmg_sides": 8,
+   "speed": 1
+  }
+ ],
+ "Armor": [
+  {
+   "name": "Leather",
+   "cost": 5,
+   "ac_modifier": -2
+  },
+  {
+   "name": "Studded Leather",
+   "cost": 20,
+   "ac_modifier": -3
+  },
+  {
+   "name": "Scale Mail",
+   "cost": 50,
+   "ac_modifier": -4
+  },
+  {
+   "name": "Chain",
+   "cost": 75,
+   "ac_modifier": -5
+  },
+  {
+   "name": "Splint",
+   "cost": 100,
+   "ac_modifier": -6
+  },
+  {
+   "name": "Plate Mail",
+   "cost": 600,
+   "ac_modifier": -7
+  },
+  {
+   "name": "Field Plate",
+   "cost": 900,
+   "ac_modifier": -8
+  },
+  {
+   "name": "Full Plate",
+   "cost": 1200,
+   "ac_modifier": -9
+  },
+  {
+   "name": "Full Plate +1",
+   "cost": 1800,
+   "ac_modifier": -10
+  },
+  {
+   "name": "Full Plate +2",
+   "cost": 2000,
+   "ac_modifier": -11
+  },
+  {
+   "name": "Full Plate +3",
+   "cost": 3000,
+   "ac_modifier": -12
+  },
+  {
+   "name": "Full Plate +4",
+   "cost": 5000,
+   "ac_modifier": -13
+  }
+ ],
+ "Magic items": [
+  {
+   "name": "Potion of Healing",
+   "cost": 75,
+   "ac_bonus": 0,
+   "unknown": 0,
+   "dmg_min": 0,
+   "dmg_max": 0,
+   "heal_min": 1,
+   "heal_max": 8,
+   "charges": 1,
+   "attribute_raised": 0
+  },
+  {
+   "name": "Potion of Extra Healing",
+   "cost": 200,
+   "ac_bonus": 0,
+   "unknown": 0,
+   "dmg_min": 0,
+   "dmg_max": 0,
+   "heal_min": 4,
+   "heal_max": 24,
+   "charges": 1,
+   "attribute_raised": 0
+  },
+  {
+   "name": "Potion of Major Healing",
+   "cost": 1000,
+   "ac_bonus": 0,
+   "unknown": 0,
+   "dmg_min": 0,
+   "dmg_max": 0,
+   "heal_min": 8,
+   "heal_max": 80,
+   "charges": 1,
+   "attribute_raised": 0
+  },
+  {
+   "name": "Potion of Fiery Breath",
+   "cost": 200,
+   "ac_bonus": 0,
+   "unknown": 0,
+   "dmg_min": 4,
+   "dmg_max": 24,
+   "heal_min": 0,
+   "heal_max": 0,
+   "charges": 1,
+   "attribute_raised": 0
+  },
+  {
+   "name": "Ring of Protection +1",
+   "cost": 800,
+   "ac_bonus": 1,
+   "unknown": 0,
+   "dmg_min": 0,
+   "dmg_max": 0,
+   "heal_min": 0,
+   "heal_max": 0,
+   "charges": 0,
+   "attribute_raised": 0
+  },
+  {
+   "name": "Ring of Protection +2",
+   "cost": 1200,
+   "ac_bonus": 2,
+   "unknown": 0,
+   "dmg_min": 0,
+   "dmg_max": 0,
+   "heal_min": 0,
+   "heal_max": 0,
+   "charges": 0,
+   "attribute_raised": 0
+  },
+  {
+   "name": "Ring of Protection +3",
+   "cost": 2000,
+   "ac_bonus": 3,
+   "unknown": 0,
+   "dmg_min": 0,
+   "dmg_max": 0,
+   "heal_min": 0,
+   "heal_max": 0,
+   "charges": 0,
+   "attribute_raised": 0
+  },
+  {
+   "name": "Wand of Magic Missiles",
+   "cost": 1000,
+   "ac_bonus": 0,
+   "unknown": 0,
+   "dmg_min": 8,
+   "dmg_max": 16,
+   "heal_min": 0,
+   "heal_max": 0,
+   "charges": 10,
+   "attribute_raised": 0
+  },
+  {
+   "name": "Wand of Fire",
+   "cost": 1500,
+   "ac_bonus": 0,
+   "unknown": 0,
+   "dmg_min": 4,
+   "dmg_max": 24,
+   "heal_min": 0,
+   "heal_max": 0,
+   "charges": 10,
+   "attribute_raised": 0
+  },
+  {
+   "name": "Wand of Lightning",
+   "cost": 1850,
+   "ac_bonus": 0,
+   "unknown": 0,
+   "dmg_min": 6,
+   "dmg_max": 36,
+   "heal_min": 0,
+   "heal_max": 0,
+   "charges": 10,
+   "attribute_raised": 0
+  },
+  {
+   "name": "Tome of Strength",
+   "cost": 2000,
+   "ac_bonus": 0,
+   "unknown": 0,
+   "dmg_min": 0,
+   "dmg_max": 0,
+   "heal_min": 0,
+   "heal_max": 0,
+   "charges": 0,
+   "attribute_raised": 1
+  },
+  {
+   "name": "Tome of Dexterity",
+   "cost": 2000,
+   "ac_bonus": 0,
+   "unknown": 0,
+   "dmg_min": 0,
+   "dmg_max": 0,
+   "heal_min": 0,
+   "heal_max": 0,
+   "charges": 0,
+   "attribute_raised": 4
+  },
+  {
+   "name": "Tome of Constitution",
+   "cost": 2000,
+   "ac_bonus": 0,
+   "unknown": 0,
+   "dmg_min": 0,
+   "dmg_max": 0,
+   "heal_min": 0,
+   "heal_max": 0,
+   "charges": 0,
+   "attribute_raised": 5
+  }
+ ],
+ "Creatures": [
+  {
+   "name": "Rat, Giant",
+   "hp": 2,
+   "hp_max": 2,
+   "ac": 9,
+   "thac0": 20,
+   "level": 2,
+   "attacks": 1,
+   "dmg_dice": 1,
+   "dmg_sides": 4,
+   "xp": 75,
+   "gold": 10,
+   "level_drain": 0,
+   "needs_magic_weapon": 0
+  },
+  {
+   "name": "Kobold",
+   "hp": 4,
+   "hp_max": 4,
+   "ac": 8,
+   "thac0": 20,
+   "level": 4,
+   "attacks": 1,
+   "dmg_dice": 1,
+   "dmg_sides": 6,
+   "xp": 90,
+   "gold": 20,
+   "level_drain": 0,
+   "needs_magic_weapon": 0
+  },
+  {
+   "name": "Goblin",
+   "hp": 8,
+   "hp_max": 8,
+   "ac": 7,
+   "thac0": 19,
+   "level": 4,
+   "attacks": 1,
+   "dmg_dice": 1,
+   "dmg_sides": 6,
+   "xp": 110,
+   "gold": 25,
+   "level_drain": 0,
+   "needs_magic_weapon": 0
+  },
+  {
+   "name": "Orc",
+   "hp": 16,
+   "hp_max": 16,
+   "ac": 7,
+   "thac0": 19,
+   "level": 5,
+   "attacks": 1,
+   "dmg_dice": 1,
+   "dmg_sides": 8,
+   "xp": 150,
+   "gold": 30,
+   "level_drain": 0,
+   "needs_magic_weapon": 0
+  },
+  {
+   "name": "Bugbear",
+   "hp": 20,
+   "hp_max": 20,
+   "ac": 5,
+   "thac0": 18,
+   "level": 5,
+   "attacks": 1,
+   "dmg_dice": 1,
+   "dmg_sides": 8,
+   "xp": 250,
+   "gold": 40,
+   "level_drain": 0,
+   "needs_magic_weapon": 0
+  },
+  {
+   "name": "Gnoll",
+   "hp": 24,
+   "hp_max": 24,
+   "ac": 0,
+   "thac0": 18,
+   "level": 5,
+   "attacks": 1,
+   "dmg_dice": 1,
+   "dmg_sides": 8,
+   "xp": 300,
+   "gold": 50,
+   "level_drain": 0,
+   "needs_magic_weapon": 0
+  },
+  {
+   "name": "Minotaur",
+   "hp": 32,
+   "hp_max": 32,
+   "ac": 4,
+   "thac0": 16,
+   "level": 7,
+   "attacks": 1,
+   "dmg_dice": 2,
+   "dmg_sides": 8,
+   "xp": 300,
+   "gold": 55,
+   "level_drain": 0,
+   "needs_magic_weapon": 0
+  },
+  {
+   "name": "Ettin",
+   "hp": 35,
+   "hp_max": 35,
+   "ac": 4,
+   "thac0": 16,
+   "level": 5,
+   "attacks": 2,
+   "dmg_dice": 1,
+   "dmg_sides": 8,
+   "xp": 300,
+   "gold": 70,
+   "level_drain": 0,
+   "needs_magic_weapon": 0
+  },
+  {
+   "name": "Gargoyle",
+   "hp": 24,
+   "hp_max": 24,
+   "ac": 0,
+   "thac0": 14,
+   "level": 5,
+   "attacks": 3,
+   "dmg_dice": 1,
+   "dmg_sides": 6,
+   "xp": 400,
+   "gold": 180,
+   "level_drain": 0,
+   "needs_magic_weapon": 1
+  },
+  {
+   "name": "Ghoul",
+   "hp": 16,
+   "hp_max": 16,
+   "ac": 7,
+   "thac0": 16,
+   "level": 4,
+   "attacks": 1,
+   "dmg_dice": 1,
+   "dmg_sides": 4,
+   "xp": 500,
+   "gold": 400,
+   "level_drain": 1,
+   "needs_magic_weapon": 0
+  },
+  {
+   "name": "Wight",
+   "hp": 32,
+   "hp_max": 32,
+   "ac": 5,
+   "thac0": 14,
+   "level": 4,
+   "attacks": 1,
+   "dmg_dice": 1,
+   "dmg_sides": 8,
+   "xp": 700,
+   "gold": 500,
+   "level_drain": 1,
+   "needs_magic_weapon": 1
+  },
+  {
+   "name": "Quickling",
+   "hp": 16,
+   "hp_max": 16,
+   "ac": -7,
+   "thac0": 15,
+   "level": 2,
+   "attacks": 2,
+   "dmg_dice": 1,
+   "dmg_sides": 4,
+   "xp": 900,
+   "gold": 600,
+   "level_drain": 0,
+   "needs_magic_weapon": 0
+  },
+  {
+   "name": "Hydra",
+   "hp": 50,
+   "hp_max": 50,
+   "ac": 2,
+   "thac0": 11,
+   "level": 6,
+   "attacks": 8,
+   "dmg_dice": 1,
+   "dmg_sides": 6,
+   "xp": 800,
+   "gold": 700,
+   "level_drain": 0,
+   "needs_magic_weapon": 0
+  },
+  {
+   "name": "Giant, Hill",
+   "hp": 80,
+   "hp_max": 80,
+   "ac": 2,
+   "thac0": 10,
+   "level": 7,
+   "attacks": 1,
+   "dmg_dice": 10,
+   "dmg_sides": 18,
+   "xp": 1200,
+   "gold": 800,
+   "level_drain": 0,
+   "needs_magic_weapon": 0
+  },
+  {
+   "name": "Giant, Fire",
+   "hp": 90,
+   "hp_max": 90,
+   "ac": 0,
+   "thac0": 8,
+   "level": 8,
+   "attacks": 1,
+   "dmg_dice": 11,
+   "dmg_sides": 19,
+   "xp": 1400,
+   "gold": 900,
+   "level_drain": 0,
+   "needs_magic_weapon": 0
+  },
+  {
+   "name": "Giant, Storm",
+   "hp": 100,
+   "hp_max": 100,
+   "ac": -1,
+   "thac0": 7,
+   "level": 10,
+   "attacks": 1,
+   "dmg_dice": 13,
+   "dmg_sides": 22,
+   "xp": 1600,
+   "gold": 1000,
+   "level_drain": 0,
+   "needs_magic_weapon": 0
+  },
+  {
+   "name": "Elemental, Earth",
+   "hp": 90,
+   "hp_max": 90,
+   "ac": -2,
+   "thac0": 4,
+   "level": 8,
+   "attacks": 1,
+   "dmg_dice": 15,
+   "dmg_sides": 40,
+   "xp": 1800,
+   "gold": 1500,
+   "level_drain": 0,
+   "needs_magic_weapon": 1
+  },
+  {
+   "name": "Troll",
+   "hp": 50,
+   "hp_max": 50,
+   "ac": 2,
+   "thac0": 11,
+   "level": 4,
+   "attacks": 5,
+   "dmg_dice": 2,
+   "dmg_sides": 8,
+   "xp": 1800,
+   "gold": 1500,
+   "level_drain": 0,
+   "needs_magic_weapon": 0
+  },
+  {
+   "name": "Dragon, Black",
+   "hp": 100,
+   "hp_max": 100,
+   "ac": -3,
+   "thac0": 4,
+   "level": 9,
+   "attacks": 3,
+   "dmg_dice": 3,
+   "dmg_sides": 12,
+   "xp": 6000,
+   "gold": 3000,
+   "level_drain": 0,
+   "needs_magic_weapon": 1
+  },
+  {
+   "name": "Dragon, Red",
+   "hp": 150,
+   "hp_max": 150,
+   "ac": -5,
+   "thac0": 3,
+   "level": 9,
+   "attacks": 3,
+   "dmg_dice": 3,
+   "dmg_sides": 18,
+   "xp": 12000,
+   "gold": 5000,
+   "level_drain": 0,
+   "needs_magic_weapon": 2
+  }
+ ]
+}

@@ -1,0 +1,8 @@
+Bounds: x1=5, y1=135, x2=166, y2=155
+Value: 0
+Visible: true
+Max: 0
+Min: 255
+ProcID: 3520
+RefCon: 232
+Title: 'Quit'

@@ -1,0 +1,65 @@
+Menu ID: 257
+ProcID: 0
+Enabled flags: 0xFFFFFDB7
+Title: 'File'
+Items: (zero-terminated list)
+  0:
+    Name: 'New Game'
+    Icon number: 0
+    Key equivalent: 0x00
+    Mark character: 0x00
+    Style: 0x00
+  1:
+    Name: 'Open Game...'
+    Icon number: 0
+    Key equivalent: 'O' (0x4F)
+    Mark character: 0x00
+    Style: 0x00
+  2:
+    Name: '-'
+    Icon number: 0
+    Key equivalent: 0x00
+    Mark character: 0x00
+    Style: 0x00
+  3:
+    Name: 'Save'
+    Icon number: 0
+    Key equivalent: 'S' (0x53)
+    Mark character: 0x00
+    Style: 0x00
+  4:
+    Name: 'Save As...'
+    Icon number: 0
+    Key equivalent: 0x00
+    Mark character: 0x00
+    Style: 0x00
+  5:
+    Name: '-'
+    Icon number: 0
+    Key equivalent: 0x00
+    Mark character: 0x00
+    Style: 0x00
+  6:
+    Name: 'Page Setup...'
+    Icon number: 0
+    Key equivalent: 0x00
+    Mark character: 0x00
+    Style: 0x00
+  7:
+    Name: 'Print Character...'
+    Icon number: 0
+    Key equivalent: 'P' (0x50)
+    Mark character: 0x00
+    Style: 0x00
+  8:
+    Name: '-'
+    Icon number: 0
+    Key equivalent: 0x00
+    Mark character: 0x00
+    Style: 0x00
+  9:
+    Name: 'Quit'
+    Icon number: 0
+    Key equivalent: 'Q' (0x51)
+    Mark character: 0x00
+    Style: 0x00

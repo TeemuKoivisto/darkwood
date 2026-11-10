@@ -1,0 +1,17 @@
+Menu ID: 256
+ProcID: 0
+Enabled flags: 0xFFFFFFFB
+Title: '⌃'
+Items: (zero-terminated list)
+  0:
+    Name: 'About Darkwood...'
+    Icon number: 0
+    Key equivalent: 0x00
+    Mark character: 0x00
+    Style: 0x00
+  1:
+    Name: '-'
+    Icon number: 0
+    Key equivalent: 0x00
+    Mark character: 0x00
+    Style: 0x00

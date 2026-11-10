@@ -1,0 +1,29 @@
+Menu ID: 260
+ProcID: 0
+Enabled flags: 0xFFFFFFFF
+Title: 'Shops'
+Items: (zero-terminated list)
+  0:
+    Name: 'Weapon Shop...'
+    Icon number: 0
+    Key equivalent: 0x00
+    Mark character: 0x00
+    Style: 0x00
+  1:
+    Name: 'Armorer...'
+    Icon number: 0
+    Key equivalent: 0x00
+    Mark character: 0x00
+    Style: 0x00
+  2:
+    Name: 'Magic Items...'
+    Icon number: 0
+    Key equivalent: 0x00
+    Mark character: 0x00
+    Style: 0x00
+  3:
+    Name: 'Inn...'
+    Icon number: 0
+    Key equivalent: 0x00
+    Mark character: 0x00
+    Style: 0x00

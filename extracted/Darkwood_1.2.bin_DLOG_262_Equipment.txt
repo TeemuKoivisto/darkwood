@@ -1,0 +1,7 @@
+Bounds: x1=76, y1=64, x2=426, y2=244
+ProcID: 1
+Visible: false
+GoAway: false
+RefCon: 262
+ItemsID: 262
+Title: 'Equipment'

@@ -1,0 +1,7 @@
+Bounds: x1=75, y1=30, x2=455, y2=320
+ProcID: 1
+Visible: false
+GoAway: false
+RefCon: 257
+ItemsID: 257
+Title: 'About Dialog'

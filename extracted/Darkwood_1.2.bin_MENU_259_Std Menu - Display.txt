@@ -1,0 +1,17 @@
+Menu ID: 259
+ProcID: 0
+Enabled flags: 0xFFFFFFFF
+Title: 'Character'
+Items: (zero-terminated list)
+  0:
+    Name: 'Equipment...'
+    Icon number: 0
+    Key equivalent: 0x00
+    Mark character: 0x00
+    Style: 0x00
+  1:
+    Name: 'Magic Items...'
+    Icon number: 0
+    Key equivalent: 0x00
+    Mark character: 0x00
+    Style: 0x00

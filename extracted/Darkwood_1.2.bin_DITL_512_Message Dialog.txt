@@ -1,0 +1,10 @@
+# 3 entries
+# item 0: BUTTON (0x04) enabled
+#   bounds: x1=207 y1=89 x2=275 y2=109
+#   text: "OK"
+# item 1: TEXT (0x88) disabled
+#   bounds: x1=53 y1=6 x2=272 y2=70
+#   text: "^0\n^1\n^2\n^3"
+# item 2: ICON (0xA0) disabled
+#   bounds: x1=8 y1=5 x2=40 y2=37
+#   ICON resource ID: 512

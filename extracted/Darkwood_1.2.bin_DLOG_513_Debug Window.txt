@@ -1,0 +1,7 @@
+Bounds: x1=171, y1=50, x2=394, y2=319
+ProcID: 5
+Visible: false
+GoAway: false
+RefCon: 0
+ItemsID: 513
+Title: 'Debug Window'

@@ -1,0 +1,10 @@
+# 3 entries
+# item 0: BUTTON (0x04) enabled
+#   bounds: x1=223 y1=195 x2=283 y2=215
+#   text: "Done"
+# item 1: RESOURCE_CONTROL (0x07) enabled
+#   bounds: x1=5 y1=136 x2=166 y2=156
+#   CNTL resource ID: 220
+# item 2: RESOURCE_CONTROL (0x07) enabled
+#   bounds: x1=171 y1=136 x2=332 y2=156
+#   CNTL resource ID: 221
