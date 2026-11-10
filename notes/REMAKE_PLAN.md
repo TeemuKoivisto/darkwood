@@ -16,13 +16,13 @@ Already in place (see `CLAUDE.md` "Architecture"): `game/types.ts`, `game/maps.t
 
 - [x] Types, maps, `GameData`, data loading, derived-value rules with tests.
 - [x] `newGame` with the fixed starting character.
-- [ ] `game/save.ts`: `serializeMaps` / `deserializeMaps` to JSON with a version field (the
+- [x] `game/save.ts`: `serializeMaps` / `deserializeMaps` to JSON with a version field (the
       characters and fights). `main.ts` loads it from `localStorage` at start and writes it back
       from an `$effect.root` on every change.
-- [ ] `App.svelte`: creates the maps and `GameData` once, provides them via context, grey page,
+- [x] `App.svelte`: creates the maps and `GameData` once, provides them via context, grey page,
       centered 2x game panel, renders the component for `state.screen`. A fresh load with no save
       runs `newGame`.
-- [ ] `ui/Alert.svelte`: the generic message box (`DLOG 512`): `state.alert` text plus OK. A helper
+- [x] `ui/Alert.svelte`: the generic message box (`DLOG 512`): `state.alert` text plus OK. A helper
       `run(system, payload)` in `ui/` that calls a system and puts a returned `err` in
       `state.alert`, so every button does `onclick={() => run(stayOneNight)}`.
 
@@ -142,3 +142,6 @@ GameSys<{ item: string }>`, `surrender`, each a `GameSys` that runs one round th
 ## Assumptions made
 
 (append here as you go)
+
+- Task 0: `main.ts` creates the maps and `GameData` (not `App.svelte`) so the save loads before the first render; `App` receives them as a prop, provides them via context and runs `newGame` when nothing was loaded.
+- Task 0: `state.alert` is derived from a queue, `state.alerts`, so a combat round can show several notices (level drain, magic weapon needed) one after another; `run` appends refusals to it.

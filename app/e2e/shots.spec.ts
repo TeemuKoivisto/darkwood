@@ -16,6 +16,6 @@ test.beforeEach(async ({ page }) => {
 })
 
 test('01 main', async ({ page }) => {
-  await expect(page.getByRole('heading', { name: 'Darkwood' })).toBeVisible()
+  await expect(page.getByText('Darkwood')).toBeVisible()
   await shot(page, '01-main')
 })

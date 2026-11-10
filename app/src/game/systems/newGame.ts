@@ -1,5 +1,6 @@
 import { weaponByName } from '../data'
 import { attacksPerRound, thac0 } from '../rules'
+import { deserializeMaps, replaceMaps } from '../save'
 import type { Character, GameSys, Screen } from '../types'
 
 /** The fixed starting character from `notes/rules.md` "Character": there is no stat rolling. */
@@ -46,4 +47,25 @@ export const openScreen: GameSys<{ screen: Screen }> = (ctx, { screen }) => {
   if (!ctx.state.character) return { err: 'No character' }
   if (screen === 'combat' && !ctx.state.fight) return { err: 'No fight to show' }
   ctx.state.screen = screen
+}
+
+/** File > Open and the start-up load: replaces every map with the save's and opens its character. */
+export const loadGame: GameSys<{ json: string }> = (ctx, { json }) => {
+  let loaded
+  try {
+    loaded = deserializeMaps(json)
+  } catch (_e) {
+    return { err: 'This file is not a Darkwood character file.' }
+  }
+  if (!loaded.maps.characters.has(loaded.characterId)) {
+    return { err: 'This file is not a Darkwood character file.' }
+  }
+  replaceMaps(ctx.state.maps, loaded.maps)
+  ctx.state.characterId = loaded.characterId
+  ctx.state.screen = ctx.state.fight ? 'combat' : 'main'
+}
+
+/** Closes the alert box's current text. */
+export const dismissAlert: GameSys = ctx => {
+  ctx.state.alerts = ctx.state.alerts.slice(1)
 }

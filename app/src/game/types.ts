@@ -106,6 +106,8 @@ export interface GameState {
   maps: GameMaps
   characterId: string
   screen: Screen
+  /** Alert box texts waiting to be shown, oldest first: refusals and the game's notices */
+  alerts: string[]
   readonly character: Character | undefined
   readonly fight: Fight | undefined
 }

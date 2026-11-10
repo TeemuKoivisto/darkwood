@@ -19,8 +19,10 @@ export class GameData implements GameState {
   weapon = $derived(this.character ? currentWeapon(this.character) : undefined)
   surrenderPenalty = $derived(this.fight ? surrenderPenalty(this.fight.creature) : 0)
 
-  // UI only: the text in the generic alert box, null when closed
-  alert = $state<string | null>(null)
+  // The generic alert box: a queue, so a round's notices show one after another
+  alerts = $state<string[]>([])
+  /** The text in the alert box, null when closed */
+  alert = $derived(this.alerts[0] ?? null)
 
   constructor(public maps: GameMaps) {}
 }
