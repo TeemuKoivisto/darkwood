@@ -68,3 +68,12 @@ test('03 inn', async ({ page }) => {
   await page.getByRole('button', { name: 'Inn', exact: true }).click()
   await shot(page, '03-inn')
 })
+
+test('04 armorer', async ({ page }) => {
+  await patchCharacter(page, VETERAN)
+  await page.getByRole('button', { name: 'Armorer' }).click()
+  await page.getByRole('option', { name: 'Full Plate +4' }).click()
+  await page.getByRole('button', { name: 'Buy' }).click()
+  await page.getByRole('option', { name: 'Leather', exact: true }).click()
+  await shot(page, '04-armorer')
+})

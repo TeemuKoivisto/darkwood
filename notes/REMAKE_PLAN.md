@@ -58,9 +58,9 @@ Already in place (see `CLAUDE.md` "Architecture"): `game/types.ts`, `game/maps.t
 
 ## Task 4 — Armorer (`reference/04-armorer.png`)
 
-- [ ] `systems/armorer.ts`: `buyArmor: GameSys<{ name: string }>` (one slot, replaces, no sell).
+- [x] `systems/armorer.ts`: `buyArmor: GameSys<{ name: string }>` (one slot, replaces, no sell).
       Tests, including that `state.armorClass` follows.
-- [ ] `ui/Armorer.svelte`: list, Buy, "Cost (Trade-In)" and "AC Adjust" of the selection, current
+- [x] `ui/Armorer.svelte`: list, Buy, "Cost (Trade-In)" and "AC Adjust" of the selection, current
       armor name on the right, Gold, Done.
 
 ## Task 5 — Weapon Shop (`reference/05-weapon-shop.png`)
@@ -148,3 +148,4 @@ GameSys<{ item: string }>`, `surrender`, each a `GameSys` that runs one round th
 - Task 1: the menus are disabled while a shop, the arena or a fight is open (the original opened those as modal dialogs). The main window has a "Darkwood" title bar like the original window.
 - Task 2: the shop refusal texts were not recovered; they are "Sorry... You do not have enough gold to buy this item." / "...can not carry any more magic items." / "...already own this item." / "...can only own one item that alters your armor class.". Prices are the ones in `tables.json`; the screenshots show different prices (Potion of Healing 100), presumably from the later version that took them.
 - Task 3: the Inn stays open after a stay so several nights can be bought one at a time; Cancel closes it.
+- Task 4: "Cost (Trade-In)" shows the plain table cost and buying charges it in full (rules.md has no trade-in; the screenshot, from a later version, shows 1 for Leather). Buying the armor already worn is allowed. The armor icon is left out: there is no armor picture among the extracted resources.

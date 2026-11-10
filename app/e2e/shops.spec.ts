@@ -63,3 +63,11 @@ test('inn: heals for gold and refuses at full hit points', async ({ page }) => {
   await page.getByRole('button', { name: 'Cancel' }).click()
   await expect(page.getByRole('region', { name: 'Inn' })).toBeHidden()
 })
+
+test('armorer: buying leather lowers the armor class', async ({ page }) => {
+  await page.getByRole('button', { name: 'Armorer' }).click()
+  await page.getByRole('button', { name: 'Buy' }).click()
+  await expect(page.getByLabel('Current armor')).toHaveText('Leather')
+  await page.getByRole('button', { name: 'Done' }).click()
+  await expect(page.getByRole('region', { name: 'Character' })).toContainText(/AC:\s*7/)
+})
