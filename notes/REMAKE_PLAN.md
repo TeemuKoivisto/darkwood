@@ -131,12 +131,12 @@ GameSys<{ item: string }>`, `surrender`, each a `GameSys` that runs one round th
 
 ## Task 10 — Finish
 
-- [ ] `app/README.md`: how to run, build, where the rules and data come from.
-- [ ] `app/e2e/shots.spec.ts` has a step for every screen in `reference/` (01..13 except 11) and
+- [x] `app/README.md`: how to run, build, where the rules and data come from.
+- [x] `app/e2e/shots.spec.ts` has a step for every screen in `reference/` (01..13 except 11) and
       `npm run shots` produces them all. Look at each next to its reference and fix what is off.
-- [ ] `app/e2e/game.spec.ts`: one browser run through the whole game: buy a weapon, stay at the
+- [x] `app/e2e/game.spec.ts`: one browser run through the whole game: buy a weapon, stay at the
       inn, fight the Giant Rat to the win dialog, surrender once, die once. Passes.
-- [ ] Final `npm test`, `npm run check`, `npm run lint`, `npm run build`, `npm run e2e` green;
+- [x] Final `npm test`, `npm run check`, `npm run lint`, `npm run build`, `npm run e2e` green;
       last commit on `remake`.
 
 ## Assumptions made
@@ -158,3 +158,4 @@ GameSys<{ item: string }>`, `surrender`, each a `GameSys` that runs one round th
 - Task 7: `app/public/assets/img/portrait-creature.png` is byte-identical to `portrait-player.png`; the creature icon in the screenshots is `png/cicn_258.png`. The asset was not replaced (copying into public/ was not permitted in this session), so both fighters show the player portrait for now.
 - Task 8: the Shops menu keeps the four shops of `MENU_260` (no Arena entry), each opening the same screen as its building. File > Open shows "This file is not a Darkwood character file." for anything that is not a version-1 save. Saved files are named `<name>.darkwood.json`.
 - Task 9: a round's sounds play one after another (each starts when the previous ends) when the round is drawn, not interleaved with the rolls. The switch reads "Sound On"/"Sound Off" at the right of the menu bar and is stored under `darkwood-muted`.
+- Task 10: `game.spec.ts` heals at the inn after the Giant Rat fight rather than before it, so the stay has hit points to restore; the run is otherwise in the plan's order.

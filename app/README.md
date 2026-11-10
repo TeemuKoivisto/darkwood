@@ -1,47 +1,46 @@
-# Svelte + TS + Vite
+# Darkwood remake
 
-This template should help get you started developing with Svelte and TypeScript in Vite.
+A web remake of _Darkwood 1.2_ (Mac, 1992, Robert Chancellor): one town with four shops and an
+arena, a fixed warrior called Derek, and turn-based fights against twenty creatures. Svelte 5,
+TypeScript and Vite; no runtime dependencies beyond Svelte.
 
-## Recommended IDE Setup
+## Running it
 
-[VS Code](https://code.visualstudio.com/) + [Svelte](https://marketplace.visualstudio.com/items?itemName=svelte.svelte-vscode).
+Everything runs from the repository root (`app` is an npm workspace):
 
-## Need an official Svelte framework?
+    npm install
+    npm run dev          # dev server at http://localhost:5173
+    npm run build        # production build to app/dist
+    npm test             # unit tests (vitest): the rules and every system
+    npm run check        # svelte-check + tsc
+    npm run lint         # eslint
+    npm run format       # prettier
+    npm run e2e          # browser tests (playwright), starts the dev server itself
+    npm run shots        # one screenshot per screen into app/shots/, to compare with reference/
 
-Check out [SvelteKit](https://github.com/sveltejs/kit#readme), which is also powered by Vite. Deploy anywhere with its serverless-first approach and adapt to various platforms, with out of the box support for TypeScript, SCSS, and Less, and easily-added support for mdsvex, GraphQL, PostCSS, Tailwind CSS, and more.
+The game saves itself to `localStorage` on every change. File > Save downloads the same save as
+JSON and File > Open loads one back.
 
-## Technical considerations
+## Where the rules and data come from
 
-**Why use this over SvelteKit?**
+- `notes/rules.md`: every rule, read from the 68k disassembly of the original. The remake keeps
+  the original's quirks (a d20 that rolls 1..19, magic weapons that are harder to hit with, the
+  inn that takes all your gold, level drain that only ever takes one level).
+- `src/game/tables.json` (explained in `notes/tables.md`): weapons, armor, magic items and
+  creatures, recovered from the original's constructor calls.
+- `notes/ReadMe.txt`: the original manual. `reference/`: screenshots of the original's screens.
+- `public/assets/`: the original pictures, icons and sounds.
+- `notes/REMAKE_PLAN.md`: the task list this was built from, and at its end every assumption made
+  where the original's behaviour or text was not recovered.
 
-- It brings its own routing solution which might not be preferable for some users.
-- It is first and foremost a framework that just happens to use Vite under the hood, not a Vite app.
+## Code layout
 
-This template contains as little as possible to get started with Vite + TypeScript + Svelte, while taking into account the developer experience with regards to HMR and intellisense. It demonstrates capabilities on par with the other `create-vite` templates and is a good starting point for beginners dipping their toes into a Vite + Svelte project.
+- `src/game/`: the game, with no UI. `maps.ts` holds the entities (characters, fights) on
+  reactive maps, `GameData.svelte.ts` derives what the screens show, `rules.ts` has the pure rule
+  functions, and `systems/` one function per action (`buyWeapon`, `fightRound`, ...). A system
+  either does its thing or returns `{ err }` with the text the game's alert box shows.
+- `src/ui/`: one Svelte component per screen, named after its reference screenshot, plus the
+  dialogs, the menu bar and the sound player.
+- `e2e/`: playwright tests, including a run through a whole game (`game.spec.ts`).
 
-Should you later need the extended capabilities and extensibility provided by SvelteKit, the template has been structured similarly to SvelteKit so that it is easy to migrate.
-
-**Why `global.d.ts` instead of `compilerOptions.types` inside `jsconfig.json` or `tsconfig.json`?**
-
-Setting `compilerOptions.types` shuts out all other types not explicitly listed in the configuration. Using triple-slash references keeps the default TypeScript setting of accepting type information from the entire workspace, while also adding `svelte` and `vite/client` type information.
-
-**Why include `.vscode/extensions.json`?**
-
-Other templates indirectly recommend extensions via the README, but this file allows VS Code to prompt the user to install the recommended extension upon opening the project.
-
-**Why enable `allowJs` in the TS template?**
-
-While `allowJs: false` would indeed prevent the use of `.js` files in the project, it does not prevent the use of JavaScript syntax in `.svelte` files. In addition, it would force `checkJs: false`, bringing the worst of both worlds: not being able to guarantee the entire codebase is TypeScript, and also having worse typechecking for the existing JavaScript. In addition, there are valid use cases in which a mixed codebase may be relevant.
-
-**Why is HMR not preserving my local component state?**
-
-HMR state preservation comes with a number of gotchas! It has been disabled by default in both `svelte-hmr` and `@sveltejs/vite-plugin-svelte` due to its often surprising behavior. You can read the details [here](https://github.com/rixo/svelte-hmr#svelte-hmr).
-
-If you have state that's important to retain within a component, consider creating an external store which would not be replaced by HMR.
-
-```ts
-// store.ts
-// An extremely simple external store
-import { writable } from 'svelte/store'
-export default writable(0)
-```
+The art, sounds and text are Robert Chancellor's; Darkwood was shareware.
