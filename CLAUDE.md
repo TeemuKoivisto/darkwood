@@ -12,8 +12,8 @@ A loose replica: same screens, rules and data; the look is "System 7-ish", not p
   bottom; it is the source of truth for what "done" means.
 - `notes/rules.md` — every game rule, recovered from the 68k disassembly. Implement these exactly,
   including the items marked **(quirk)**, unless the plan says to fix one.
-- `notes/tables.md` / `app/src/data/tables.json` — weapons, armor, magic items, creatures, message
-  strings. The JSON is the one to load; the markdown explains the fields.
+- `notes/tables.md` / `app/src/game/tables.json` — weapons, armor, magic items, creatures, message
+  strings. The JSON is the one to load (via `game/data.ts`); the markdown explains the fields.
 - `notes/ReadMe.txt` — the original manual (story, screen descriptions).
 - `reference/NN-*.png` — screenshots of every screen, numbered in implementation order. Look at the
   one for the screen you are building before building it (the Read tool shows images).
@@ -41,17 +41,35 @@ every commit. In short: no semicolons, single quotes, 2-space indent, 100 column
 where ES5 allows, `arrowParens: avoid` (`x => x`, not `(x) => x`). Svelte files keep the order
 script, markup, style. Unused names start with `_`. Tests may use `any`.
 
-## Conventions
+## Architecture (`app/src/game/`)
 
-- `app/src/rules/` is pure TypeScript: no DOM, no Svelte, no globals. Every function that rolls
-  dice takes an `Rng` (see `rules/rng.ts`) so tests are deterministic. Every rule in `rules.md`
-  that has a formula gets a unit test next to it (`*.test.ts`).
-- `app/src/ui/` holds Svelte components. One component per screen, named after the reference
+Entities on reactive maps, systems as plain functions, one derived view for the UI.
+`systems/inn.ts` and `systems/newGame.ts` with their tests are the worked examples; copy their
+shape.
+
+- `maps.ts` — `GameMaps`: the entity tables as `SvelteMap`s (`characters` by id, `fights` by
+  character id). Systems write them with plain `Map` methods or the `updateCharacter` /
+  `updateFight` helpers (patch = replace with a copy). Never mutate a stored record in place.
+- `GameData.svelte.ts` — the reactive state the UI binds to. `$state` only for navigation and
+  UI-only bits (`characterId`, `screen`, `alert`); everything about the game is `$derived` from the
+  maps (`character`, `fight`, `armorClass`, `weapon`, ...). Add derived fields here when a screen
+  needs a value the record does not store. Components read `GameData` and never write the maps.
+- `systems/*.ts` — every system is `(ctx, payload) => void | Err` typed as `GameSys<Payload>`
+  (`GameSys` alone for no payload). `ctx = { state: GameData, rng }`. Systems call each other
+  directly: `const failed = other(ctx, data); if (failed) return failed`. A refusal is
+  `{ err: 'text' }` where the text is what the game's alert box shows; the UI puts it in
+  `state.alert`. No actor, no queue, no events: the UI calls the system function.
+- `rules.ts` — pure functions with no state (tables, bonuses, derived values). `data.ts` — the
+  typed tables from `tables.json`. `rng.ts` — the original's truncating `randomNumber`; every
+  roll goes through `ctx.rng` so tests are deterministic (`seqRng`).
+- Tests: `__tests__/boot.ts` gives fresh maps, a `GameData`, a fixed `Rng` and a new character;
+  system tests live in `systems/__tests__/<system>.test.ts`, call the system with `g.ctx`, and
+  check both the maps and `g.state`. Vitest globals are on (`describe`, `it`, `expect`).
+- `app/src/ui/` holds the Svelte components: one per screen, named after the reference
   screenshot (`MainScreen.svelte`, `MagicShop.svelte`, `Inn.svelte`, ...). Dialogs use the native
-  `<dialog>` element.
-- Game state is a single plain object (the character plus which screen is open), held in one
-  Svelte store/rune module. Components call functions from `rules/` and never mutate the character
-  themselves.
+  `<dialog>` element. `App.svelte` creates the maps and the `GameData` once and passes them down
+  (context or props); `main.ts` wires persistence (an `$effect.root` that serialises the maps to
+  `localStorage` on every change and loads them at start).
 - Keep the original message strings verbatim, typos included ("You character is already up to
   full hit points.", "You hit 3 time for 39 points.").
 - No new dependencies without a reason written in the commit message. No UI libraries.

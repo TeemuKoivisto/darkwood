@@ -9,22 +9,21 @@ building each screen.
 
 ## Task 0 — Foundation
 
-- [ ] `rules/types.ts`: `Weapon`, `Armor`, `MagicItem` (with live `charges`), `Creature`,
-      `Character` matching the fields in `notes/tables.md` and the character record in `rules.md`.
-- [ ] `rules/data.ts`: load `data/tables.json` into typed arrays; `creatureByName`, etc.
-- [ ] `rules/character.ts`: `newCharacter()` with the fixed starting values (Derek, level 1, 10 hp,
-      str 16, dex 15, con 15, 10 gold, Dagger); the derived-value functions `thac0`, `attacksPerRound`,
-      `toHitBonus`, `toDamageBonus`, `dexAcBonus`, `conHitPoints`, `armorClass`, `minXpForLevel`,
-      `levelEarned`. Tests for every one against the tables in `rules.md`.
-- [ ] `rules/save.ts`: `serialize`/`deserialize` the character to JSON with a version field;
-      `ui/storage.ts` wraps it in `localStorage` under one key.
-- [ ] `ui/game.svelte.ts`: the single state module: `character`, `screen` (`'main' | 'magic-shop' |
-'inn' | 'armorer' | 'weapon-shop' | 'opponent' | 'combat'`), `message` (text for the plain
-      "Sorry..." alert), and the open-dialog state. Autosaves on every change.
-- [ ] `App.svelte`: grey page, centered 2x game panel, renders the current screen. A fresh load with
-      no save starts a new character.
-- [ ] `ui/Alert.svelte`: the generic message box (`DLOG 512`): text plus OK, used for every
-      one-line message in the game.
+Already in place (see `CLAUDE.md` "Architecture"): `game/types.ts`, `game/maps.ts`,
+`game/GameData.svelte.ts`, `game/data.ts`, `game/rules.ts` (+ tests), `game/rng.ts` (+ tests),
+`systems/newGame.ts` (`newGame`, `openScreen`), `systems/inn.ts` (+ tests), `__tests__/boot.ts`.
+
+- [x] Types, maps, `GameData`, data loading, derived-value rules with tests.
+- [x] `newGame` with the fixed starting character.
+- [ ] `game/save.ts`: `serializeMaps` / `deserializeMaps` to JSON with a version field (the
+      characters and fights). `main.ts` loads it from `localStorage` at start and writes it back
+      from an `$effect.root` on every change.
+- [ ] `App.svelte`: creates the maps and `GameData` once, provides them via context, grey page,
+      centered 2x game panel, renders the component for `state.screen`. A fresh load with no save
+      runs `newGame`.
+- [ ] `ui/Alert.svelte`: the generic message box (`DLOG 512`): `state.alert` text plus OK. A helper
+      `run(system, payload)` in `ui/` that calls a system and puts a returned `err` in
+      `state.alert`, so every button does `onclick={() => run(stayOneNight)}`.
 
 ## Task 1 — Main screen (`reference/01-main.png`)
 
@@ -42,52 +41,59 @@ building each screen.
 
 ## Task 2 — Magic Item Shop (`reference/02-magic-shop.png`)
 
-- [ ] `rules/shops.ts`: `buyMagicItem`, `sellMagicItem` per `rules.md` "Shops and inn" (cost <=
-      gold, max 10, no duplicates, only one AC item, sell for `cost div 2`, charges initialised
-      10/1/0). Return `{ ok: true, character } | { ok: false, reason }` with the reason text used for
-      the alert. Tests.
+- [ ] `systems/magicShop.ts`: `buyMagicItem: GameSys<{ name: string }>`, `sellMagicItem` per
+      `rules.md` "Shops and inn" (cost <= gold, max 10, no duplicates, only one AC item, sell for
+      `cost div 2`, charges initialised 10/1/0). Refusals return `{ err }` with the alert text. Tests
+      in `systems/__tests__/magicShop.test.ts` via `bootGame`.
 - [ ] `ui/MagicShop.svelte`: two lists (Items Available / Character Items) with single selection,
       Cost and Sell fields for the selected rows, Buy / Sell / Done buttons, Gold. Buying refreshes
       both lists; failures show the alert.
 
 ## Task 3 — Inn (`reference/03-inn.png`)
 
-- [ ] `rules/inn.ts`: `stayOneNight`, `stayUntilHealed`, reproducing the original's behaviour
+- [x] `systems/inn.ts`: `stayOneNight`, `stayUntilHealed`, reproducing the original's behaviour
       including the **(bug)** that an unaffordable full heal zeroes gold and heals nothing. Tests.
 - [ ] `ui/Inn.svelte`: the text and three buttons; the alert on refusal.
 
 ## Task 4 — Armorer (`reference/04-armorer.png`)
 
-- [ ] `rules/shops.ts`: `buyArmor` (one slot, replaces, no sell). Tests, including AC recompute.
+- [ ] `systems/armorer.ts`: `buyArmor: GameSys<{ name: string }>` (one slot, replaces, no sell).
+      Tests, including that `state.armorClass` follows.
 - [ ] `ui/Armorer.svelte`: list, Buy, "Cost (Trade-In)" and "AC Adjust" of the selection, current
       armor name on the right, Gold, Done.
 
 ## Task 5 — Weapon Shop (`reference/05-weapon-shop.png`)
 
-- [ ] `rules/shops.ts`: `buyWeapon`, `sellWeapon`, `setCurrentWeapon` (max 6, sell `cost div 2`,
-      cost-1 weapons sell for nothing, selling the current one makes weapon 1 current). Tests.
+- [ ] `systems/weaponShop.ts`: `buyWeapon`, `sellWeapon`, `setCurrentWeapon` (max 6, sell
+      `cost div 2`, cost-1 weapons sell for nothing, selling the current one makes weapon 1 current).
+      Tests.
 - [ ] `ui/WeaponShop.svelte`: Weapons Available / Character Weapons lists, Cost / Speed / Damage
       (`min-max`) of the selected shop row, Sell For of the selected owned row, Buy / Sell / Done,
       Gold. Clicking an owned weapon makes it the current weapon (mark it).
 
 ## Task 6 — Opponent picker (`reference/06-opponent.png`)
 
+- [ ] `systems/combat.ts`: `startFight: GameSys<{ creature: string }>` puts a `Fight` with a
+      fresh copy of the creature on `maps.fights` and opens the combat screen; `endFight` removes
+      it and returns to main.
 - [ ] `ui/OpponentPicker.svelte`: list of all 20 creatures; the selected one shows Hit Points,
       Armor Class, Attacks/Round, Damage/Attack, XP Value, Award Money, Surrender Penalty
-      (`trunc(gold * 0.1)`), Magic Weapon Req (`No` or the bonus). Cancel returns to main; Fight
-      starts combat with a fresh copy of the creature.
+      (`rules.surrenderPenalty`), Magic Weapon Req (`No` or the bonus). Cancel returns to main;
+      Fight calls `startFight`.
 
 ## Task 7 — Combat (`reference/07..13`)
 
-- [ ] `rules/combat.ts`: `startFight(character, creature)` -> `Fight` state; `doRound(fight,
-action, rng)` for `'fight' | 'defensive' | 'use' | 'surrender'` returning the new state plus the
-      round messages and an `outcome` (`'continue' | 'won' | 'died' | 'surrendered' |
-'surrender-refused'`). Implement initiative, player attack (with the **(quirk)** `+ magic_bonus`
-      on the target number), creature attack, defensive bonus semantics, level drain, creature death
-      rewards, `checkAndAdvanceLevel`. Every branch in `rules.md` "Combat" gets a test with a fixed
-      `Rng`.
-- [ ] `rules/items.ts`: `useMagicItem(character, item, fight?, rng)`: potions / damage items /
-      tomes / rings per `rules.md` "Magic items (use)", charge consumption, AC recompute. Tests.
+- [ ] `systems/combat.ts`: one system per button, `fightRound`, `defensiveRound`, `useItemRound:
+GameSys<{ item: string }>`, `surrender`, each a `GameSys` that runs one round through the shared
+      helpers (initiative, player attack with the **(quirk)** `+ magic_bonus` on the target number,
+      creature attack, defensive bonus semantics, level drain) and writes `fight.messages`,
+      `fight.outcome`, `fight.reward`, `fight.levelUp`, `fight.gameWon` plus the character's hp /
+      gold / xp / level. `creatureDeath` and `checkAndAdvanceLevel` are systems too, called from
+      the round systems. Every branch in `rules.md` "Combat" gets a test with a fixed `Rng`
+      (`bootGame({ rng: [...] })`).
+- [ ] `systems/items.ts`: `useMagicItem: GameSys<{ item: string }>`: potions / damage items /
+      tomes / rings per `rules.md` "Magic items (use)", charge consumption; in combat it is what
+      `useItemRound` calls before the creature attacks. Tests.
 - [ ] `ui/Combat.svelte` (`07-combat-start.png`): two panels (player / creature) with portrait,
       name in red, "Hit Points" bar (green, proportional to hp/hp_max) with the number under it,
       Armor Class / Attacks/Round / Damage/Attack; below: the four icon buttons (Fight, Defensive, Use,
