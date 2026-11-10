@@ -3,3 +3,6 @@ png/
 node_modules/
 dist/
 remake.log
+test-results/
+playwright-report/
+app/shots/

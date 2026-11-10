@@ -5,7 +5,8 @@ they hold and, at the repo root, `npm test`, `npm run check`, `npm run lint` and
 pass and `npm run format` changes nothing. Tick the box when done.
 
 Read `CLAUDE.md` first, then `notes/rules.md` once in full. Look at the referenced screenshot before
-building each screen.
+building each screen, and when a screen is built, add its step to `app/e2e/shots.spec.ts`, run
+`npm run shots` and compare `app/shots/<name>.png` with `reference/<name>.png` before ticking it.
 
 ## Task 0 — Foundation
 
@@ -131,9 +132,12 @@ GameSys<{ item: string }>`, `surrender`, each a `GameSys` that runs one round th
 ## Task 10 — Finish
 
 - [ ] `app/README.md`: how to run, build, where the rules and data come from.
-- [ ] Run through the whole game once in the dev server with the browser tools if available
-      (otherwise by reasoning through the state module) and fix what breaks.
-- [ ] Final `npm test`, `npm run check`, `npm run build` green; last commit on `remake`.
+- [ ] `app/e2e/shots.spec.ts` has a step for every screen in `reference/` (01..13 except 11) and
+      `npm run shots` produces them all. Look at each next to its reference and fix what is off.
+- [ ] `app/e2e/game.spec.ts`: one browser run through the whole game: buy a weapon, stay at the
+      inn, fight the Giant Rat to the win dialog, surrender once, die once. Passes.
+- [ ] Final `npm test`, `npm run check`, `npm run lint`, `npm run build`, `npm run e2e` green;
+      last commit on `remake`.
 
 ## Assumptions made
 

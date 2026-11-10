@@ -4,7 +4,7 @@ Darkwood 1.2 by Robert Chancellor, a shareware arena-combat RPG for classic Mac 
 
 ## Remake
 
-- `app/` — the web remake, Vite + Svelte 5 + TypeScript + Vitest. `cd app && npm install && npm run dev`.
+- `app/` — the web remake, Vite + Svelte 5 + TypeScript, Vitest for the rules, Playwright for browser tests and screenshots. `npm install && npm run dev` at the root (`app` is an npm workspace); `npm run shots` writes one PNG per screen to `app/shots/` for comparing with `reference/`. First time: `npx playwright install chromium`.
 - `notes/REMAKE_PLAN.md` — ordered task list with acceptance criteria; `CLAUDE.md` — conventions for an unattended Claude Code session.
 - `./run-remake.sh` — starts that session (Opus 5.5, edits auto-accepted, commands allowlisted in `.claude/settings.json`); it commits each finished task on the `remake` branch. `--headless` runs it without the TUI and logs to `remake.log`.
 - `reference/` — screenshots of every original screen, numbered in implementation order.

@@ -30,9 +30,14 @@ A loose replica: same screens, rules and data; the look is "System 7-ish", not p
     npm run lint         # eslint (config: eslint.config.js)
     npm run format       # prettier --write (config: .prettierrc)
     npm run build        # production build to app/dist
+    npm run e2e          # playwright browser tests (app/e2e/*.spec.ts), starts the dev server itself
+    npm run shots        # app/e2e/shots.spec.ts only: one PNG per screen into app/shots/
 
-A task is finished only when `npm test`, `npm run check`, `npm run lint` and `npm run build` all
-pass and `npm run format` leaves no changes.
+Look at a screen you built: add or extend its step in `app/e2e/shots.spec.ts`, run `npm run shots`,
+then open `app/shots/<name>.png` with the Read tool next to `reference/<name>.png`.
+
+A task is finished only when `npm test`, `npm run check`, `npm run lint`, `npm run build` and
+`npm run e2e` all pass and `npm run format` leaves no changes.
 
 ## Code style
 
