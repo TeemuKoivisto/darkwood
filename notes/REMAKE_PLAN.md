@@ -84,7 +84,7 @@ Already in place (see `CLAUDE.md` "Architecture"): `game/types.ts`, `game/maps.t
 
 ## Task 7 — Combat (`reference/07..13`)
 
-- [ ] `systems/combat.ts`: one system per button, `fightRound`, `defensiveRound`, `useItemRound:
+- [x] `systems/combat.ts`: one system per button, `fightRound`, `defensiveRound`, `useItemRound:
 GameSys<{ item: string }>`, `surrender`, each a `GameSys` that runs one round through the shared
       helpers (initiative, player attack with the **(quirk)** `+ magic_bonus` on the target number,
       creature attack, defensive bonus semantics, level drain) and writes `fight.messages`,
@@ -92,26 +92,26 @@ GameSys<{ item: string }>`, `surrender`, each a `GameSys` that runs one round th
       gold / xp / level. `creatureDeath` and `checkAndAdvanceLevel` are systems too, called from
       the round systems. Every branch in `rules.md` "Combat" gets a test with a fixed `Rng`
       (`bootGame({ rng: [...] })`).
-- [ ] `systems/items.ts`: `useMagicItem: GameSys<{ item: string }>`: potions / damage items /
+- [x] `systems/items.ts`: `useMagicItem: GameSys<{ item: string }>`: potions / damage items /
       tomes / rings per `rules.md` "Magic items (use)", charge consumption; in combat it is what
       `useItemRound` calls before the creature attacks. Tests.
-- [ ] `ui/Combat.svelte` (`07-combat-start.png`): two panels (player / creature) with portrait,
+- [x] `ui/Combat.svelte` (`07-combat-start.png`): two panels (player / creature) with portrait,
       name in red, "Hit Points" bar (green, proportional to hp/hp_max) with the number under it,
       Armor Class / Attacks/Round / Damage/Attack; below: the four icon buttons (Fight, Defensive, Use,
       Surrender from `btn-*.png`) and a "Messages" box showing the last round's lines in order
       ("You strike first", "You hit 3 time for 39 points.", "The creature missed").
-- [ ] Use (`08-magic-items.png`): a "Magic Items" picker dialog over the combat screen with
+- [x] Use (`08-magic-items.png`): a "Magic Items" picker dialog over the combat screen with
       Cancel / Use; using an item then runs the creature's attack as the rules say.
-- [ ] Surrender (`09-surrender.png`): alert "You pay N gold pieces to surrender." then back to
+- [x] Surrender (`09-surrender.png`): alert "You pay N gold pieces to surrender." then back to
       main; or the "not enough gold" alert and the fight continues.
-- [ ] Win (`10-win.png`): dialog with `treasure.png`, "You have defeated your opponent." and the
+- [x] Win (`10-win.png`): dialog with `treasure.png`, "You have defeated your opponent." and the
       award line, OK returns to main.
-- [ ] Level up (`11-level-up.png` is not captured yet; use `DITL 281`: text + OK): after the win
+- [x] Level up (`11-level-up.png` is not captured yet; use `DITL 281`: text + OK): after the win
       dialog, "You advance to level N. Your character has gained G hit points." and, at 15, the
       max-level line.
-- [ ] Death (`12-death.png`): dialog with `reaper.png` and "Sorry... You character has been
+- [x] Death (`12-death.png`): dialog with `reaper.png` and "Sorry... You character has been
       killed fighting in the arena. Better luck next time."; OK starts a new character.
-- [ ] Game won (`13-game-won.png`): after killing "Dragon, Red", the Captain of the Guard alert
+- [x] Game won (`13-game-won.png`): after killing "Dragon, Red", the Captain of the Guard alert
       with the player portrait. The game continues afterwards (the original does).
 
 ## Task 8 — Menus and character dialogs
@@ -148,6 +148,11 @@ GameSys<{ item: string }>`, `surrender`, each a `GameSys` that runs one round th
 - Task 1: the menus are disabled while a shop, the arena or a fight is open (the original opened those as modal dialogs). The main window has a "Darkwood" title bar like the original window.
 - Task 2: the shop refusal texts were not recovered; they are "Sorry... You do not have enough gold to buy this item." / "...can not carry any more magic items." / "...already own this item." / "...can only own one item that alters your armor class.". Prices are the ones in `tables.json`; the screenshots show different prices (Potion of Healing 100), presumably from the later version that took them.
 - Task 3: the Inn stays open after a stay so several nights can be bought one at a time; Cancel closes it.
-- Task 4: "Cost (Trade-In)" shows the plain table cost and buying charges it in full (rules.md has no trade-in; the screenshot, from a later version, shows 1 for Leather). Buying the armor already worn is allowed. The armor icon is left out: there is no armor picture among the extracted resources.
+- Task 4: "Cost (Trade-In)" shows the plain table cost and buying charges it in full (rules.md has no trade-in; the screenshot, from a later version, shows 1 for Leather). Buying the armor already worn is allowed. The current-armor panel shows the shield icon `btn-defensive.png`, the same picture as in the screenshot.
 - Task 5: duplicate weapons may be bought (rules.md does not forbid it), so owned weapons are addressed by index. A weapon bought while bare-handed becomes current. Selling a weapon listed before the current one keeps the same weapon current. The full-rack refusal reads "Sorry... You can not carry any more weapons.".
 - Task 6: the picker lists all 20 creatures whatever the level, and shows the table numbers (Award Money 10 for the Giant Rat; the screenshot, from a later version, shows 8). Magic Weapon Req shows "+N" for a required bonus.
+- Task 7: the Messages box always ends with the player line and the creature line built from the round counters, so a kill before the creature acts still shows "The creature missed" (as in `10-win.png`) and a creature that kills first still shows "You missed" (as in `12-death.png`). A failed surrender shows "You attempted to surrender." and "The creature missed".
+- Task 7: all `attacks_per_round` swings are made even after the creature drops (rules.md does not stop the loop), so hp can go negative. The "more powerful magical weapon" alert is shown once per round. Bare-handed initiative uses speed 0.
+- Task 7: a magic item that refuses (full hit points, a ring, a tome at maximum) costs no combat round: the alert shows and the creature does not attack. A tome at its maximum keeps its charge; the text is "Sorry... That attribute is already at its maximum.". Only the tails of the heal/damage messages survive, so they read "You have been healed N hit points." and "The creature took N hit points of damage.".
+- Task 7: the win dialog prints "You have defeated your opponent." before the award line, as in `10-win.png` (rules.md lists them the other way round). The Option-key double-xp cheat is left out. The game-won alert uses `portrait-player.png`, as the plan says.
+- Task 7: `app/public/assets/img/portrait-creature.png` is byte-identical to `portrait-player.png`; the creature icon in the screenshots is `png/cicn_258.png`. The asset was not replaced (copying into public/ was not permitted in this session), so both fighters show the player portrait for now.

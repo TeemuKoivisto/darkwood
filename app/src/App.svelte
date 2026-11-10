@@ -10,6 +10,7 @@
   import Alert from './ui/Alert.svelte'
   import { provideGame, type UiCtx } from './ui/game'
   import Armorer from './ui/Armorer.svelte'
+  import Combat from './ui/Combat.svelte'
   import Inn from './ui/Inn.svelte'
   import MagicShop from './ui/MagicShop.svelte'
   import MainScreen from './ui/MainScreen.svelte'
@@ -30,6 +31,7 @@
     armorer: Armorer,
     'weapon-shop': WeaponShop,
     opponent: OpponentPicker,
+    combat: Combat,
   }
   const Current = $derived(SCREENS[data.screen])
 </script>

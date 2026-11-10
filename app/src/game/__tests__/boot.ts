@@ -19,3 +19,12 @@ export function bootGame({ rng = [0] }: { rng?: number[] } = {}) {
   const patch = (fields: Partial<Character>) => updateCharacter(maps, state.characterId, fields)
   return { maps, state, ctx, character, patch }
 }
+
+/**
+ * The `rng` float that makes `randomNumber(lo, hi)` return `result`. `roll(1, 20, 20)` gives 1,
+ * the one value that reaches `hi` (see the truncation quirk in `rng.ts`).
+ */
+export function roll(lo: number, hi: number, result: number): number {
+  if (result === hi) return 1
+  return (result - lo + 0.5) / (hi - lo)
+}

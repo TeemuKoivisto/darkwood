@@ -84,6 +84,9 @@ export type Character = {
 
 export type FightOutcome = 'ongoing' | 'won' | 'died' | 'surrendered'
 
+/** The game's five sounds (`notes/rules.md` "Sounds"), named like the files in `assets/snd`. */
+export type Sound = 'hit-on-player' | 'missed' | 'hit-on-creature' | 'new-level' | 'oouch'
+
 /** One arena fight: a live copy of the creature plus what the last round produced. */
 export type Fight = {
   characterId: string
@@ -92,6 +95,10 @@ export type Fight = {
   defensiveBonus: number
   /** The last round's lines, in order, for the Messages box */
   messages: string[]
+  /** The last round's sounds, in the order they happened */
+  sounds: Sound[]
+  /** Rounds fought so far; tells the UI a new round happened even if it looks the same */
+  round: number
   outcome: FightOutcome
   reward?: { gold: number; xp: number }
   levelUp?: { level: number; gained: number; maxed: boolean }

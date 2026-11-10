@@ -36,8 +36,9 @@
     </div>
     <div class="column">
       <div class="box row"><span>Gold:</span><span class="blue">{data.character!.gold}</span></div>
-      <div class="box current" aria-label="Current armor">
-        <span class="blue">{data.character!.armor?.name ?? 'None'}</span>
+      <div class="box current">
+        <span class="blue" aria-label="Current armor">{data.character!.armor?.name ?? 'None'}</span>
+        <img src="assets/img/btn-defensive.png" alt="" />
       </div>
       <button class="push default" onclick={() => run(openScreen, { screen: 'main' })}>Done</button>
     </div>
@@ -72,10 +73,20 @@
   }
 
   .current {
-    display: grid;
-    place-items: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
     height: 140px;
+    padding-top: 10px;
     font-size: 19px;
+  }
+
+  .current img {
+    width: 64px;
+    height: 64px;
+    border: 2px solid var(--bevel-light);
+    box-shadow: inset -2px -2px 0 var(--bevel-dark);
   }
 
   .default {

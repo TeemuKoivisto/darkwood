@@ -13,6 +13,8 @@ describe('serializeMaps / deserializeMaps', () => {
       creature: { ...creatureByName('Kobold') },
       defensiveBonus: 0,
       messages: [],
+      sounds: [],
+      round: 0,
       outcome: 'ongoing',
     })
 
