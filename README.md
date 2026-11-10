@@ -9,6 +9,7 @@ Darkwood 1.2 by Robert Chancellor, a shareware arena-combat RPG for classic Mac 
 - `png/` — the pictures and icons converted to PNG for viewing.
 - `notes/ReadMe.txt` — the manual as plain text (story, rules, screen descriptions, opponent and magic item tables, version history).
 - `notes/tables.md`, `notes/tables.json` — every game data table recovered from the code: 27 weapons, 12 armors, 13 magic items, 20 creatures, plus the message strings.
+- `notes/TODO_REMAKE.md` — what is still missing for a web remake: screenshot list, play notes to verify the rules, layout facts to read from the dump, fonts and chrome, open questions.
 - `notes/rules.md` — the complete rule set read from the disassembly: random number generator, character stats and bonuses, initiative, hit and damage rolls, level drain, rewards and level-up, shops, inn, magic item use, sounds, and the original's quirks and bugs.
 - `notes/opponents.tsv`, `notes/magic_items.tsv` — the two tables as printed in the manual.
 - `tools/resource_dasm` — the extractor binary (built from fuzziqersoftware/resource_dasm, arm64).
