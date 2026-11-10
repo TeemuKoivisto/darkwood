@@ -1,89 +1,79 @@
 # What is still missing for the web remake
 
-Checklist of material and facts not yet in this repo. Architecture and build setup are deliberately
-not covered here.
+Scope: a loose replica, not a pixel-exact port. The town map (`png/PICT_*` already extracted) with
+clickable building areas over it, plus plain dialogs for the shops, the opponent picker and combat.
+No bitmap fonts, no reproduced Mac window chrome, no colour-table archaeology. Architecture and
+build setup are deliberately not covered here.
 
-## 1. Reference screenshots (needs the emulator, cannot be scripted)
+## 1. Reference screenshots
 
-Take them in Basilisk II with the Monitors control panel set to 256 colours, using Cmd+Shift+4,
-Space, click on the window, so they are 1:1 pixels. Save into `reference/` with these names.
+Host screenshots of the Basilisk II window, cropped to the game window (2x Retina, slightly
+smoothed; fine for layout and copy, not for pixel work). Full desktop originals are in
+`reference/raw/`.
 
-| File | What to capture |
+| File | Shows |
 |---|---|
-| 01-main.png | Main Darkwood window right after a new game: town map, portrait, stats, messages box |
-| 02-menus.png | The Actions menu pulled down (plus File and Display if they hold game items) |
-| 03-opponent.png | Opponent dialog with a creature selected so its stats are filled in |
-| 04-combat-start.png | Combat dialog before the first round |
-| 05-combat-round.png | Same dialog after a Fight round, with both result messages showing |
-| 06-win.png | Character Wins Fight dialog (treasure picture) |
-| 07-level-up.png | Level Advancement dialog |
-| 08-death.png | Character Death dialog (reaper). Fight the Red Dragon at level 1 to get it quickly |
-| 09-weapons.png | Weapon Shop with a weapon selected |
-| 10-armor.png | Armorer |
-| 11-magic-shop.png | Magic Shop |
-| 12-inn.png | Inn dialog |
-| 13-equipment.png | Equipment dialog |
-| 14-magic-items.png | Magic item picker, with at least one item owned |
-| 15-about.png | About Darkwood |
-| 16-message.png | Any "Sorry..." message box, e.g. buying something too expensive |
-| 17-new-character.png | Abandon-character confirmation from New Game |
+| 01-main.png | Main window: portrait, name/class, level/XP/HP/AC/gold, six stats, town map with "Click on a building" |
+| 03-opponent.png | "Please Select an Opponent": list + Award Money / XP Value / Surrender Penalty / Magic Weapon Req, Cancel/Fight |
+| 04-combat-start.png | Combat dialog before round 1: both portraits, HP bars, AC / Attacks/Round / Damage/Attack, Fight/Use/Surrender buttons, empty Messages box |
+| 06-win.png | "You have defeated your opponent" treasure dialog over the combat window, which shows the round messages ("You strike first", "You hit 3 time for 39 points.", "The creature missed") |
+| 09-weapons.png | Weapon Shop: available list, owned list, Buy/Sell, Cost/Speed/Damage, Sell For, Gold, Done |
+| 10-armor.png | Armorer: list, Buy, Cost (Trade-In)/AC Adjust, current armor name + icon, Gold, Done |
+| 11-magic-shop.png | Magic Item Shop: available/owned lists, Cost/Sell, Buy/Sell, Gold, Done |
+| 12-inn.png | Inn: "For each night you stay you are healed 1 hit point.", Cancel / Stay 1 Night / Stay Until Healed |
+| 14-magic-items.png | Magic Items picker during combat, Cancel/Use |
+| 16-message-surrender.png | "You pay 2 gold pieces to surrender." alert; combat messages show "You use an item" |
 
-Optional: the main window after buying armor and a better weapon (how the stats area updates), and
-the Save Before Quit dialog. The Debug Window and Director Dialog are not needed.
+Still worth grabbing if convenient (not blocking): Level Advancement dialog, Character Death dialog
+(fight the Red Dragon at level 1), Equipment dialog, a "Sorry..." message when buying something too
+expensive, the New Game abandon-character confirmation.
 
-## 2. Play notes to confirm the recovered rules
+Observed from the shots: the main window has no message box; combat results go into the Messages
+box of the combat dialog. Menu bar is File / Edit / Character (Equipment..., Magic Items...) /
+Shops (Weapon Shop..., Armorer..., Magic Items..., Inn...), matching `MENU_256..260`.
+
+## 2. Play notes to confirm the recovered rules (optional)
 
 A few lines of observed play let the formulas in `rules.md` be checked against the real thing:
 
 - 20 or so Fight rounds against the Giant Rat at level 1 with the Dagger: note each "You hit N time
   for M points" / "You missed" and the creature's result. This checks the hit rate (should be about
   10 in 19 for a Rat at AC 9) and that Dagger damage is 1..3 and never 4.
-- Whether "You strike first" ever appears when wielding a slow weapon against a high-level creature.
 - Drink a few Potions of Healing and note the healed amounts: expected 1..7, never 8.
-- One surrender against a creature with award money 10 (Rat) to see whether the penalty rounds to 1
-  or to 0.
-- The exact text in the main window's message box after a level-up and after a level drain.
+- The exact text in the combat Messages box after a level-up and after a level drain.
 
-## 3. Layout facts still only in the dump, not written up
+Already observed: surrender against the Giant Rat (award money 8) cost 2 gold, so the penalty does
+not round to 0.
 
-All of these are present in `extracted/` and just need reading when the screens are built:
+## 3. Assets to reuse as-is
 
-- `WIND_256` main window bounds and the `DLOG_*` rectangles (dialog size and screen position).
-- `DITL_*` item rectangles and static text for every dialog (button sizes, label positions).
-- The main window's stat and message rectangles are set in code, not resources: see the `SetRect`
-  calls in CODE 4 just before the "IPDCOMBA" tag (around offset 0x1540), and the `TETextBox` call in
-  CODE 5 `DISPLAYC` at 0x47B8, which draws the result messages into the rect at global `A5-0x63D8`.
-- Colour tables (`dctb`, `wctb`, `cctb`, `ictb`) give the background and text colours of each
-  dialog and control. The `.bmp` renders of them in `extracted/` show the palettes.
-- The Opponent dialog's labels are strings in CODE 4: "Hit Points", "Armor Class:",
-  "Attacks/Round:", "Damage/Attack:", "XP Value:", "Award Money:", "Surrender Penalty:",
-  "Magic Weapon Req:". Their on-screen order comes from the screenshot.
-- `MENU_256..260` and `MBAR_1` give the full menu bar and item names.
-- Button icons: `cicn` 267 Fight, 269 Defensive, 271 Surrender, 273 Use, 256/262 portraits, and the
-  `ICON` black-and-white twins used on 1-bit screens. The Fight button is flashed (InvertRect) for 5
-  ticks before a round runs.
+- Town map and dialog pictures: `png/PICT_*`.
+- Portraits: `png/cicn_256_Character.png`, `png/cicn_262_Character.png`.
+- Combat buttons: `png/cicn_267_Fight.png`, `cicn_269_Defensive.png`, `cicn_271_Surrender.png`,
+  `cicn_273_Use.png`.
+- Opponent and item tables: `notes/opponents.tsv`, `notes/magic_items.tsv`, `notes/tables.json`.
+- Rules: `notes/rules.md`.
 
-## 4. Things the resource fork does not contain
+Clickable areas on the map (`01-main.png`, map is roughly 300x190 at 1x), confirmed by clicking in
+the emulator, listed bottom to top:
 
-- **Fonts.** The game uses the System 7 system fonts (Chicago for titles and buttons, Geneva 9/12
-  for text). They are not in the app. A bitmap-accurate web rendering needs a Chicago and a Geneva
-  replacement; the screenshots show which sizes are used where.
-- **Window chrome.** Dialog frames, buttons, scroll bars and the menu bar are drawn by the Mac
-  Toolbox. Their look has to be reproduced from the screenshots.
-- **The cursor and the title bar pattern**, same reason.
-- **Random seed.** `Random()` is seeded from the clock at startup; the exact seeding is irrelevant
-  for a port but the generator's truncation quirk (see `rules.md`) is a deliberate choice to keep or fix.
-- **Save file format.** The app saves a "Charater File" (`FREF 129`, creator `DkwD`). Its layout is
-  the in-memory character record (name, stats, weapon list, armor, magic items, gold). It only matters
-  if old save files should load; otherwise any format will do.
+| Building | Where on the map | Opens |
+|---|---|---|
+| Thatched, bottom right | lower right, on the road end | Magic Item Shop |
+| Grey stone building | left of centre, beside the pond | Inn |
+| Thatched, centre | middle of the map | Armorer |
+| Thatched, top left | upper left | Weapon Shop |
+| Round arena | top right | Opponent picker / combat |
 
-## 5. Open rule questions (also listed at the end of `rules.md`)
+## 4. Open questions
 
+- The Finder shows the app as "Darkwood 2.5" but the dumped binary is `Darkwood_1.2.bin` (vers
+  resource says 1.2). Menus match the 1.2 resources; confirm there is no separate 2.5 binary.
 - Whether the Opponent dialog restricts creature choice by level, or lists all 20 always.
-- What `DLOG 130 "Director Dialog"` is for.
 - Behaviour when xp passes 2,000,000 (the level table stops at 15).
+- Save files: only matters if old "Charater File"s should load; otherwise any format will do.
 
-## 6. Licensing
+## 5. Licensing
 
 Darkwood is shareware by Robert Chancellor (1992), $10 registration requested in the Read Me. The art,
 sounds and text are his. Keeping the remake private is fine; publishing it would warrant asking first.
