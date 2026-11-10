@@ -65,10 +65,10 @@ Already in place (see `CLAUDE.md` "Architecture"): `game/types.ts`, `game/maps.t
 
 ## Task 5 — Weapon Shop (`reference/05-weapon-shop.png`)
 
-- [ ] `systems/weaponShop.ts`: `buyWeapon`, `sellWeapon`, `setCurrentWeapon` (max 6, sell
+- [x] `systems/weaponShop.ts`: `buyWeapon`, `sellWeapon`, `setCurrentWeapon` (max 6, sell
       `cost div 2`, cost-1 weapons sell for nothing, selling the current one makes weapon 1 current).
       Tests.
-- [ ] `ui/WeaponShop.svelte`: Weapons Available / Character Weapons lists, Cost / Speed / Damage
+- [x] `ui/WeaponShop.svelte`: Weapons Available / Character Weapons lists, Cost / Speed / Damage
       (`min-max`) of the selected shop row, Sell For of the selected owned row, Buy / Sell / Done,
       Gold. Clicking an owned weapon makes it the current weapon (mark it).
 
@@ -149,3 +149,4 @@ GameSys<{ item: string }>`, `surrender`, each a `GameSys` that runs one round th
 - Task 2: the shop refusal texts were not recovered; they are "Sorry... You do not have enough gold to buy this item." / "...can not carry any more magic items." / "...already own this item." / "...can only own one item that alters your armor class.". Prices are the ones in `tables.json`; the screenshots show different prices (Potion of Healing 100), presumably from the later version that took them.
 - Task 3: the Inn stays open after a stay so several nights can be bought one at a time; Cancel closes it.
 - Task 4: "Cost (Trade-In)" shows the plain table cost and buying charges it in full (rules.md has no trade-in; the screenshot, from a later version, shows 1 for Leather). Buying the armor already worn is allowed. The armor icon is left out: there is no armor picture among the extracted resources.
+- Task 5: duplicate weapons may be bought (rules.md does not forbid it), so owned weapons are addressed by index. A weapon bought while bare-handed becomes current. Selling a weapon listed before the current one keeps the same weapon current. The full-rack refusal reads "Sorry... You can not carry any more weapons.".

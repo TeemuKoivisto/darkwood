@@ -77,3 +77,16 @@ test('04 armorer', async ({ page }) => {
   await page.getByRole('option', { name: 'Leather', exact: true }).click()
   await shot(page, '04-armorer')
 })
+
+test('05 weapon shop', async ({ page }) => {
+  await patchCharacter(page, VETERAN)
+  await page.getByRole('button', { name: 'Weapon Shop' }).click()
+  await page.getByRole('option', { name: 'Sword, +5 Holy Avenger' }).click()
+  await page.getByRole('button', { name: 'Buy' }).click()
+  const owned = page.getByRole('listbox', { name: 'Character Weapons' })
+  await owned.getByRole('option', { name: 'Dagger' }).click()
+  await page.getByRole('button', { name: 'Sell' }).click()
+  await owned.getByRole('option').first().click()
+  await page.getByRole('option', { name: 'Bardiche' }).click()
+  await shot(page, '05-weapon-shop')
+})

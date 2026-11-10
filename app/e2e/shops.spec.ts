@@ -71,3 +71,20 @@ test('armorer: buying leather lowers the armor class', async ({ page }) => {
   await page.getByRole('button', { name: 'Done' }).click()
   await expect(page.getByRole('region', { name: 'Character' })).toContainText(/AC:\s*7/)
 })
+
+test('weapon shop: buy, wield and sell', async ({ page }) => {
+  await page.getByRole('button', { name: 'Weapon Shop' }).click()
+  const shop = page.getByRole('region', { name: 'Weapon Shop' })
+  await page.getByRole('option', { name: 'Battle Axe' }).click()
+  await page.getByRole('button', { name: 'Buy' }).click()
+  const owned = page.getByRole('listbox', { name: 'Character Weapons' })
+  await expect(owned.getByRole('option')).toHaveText(['✓Dagger', 'Battle Axe'])
+
+  await owned.getByRole('option', { name: 'Battle Axe' }).click()
+  await expect(owned.getByRole('option')).toHaveText(['Dagger', '✓Battle Axe'])
+  await expect(shop).toContainText(/Sell For:\s*2/)
+
+  await page.getByRole('button', { name: 'Sell' }).click()
+  await expect(owned.getByRole('option')).toHaveText(['✓Dagger'])
+  await expect(shop).toContainText(/Gold:\s*7/)
+})
