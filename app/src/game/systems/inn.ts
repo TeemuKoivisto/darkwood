@@ -1,4 +1,7 @@
-/** The Inn, `notes/rules.md` "Shops and inn": "For each night you stay you are healed 1 hit point." */
+/**
+ * The Inn, `notes/rules.md` "Shops and inn": "For each night you stay you are healed 1 hit
+ * point." A stay closes the inn; a refusal leaves it open.
+ */
 import { updateCharacter } from '../maps'
 import type { GameSys } from '../types'
 
@@ -12,6 +15,7 @@ export const stayOneNight: GameSys = ctx => {
   if (c.gold < 1) return { err: 'Sorry... You do not have enough gold to stay the night.' }
 
   updateCharacter(ctx.state.maps, c.id, { gold: c.gold - 1, hp: c.hp + 1 })
+  ctx.state.screen = 'main'
 }
 
 export const stayUntilHealed: GameSys = ctx => {
@@ -26,4 +30,5 @@ export const stayUntilHealed: GameSys = ctx => {
     return { err: 'You did not have enough gold to heal fully.' }
   }
   updateCharacter(ctx.state.maps, c.id, { gold: c.gold - nights, hp: c.hpMax })
+  ctx.state.screen = 'main'
 }

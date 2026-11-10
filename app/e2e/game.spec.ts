@@ -48,10 +48,10 @@ test('a whole game', async ({ page }) => {
   await expect(sheet(page)).toContainText(/Hit Points:\s*8\/10/)
   await expect(sheet(page)).toContainText(/Gold:\s*18/)
 
-  // Two nights at the inn
+  // Two nights at the inn; the stay closes the inn
   await page.getByRole('button', { name: 'Inn', exact: true }).click()
   await page.getByRole('button', { name: 'Stay Until Healed' }).click()
-  await page.getByRole('button', { name: 'Cancel' }).click()
+  await expect(page.getByRole('region', { name: 'Inn' })).toBeHidden()
   await expect(sheet(page)).toContainText(/Hit Points:\s*10\/10/)
   await expect(sheet(page)).toContainText(/Gold:\s*16/)
 

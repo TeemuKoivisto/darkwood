@@ -48,20 +48,30 @@ test('inn: heals for gold and refuses at full hit points', async ({ page }) => {
   await page.reload()
   const sheet = page.getByRole('region', { name: 'Character' })
 
-  await page.getByRole('button', { name: 'Inn', exact: true }).click()
+  const inn = page.getByRole('region', { name: 'Inn' })
+  const openInn = () => page.getByRole('button', { name: 'Inn', exact: true }).click()
+
+  // Each stay closes the inn
+  await openInn()
   await page.getByRole('button', { name: 'Stay 1 Night' }).click()
+  await expect(inn).toBeHidden()
   await expect(sheet).toContainText(/Hit Points:\s*7\/10/)
+  await openInn()
   await page.getByRole('button', { name: 'Stay Until Healed' }).click()
+  await expect(inn).toBeHidden()
   await expect(sheet).toContainText(/Hit Points:\s*10\/10/)
   await expect(sheet).toContainText(/Gold:\s*6/)
 
+  // A refusal keeps it open; Cancel closes it
+  await openInn()
   await page.getByRole('button', { name: 'Stay 1 Night' }).click()
   await expect(page.getByRole('dialog', { name: 'Alert' })).toContainText(
     'You character is already up to full hit points.'
   )
   await page.getByRole('button', { name: 'OK' }).click()
+  await expect(inn).toBeVisible()
   await page.getByRole('button', { name: 'Cancel' }).click()
-  await expect(page.getByRole('region', { name: 'Inn' })).toBeHidden()
+  await expect(inn).toBeHidden()
 })
 
 test('armorer: buying leather lowers the armor class', async ({ page }) => {

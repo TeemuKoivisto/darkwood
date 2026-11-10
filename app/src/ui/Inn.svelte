@@ -7,7 +7,7 @@
   const { run } = useGame()
 </script>
 
-<!-- ASSUMPTION: the inn stays open after a stay, so several nights can be bought; Cancel leaves -->
+<!-- A stay closes the inn (the systems set the screen); a refusal keeps it open; Cancel leaves -->
 <section class="inn" aria-label="Inn">
   <h2 class="dlog-title">Inn</h2>
   <p>For each night you stay you<br />are healed 1 hit point.</p>
