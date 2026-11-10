@@ -90,3 +90,9 @@ test('05 weapon shop', async ({ page }) => {
   await page.getByRole('option', { name: 'Bardiche' }).click()
   await shot(page, '05-weapon-shop')
 })
+
+test('06 opponent', async ({ page }) => {
+  await patchCharacter(page, VETERAN)
+  await page.getByRole('button', { name: 'Arena' }).click()
+  await shot(page, '06-opponent')
+})

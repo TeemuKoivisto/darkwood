@@ -14,6 +14,7 @@
   import MagicShop from './ui/MagicShop.svelte'
   import MainScreen from './ui/MainScreen.svelte'
   import MenuBar from './ui/MenuBar.svelte'
+  import OpponentPicker from './ui/OpponentPicker.svelte'
   import WeaponShop from './ui/WeaponShop.svelte'
 
   let { ctx }: { ctx: UiCtx } = $props()
@@ -28,6 +29,7 @@
     inn: Inn,
     armorer: Armorer,
     'weapon-shop': WeaponShop,
+    opponent: OpponentPicker,
   }
   const Current = $derived(SCREENS[data.screen])
 </script>

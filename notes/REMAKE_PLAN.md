@@ -74,10 +74,10 @@ Already in place (see `CLAUDE.md` "Architecture"): `game/types.ts`, `game/maps.t
 
 ## Task 6 — Opponent picker (`reference/06-opponent.png`)
 
-- [ ] `systems/combat.ts`: `startFight: GameSys<{ creature: string }>` puts a `Fight` with a
+- [x] `systems/combat.ts`: `startFight: GameSys<{ creature: string }>` puts a `Fight` with a
       fresh copy of the creature on `maps.fights` and opens the combat screen; `endFight` removes
       it and returns to main.
-- [ ] `ui/OpponentPicker.svelte`: list of all 20 creatures; the selected one shows Hit Points,
+- [x] `ui/OpponentPicker.svelte`: list of all 20 creatures; the selected one shows Hit Points,
       Armor Class, Attacks/Round, Damage/Attack, XP Value, Award Money, Surrender Penalty
       (`rules.surrenderPenalty`), Magic Weapon Req (`No` or the bonus). Cancel returns to main;
       Fight calls `startFight`.
@@ -150,3 +150,4 @@ GameSys<{ item: string }>`, `surrender`, each a `GameSys` that runs one round th
 - Task 3: the Inn stays open after a stay so several nights can be bought one at a time; Cancel closes it.
 - Task 4: "Cost (Trade-In)" shows the plain table cost and buying charges it in full (rules.md has no trade-in; the screenshot, from a later version, shows 1 for Leather). Buying the armor already worn is allowed. The armor icon is left out: there is no armor picture among the extracted resources.
 - Task 5: duplicate weapons may be bought (rules.md does not forbid it), so owned weapons are addressed by index. A weapon bought while bare-handed becomes current. Selling a weapon listed before the current one keeps the same weapon current. The full-rack refusal reads "Sorry... You can not carry any more weapons.".
+- Task 6: the picker lists all 20 creatures whatever the level, and shows the table numbers (Award Money 10 for the Giant Rat; the screenshot, from a later version, shows 8). Magic Weapon Req shows "+N" for a required bonus.
