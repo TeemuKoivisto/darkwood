@@ -2,6 +2,13 @@
 
 Darkwood 1.2 by Robert Chancellor, a shareware arena-combat RPG for classic Mac OS.
 
+## Remake
+
+- `app/` — the web remake, Vite + Svelte 5 + TypeScript + Vitest. `cd app && npm install && npm run dev`.
+- `notes/REMAKE_PLAN.md` — ordered task list with acceptance criteria; `CLAUDE.md` — conventions for an unattended Claude Code session.
+- `./run-remake.sh` — starts that session (Opus 5.5, edits auto-accepted, commands allowlisted in `.claude/settings.json`); it commits each finished task on the `remake` branch. `--headless` runs it without the TUI and logs to `remake.log`.
+- `reference/` — screenshots of every original screen, numbered in implementation order.
+
 ## Layout
 
 - `original/` — untouched sources: `DARKWOOD.img` (DiskCopy 4.2 800K floppy), `Darkwood_1.2.bin` (the app as MacBinary, resource fork intact), `ReadMe.bin` / `ReadMe.doc` (Word 5 manual).
@@ -16,14 +23,14 @@ Darkwood 1.2 by Robert Chancellor, a shareware arena-combat RPG for classic Mac 
 
 ## Pictures
 
-| PICT | Size | Content |
-|---|---|---|
-| 128 / 129 | 323x55 / 315x46 | "DARKWOOD" title lettering (colour / black and white) |
-| 130 / 131 | 201x176 | Title screen: lettering over a stone wall (colour / b&w) |
-| 156 / 256 | 150x187 | Town map (b&w / colour) |
-| 257 | 163x223 | Death screen reaper (no b&w twin) |
-| 158 / 258 | 254x104 | Treasure pile, shown on winning a fight |
-| 159 / 259 | 122x169 | The hero Derek, full-figure portrait for the main window (b&w / colour) |
+| PICT      | Size            | Content                                                                 |
+| --------- | --------------- | ----------------------------------------------------------------------- |
+| 128 / 129 | 323x55 / 315x46 | "DARKWOOD" title lettering (colour / black and white)                   |
+| 130 / 131 | 201x176         | Title screen: lettering over a stone wall (colour / b&w)                |
+| 156 / 256 | 150x187         | Town map (b&w / colour)                                                 |
+| 257       | 163x223         | Death screen reaper (no b&w twin)                                       |
+| 158 / 258 | 254x104         | Treasure pile, shown on winning a fight                                 |
+| 159 / 259 | 122x169         | The hero Derek, full-figure portrait for the main window (b&w / colour) |
 
 `cicn` 256/262 are the character portrait icons, 267 Fight, 269 Defensive, 271 Surrender, 273 Use, 258/512 misc. The `cctb`/`dctb`/`wctb`/`ictb` resources are only colour tables for dialogs and controls.
 

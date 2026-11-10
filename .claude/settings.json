@@ -1,0 +1,38 @@
+{
+  "model": "claude-opus-5-5",
+  "permissions": {
+    "allow": [
+      "Bash(npm test:*)",
+      "Bash(npm run:*)",
+      "Bash(npm install:*)",
+      "Bash(npx vitest:*)",
+      "Bash(npx svelte-check:*)",
+      "Bash(npx tsc:*)",
+      "Bash(npx eslint:*)",
+      "Bash(npx prettier:*)",
+      "Bash(git status:*)",
+      "Bash(git diff:*)",
+      "Bash(git log:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git checkout:*)",
+      "Bash(git branch:*)",
+      "Bash(ls:*)",
+      "Bash(sips:*)"
+    ],
+    "deny": [
+      "Edit(./original/**)",
+      "Edit(./extracted/**)",
+      "Edit(./png/**)",
+      "Edit(./reference/**)",
+      "Edit(./notes/rules.md)",
+      "Edit(./notes/tables.md)",
+      "Write(./original/**)",
+      "Write(./extracted/**)",
+      "Write(./png/**)",
+      "Write(./reference/**)",
+      "Bash(git push:*)",
+      "Bash(rm -rf:*)"
+    ]
+  }
+}
