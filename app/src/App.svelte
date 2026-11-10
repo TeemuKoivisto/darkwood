@@ -9,6 +9,7 @@
   import type { Screen } from './game/types'
   import Alert from './ui/Alert.svelte'
   import { provideGame, type UiCtx } from './ui/game'
+  import Inn from './ui/Inn.svelte'
   import MagicShop from './ui/MagicShop.svelte'
   import MainScreen from './ui/MainScreen.svelte'
   import MenuBar from './ui/MenuBar.svelte'
@@ -22,6 +23,7 @@
 
   const SCREENS: Partial<Record<Screen, Component>> = {
     'magic-shop': MagicShop,
+    inn: Inn,
   }
   const Current = $derived(SCREENS[data.screen])
 </script>

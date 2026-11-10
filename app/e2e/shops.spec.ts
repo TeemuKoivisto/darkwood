@@ -38,3 +38,28 @@ test('magic shop: a refusal shows the alert, a purchase moves the item over', as
   await expect(page.getByRole('listbox', { name: 'Character Items' })).toHaveText('')
   await expect(shop.getByText('Gold:')).toContainText('62')
 })
+
+test('inn: heals for gold and refuses at full hit points', async ({ page }) => {
+  await page.evaluate(() => {
+    const save = JSON.parse(localStorage.getItem('darkwood-save')!)
+    save.characters[0].hp = 6
+    localStorage.setItem('darkwood-save', JSON.stringify(save))
+  })
+  await page.reload()
+  const sheet = page.getByRole('region', { name: 'Character' })
+
+  await page.getByRole('button', { name: 'Inn', exact: true }).click()
+  await page.getByRole('button', { name: 'Stay 1 Night' }).click()
+  await expect(sheet).toContainText(/Hit Points:\s*7\/10/)
+  await page.getByRole('button', { name: 'Stay Until Healed' }).click()
+  await expect(sheet).toContainText(/Hit Points:\s*10\/10/)
+  await expect(sheet).toContainText(/Gold:\s*6/)
+
+  await page.getByRole('button', { name: 'Stay 1 Night' }).click()
+  await expect(page.getByRole('dialog', { name: 'Alert' })).toContainText(
+    'You character is already up to full hit points.'
+  )
+  await page.getByRole('button', { name: 'OK' }).click()
+  await page.getByRole('button', { name: 'Cancel' }).click()
+  await expect(page.getByRole('region', { name: 'Inn' })).toBeHidden()
+})

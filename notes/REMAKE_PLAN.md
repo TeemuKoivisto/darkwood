@@ -54,7 +54,7 @@ Already in place (see `CLAUDE.md` "Architecture"): `game/types.ts`, `game/maps.t
 
 - [x] `systems/inn.ts`: `stayOneNight`, `stayUntilHealed`, reproducing the original's behaviour
       including the **(bug)** that an unaffordable full heal zeroes gold and heals nothing. Tests.
-- [ ] `ui/Inn.svelte`: the text and three buttons; the alert on refusal.
+- [x] `ui/Inn.svelte`: the text and three buttons; the alert on refusal.
 
 ## Task 4 — Armorer (`reference/04-armorer.png`)
 
@@ -147,3 +147,4 @@ GameSys<{ item: string }>`, `surrender`, each a `GameSys` that runs one round th
 - Task 0: `state.alert` is derived from a queue, `state.alerts`, so a combat round can show several notices (level drain, magic weapon needed) one after another; `run` appends refusals to it.
 - Task 1: the menus are disabled while a shop, the arena or a fight is open (the original opened those as modal dialogs). The main window has a "Darkwood" title bar like the original window.
 - Task 2: the shop refusal texts were not recovered; they are "Sorry... You do not have enough gold to buy this item." / "...can not carry any more magic items." / "...already own this item." / "...can only own one item that alters your armor class.". Prices are the ones in `tables.json`; the screenshots show different prices (Potion of Healing 100), presumably from the later version that took them.
+- Task 3: the Inn stays open after a stay so several nights can be bought one at a time; Cancel closes it.

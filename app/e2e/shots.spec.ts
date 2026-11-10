@@ -62,3 +62,9 @@ test('02 magic shop', async ({ page }) => {
   await page.getByRole('listbox', { name: 'Character Items' }).getByRole('option').first().click()
   await shot(page, '02-magic-shop')
 })
+
+test('03 inn', async ({ page }) => {
+  await patchCharacter(page, VETERAN)
+  await page.getByRole('button', { name: 'Inn', exact: true }).click()
+  await shot(page, '03-inn')
+})
