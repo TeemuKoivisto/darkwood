@@ -1,12 +1,14 @@
 # Darkwood 1.2 game data
 
-Recovered from the `CODE 5` segment of the application (THINK Pascal constructor calls with immediate arguments). Field names are inferred from the argument order, the AD&D 2nd edition values the author copied, and the Read Me. Negative numbers were 16-bit two's complement in the code. Raw calls: `code5_constructor_calls.json`.
+Recovered from the `CODE 5` segment of the application (THINK Pascal constructor calls with immediate arguments). Field names come from reading the code that consumes each field (see `rules.md`). Negative numbers were 16-bit two's complement in the code. Raw calls: `code5_constructor_calls.json`.
+
+**Damage is a uniform range, not dice.** The game calls `RandomNumber(dmg_min, dmg_max)`, so a Flail does 2 to 7 uniformly, not 2d7. The author entered AD&D dice as min/max (Warhammer 1d4+1 = 2 to 5, Bastard Sword 2d4 = 2 to 8).
 
 ## Weapons
 
-Damage is `dmg_dice` d `dmg_sides`; `speed` is the AD&D weapon speed factor (lower is faster, affects who strikes first). Constructor at CODE 5 offset 0x08A0, record tag "WEAPONRE".
+`speed` is the AD&D weapon speed factor (lower is better for initiative). Constructor at CODE 5 offset 0x08A0, record tag "WEAPONRE". The character starts with the Dagger.
 
-| name | cost | magic_bonus | dmg_dice | dmg_sides | speed |
+| name | cost | magic_bonus | dmg_min | dmg_max | speed |
 |---|---|---|---|---|---|
 | Bardiche | 7 | 0 | 2 | 8 | 9 |
 | Battle Axe | 5 | 0 | 1 | 8 | 7 |
@@ -38,7 +40,7 @@ Damage is `dmg_dice` d `dmg_sides`; `speed` is the AD&D weapon speed factor (low
 
 ## Armor
 
-`ac_modifier` is added to a base armor class of 10 (so Leather = AC 8, Full Plate +4 = AC -3). Constructor at 0x139A.
+`ac_modifier` is added to a base armor class of 10 (Leather = AC 8, Full Plate +4 = AC -3). Only one armor can be owned. Constructor at 0x139A.
 
 | name | cost | ac_modifier |
 |---|---|---|
@@ -57,9 +59,9 @@ Damage is `dmg_dice` d `dmg_sides`; `speed` is the AD&D weapon speed factor (low
 
 ## Magic items
 
-`attribute_raised` is the stat index a Tome raises by 1 (the game also knows 2=Int, 3=Wis, 6=Cha but ships no tomes for them). `charges` 10 for wands, 1 for potions, 0 for rings (passive). `dmg_min/max` are the attack roll range, `heal_min/max` the heal range. The `unknown` field is 0 for every item. Constructor at 0x1880.
+`attribute_raised` is the stat a Tome raises. `charges` is the live charge counter on the owned copy: wands have 10, potions 1, rings 0 (passive, never consumed). `dmg_*` items can only be used in combat; `heal_*` items anywhere. `unused` is 0 for every item and never read. Constructor at 0x1880. Up to 10 items can be owned, no duplicates, and only one AC-altering item.
 
-| name | cost | ac_bonus | unknown | dmg_min | dmg_max | heal_min | heal_max | charges | attribute_raised |
+| name | cost | ac_bonus | unused | dmg_min | dmg_max | heal_min | heal_max | charges | attribute_raised |
 |---|---|---|---|---|---|---|---|---|---|
 | Potion of Healing | 75 | 0 | 0 | 0 | 0 | 1 | 8 | 1 | - |
 | Potion of Extra Healing | 200 | 0 | 0 | 0 | 0 | 4 | 24 | 1 | - |
@@ -77,9 +79,9 @@ Damage is `dmg_dice` d `dmg_sides`; `speed` is the AD&D weapon speed factor (low
 
 ## Creatures
 
-`thac0` is the roll needed on d20 to hit AC 0. Damage per attack is `dmg_dice` d `dmg_sides`, `attacks` per round. `level_drain` 1 = undead that drains a level on hit (Ghoul, Wight). `needs_magic_weapon` = minimum weapon bonus required to hit at all (Gargoyle, Wight, Earth Elemental, Black Dragon +1; Red Dragon +2). `xp` and `gold` match the Read Me table. Constructor at 0x3BC0, record tag "CREATURE".
+`thac0` is the number the creature needs on d20 to hit AC 0. `attacks` per round, each doing `dmg_min` to `dmg_max`. `level` feeds initiative. `level_drain` = levels drained on each hit (Ghoul, Wight). `needs_magic_weapon` = minimum weapon bonus required to hit at all. `xp` and `gold` match the Read Me table. Constructor at 0x3BC0, record tag "CREATURE".
 
-| name | hp | hp_max | ac | thac0 | level | attacks | dmg_dice | dmg_sides | xp | gold | level_drain | needs_magic_weapon |
+| name | hp | hp_max | ac | thac0 | level | attacks | dmg_min | dmg_max | xp | gold | level_drain | needs_magic_weapon |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
 | Rat, Giant | 2 | 2 | 9 | 20 | 2 | 1 | 1 | 4 | 75 | 10 | 0 | 0 |
 | Kobold | 4 | 4 | 8 | 20 | 4 | 1 | 1 | 6 | 90 | 20 | 0 | 0 |

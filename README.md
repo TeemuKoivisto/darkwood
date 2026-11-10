@@ -9,6 +9,7 @@ Darkwood 1.2 by Robert Chancellor, a shareware arena-combat RPG for classic Mac 
 - `png/` — the pictures and icons converted to PNG for viewing.
 - `notes/ReadMe.txt` — the manual as plain text (story, rules, screen descriptions, opponent and magic item tables, version history).
 - `notes/tables.md`, `notes/tables.json` — every game data table recovered from the code: 27 weapons, 12 armors, 13 magic items, 20 creatures, plus the message strings.
+- `notes/rules.md` — the complete rule set read from the disassembly: random number generator, character stats and bonuses, initiative, hit and damage rolls, level drain, rewards and level-up, shops, inn, magic item use, sounds, and the original's quirks and bugs.
 - `notes/opponents.tsv`, `notes/magic_items.tsv` — the two tables as printed in the manual.
 - `tools/resource_dasm` — the extractor binary (built from fuzziqersoftware/resource_dasm, arm64).
 
@@ -31,7 +32,7 @@ Darkwood 1.2 by Robert Chancellor, a shareware arena-combat RPG for classic Mac 
 
 ## Where the rules live
 
-All item and creature stats are built at startup by constructor calls in `CODE 5` (see `notes/tables.md`). There is no STR#/TEXT data; messages are inline Pascal strings. The combat loop, hit roll, initiative, stat bonuses and level-up thresholds are still to be read out of the other CODE segments.
+All item and creature stats are built at startup by constructor calls in `CODE 5` (see `notes/tables.md`). There is no STR#/TEXT data; messages are inline Pascal strings. The combat engine, stat tables and level-up logic are also in `CODE 5`; the dialog drivers are in `CODE 4`; `RandomNumber` and the sound players are in `CODE 7`. Everything needed for a reimplementation is written up in `notes/rules.md`.
 
 ## Reproducing the extraction
 
