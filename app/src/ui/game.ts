@@ -10,7 +10,7 @@ import type { GameCtx, GameSys } from '../game/types'
 export type UiCtx = GameCtx & { state: GameData }
 
 export type Game = {
-  state: GameData
+  data: GameData
   ctx: UiCtx
   /** Calls a system; a refusal goes to the alert box. Returns whether it went through. */
   run: <P>(system: GameSys<P>, ...payload: P extends void ? [] : [P]) => boolean
@@ -20,7 +20,7 @@ const KEY = Symbol('game')
 
 export function makeGame(ctx: UiCtx): Game {
   return {
-    state: ctx.state,
+    data: ctx.state,
     ctx,
     run: (system, ...payload) => {
       const failed = system(ctx, payload[0] as never)

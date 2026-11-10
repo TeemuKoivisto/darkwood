@@ -4,13 +4,13 @@
   import { useGame } from './game'
   import Modal from './Modal.svelte'
 
-  const { state, run } = useGame()
+  const { data, run } = useGame()
 </script>
 
-<Modal open={state.alert !== null} label="Alert">
+<Modal open={data.alert !== null} label="Alert">
   <div class="alert">
     <span class="icon" aria-hidden="true">!</span>
-    <p>{state.alert}</p>
+    <p>{data.alert}</p>
   </div>
   <div class="buttons">
     <button class="default" onclick={() => run(dismissAlert)}>OK</button>

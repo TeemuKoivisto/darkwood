@@ -28,16 +28,16 @@ Already in place (see `CLAUDE.md` "Architecture"): `game/types.ts`, `game/maps.t
 
 ## Task 1 — Main screen (`reference/01-main.png`)
 
-- [ ] `ui/MainScreen.svelte`: left column with portrait (`portrait-player.png`), name in blue,
+- [x] `ui/MainScreen.svelte`: left column with portrait (`portrait-player.png`), name in blue,
       "Class: Warrior", then Level / XP / Hit Points (`hp/hp_max`) / AC / Gold in a box, then the six
       stats in a second box (Strength shown as `18/42` when percentile > 0). Values right-aligned in
       red like the screenshot.
-- [ ] Right column: "City of Darkwood" title, the map image, "Click on a building" below.
-- [ ] Five hit areas over the map as transparent `<button>`s with `aria-label`s, positioned by
+- [x] Right column: "City of Darkwood" title, the map image, "Click on a building" below.
+- [x] Five hit areas over the map as transparent `<button>`s with `aria-label`s, positioned by
       percentage so they survive scaling. Mapping (see `notes/TODO_REMAKE.md`): bottom-right
       thatched = Magic Item Shop, grey stone = Inn, centre thatched = Armorer, top-left thatched =
       Weapon Shop, round arena = Opponent picker. Hovering highlights the area with an outline.
-- [ ] Menu bar across the top of the panel with File / Character / Shops (contents in Task 8;
+- [x] Menu bar across the top of the panel with File / Character / Shops (contents in Task 8;
       for now File has New Game, Shops opens the four shops, Character is empty).
 
 ## Task 2 — Magic Item Shop (`reference/02-magic-shop.png`)
@@ -145,3 +145,4 @@ GameSys<{ item: string }>`, `surrender`, each a `GameSys` that runs one round th
 
 - Task 0: `main.ts` creates the maps and `GameData` (not `App.svelte`) so the save loads before the first render; `App` receives them as a prop, provides them via context and runs `newGame` when nothing was loaded.
 - Task 0: `state.alert` is derived from a queue, `state.alerts`, so a combat round can show several notices (level drain, magic weapon needed) one after another; `run` appends refusals to it.
+- Task 1: the menus are disabled while a shop, the arena or a fight is open (the original opened those as modal dialogs). The main window has a "Darkwood" title bar like the original window.

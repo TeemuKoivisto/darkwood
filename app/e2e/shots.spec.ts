@@ -8,6 +8,34 @@ import { expect, test, type Page } from '@playwright/test'
 const shot = (page: Page, name: string) =>
   page.screenshot({ path: `shots/${name}.png`, fullPage: false })
 
+/** The late-game character of the reference screenshots, written into the autosave. */
+const VETERAN = {
+  level: 14,
+  xp: 1548525,
+  hp: 118,
+  hpMax: 118,
+  strength: 18,
+  strengthPct: 10,
+  wisdom: 17,
+  dexterity: 18,
+  constitution: 18,
+  charisma: 17,
+  thac0: 7,
+  attacksPerRound: 2,
+  gold: 24554,
+}
+
+async function patchCharacter(page: Page, fields: Record<string, unknown>) {
+  await page.evaluate(fields => {
+    const save = JSON.parse(localStorage.getItem('darkwood-save')!)
+    save.characters = save.characters.map((c: { id: string }) =>
+      c.id === save.characterId ? { ...c, ...fields } : c
+    )
+    localStorage.setItem('darkwood-save', JSON.stringify(save))
+  }, fields)
+  await page.reload()
+}
+
 test.beforeEach(async ({ page }) => {
   await page.goto('/')
   // A fresh character every run, whatever the browser profile has saved
@@ -16,6 +44,8 @@ test.beforeEach(async ({ page }) => {
 })
 
 test('01 main', async ({ page }) => {
-  await expect(page.getByText('Darkwood')).toBeVisible()
+  await patchCharacter(page, VETERAN)
+  await expect(page.getByText('City of Darkwood')).toBeVisible()
+  await page.getByRole('button', { name: 'Armorer' }).hover()
   await shot(page, '01-main')
 })
