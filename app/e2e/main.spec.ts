@@ -40,3 +40,12 @@ test('the game is saved and comes back after a reload', async ({ page }) => {
   await page.reload()
   await expect(page.getByRole('region', { name: 'Character' })).toContainText(/Gold:\s*77/)
 })
+
+test('the sound switch is remembered', async ({ page }) => {
+  const toggle = page.getByRole('button', { name: /Sound/ })
+  await expect(toggle).toHaveText('Sound On')
+  await toggle.click()
+  await expect(toggle).toHaveText('Sound Off')
+  await page.reload()
+  await expect(page.getByRole('button', { name: /Sound/ })).toHaveText('Sound Off')
+})

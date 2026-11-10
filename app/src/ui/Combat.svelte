@@ -15,6 +15,7 @@
   import { useGame } from './game'
   import ItemPicker from './ItemPicker.svelte'
   import Modal from './Modal.svelte'
+  import { sounds } from './sounds'
 
   const { data, run } = useGame()
   const c = $derived(data.character!)
@@ -50,6 +51,14 @@
       run(newGame, {})
     } else run(endFight)
   }
+
+  // Each new round plays its sounds; a fight reopened from the save stays quiet
+  let heard = data.fight!.round
+  $effect(() => {
+    if (fight.round === heard) return
+    heard = fight.round
+    sounds.playAll(fight.sounds)
+  })
 
   // A paid surrender leaves the arena once its alert is closed
   $effect(() => {

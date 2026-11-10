@@ -125,7 +125,7 @@ GameSys<{ item: string }>`, `surrender`, each a `GameSys` that runs one round th
 
 ## Task 9 — Sounds
 
-- [ ] `ui/sounds.ts`: play `hit-on-player`, `missed`, `hit-on-creature`, `new-level`, `oouch` at
+- [x] `ui/sounds.ts`: play `hit-on-player`, `missed`, `hit-on-creature`, `new-level`, `oouch` at
       the moments listed in `rules.md` "Sounds". A mute toggle in the menu bar, remembered in
       `localStorage`.
 
@@ -157,3 +157,4 @@ GameSys<{ item: string }>`, `surrender`, each a `GameSys` that runs one round th
 - Task 7: the win dialog prints "You have defeated your opponent." before the award line, as in `10-win.png` (rules.md lists them the other way round). The Option-key double-xp cheat is left out. The game-won alert uses `portrait-player.png`, as the plan says.
 - Task 7: `app/public/assets/img/portrait-creature.png` is byte-identical to `portrait-player.png`; the creature icon in the screenshots is `png/cicn_258.png`. The asset was not replaced (copying into public/ was not permitted in this session), so both fighters show the player portrait for now.
 - Task 8: the Shops menu keeps the four shops of `MENU_260` (no Arena entry), each opening the same screen as its building. File > Open shows "This file is not a Darkwood character file." for anything that is not a version-1 save. Saved files are named `<name>.darkwood.json`.
+- Task 9: a round's sounds play one after another (each starts when the previous ends) when the round is drawn, not interleaved with the rolls. The switch reads "Sound On"/"Sound Off" at the right of the menu bar and is stored under `darkwood-muted`.

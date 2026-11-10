@@ -11,6 +11,7 @@
   import { useGame } from './game'
   import ItemPicker from './ItemPicker.svelte'
   import Modal from './Modal.svelte'
+  import { sounds } from './sounds'
 
   const { data, run } = useGame()
 
@@ -51,6 +52,13 @@
       ],
     },
   ]
+
+  let muted = $state(sounds.muted)
+
+  function toggleSound() {
+    muted = !muted
+    sounds.setMuted(muted)
+  }
 
   let open = $state<string | null>(null)
   // The menus are for the town; a shop or a fight has to be closed first, like the modal original
@@ -110,6 +118,9 @@
       {/if}
     </div>
   {/each}
+  <button class="sound" aria-pressed={!muted} onclick={toggleSound}>
+    {muted ? 'Sound Off' : 'Sound On'}
+  </button>
   <input
     bind:this={fileInput}
     type="file"
@@ -158,6 +169,13 @@
     border: 0;
     background: transparent;
     white-space: nowrap;
+  }
+
+  .sound {
+    margin-left: auto;
+    padding: 2px 12px;
+    border: 0;
+    background: transparent;
   }
 
   .menu-title.open {
