@@ -116,12 +116,12 @@ GameSys<{ item: string }>`, `surrender`, each a `GameSys` that runs one round th
 
 ## Task 8 — Menus and character dialogs
 
-- [ ] File: New Game (confirm "Are you sure you want to abandon this character for another?"),
+- [x] File: New Game (confirm "Are you sure you want to abandon this character for another?"),
       Save (download the JSON), Open (file picker, load JSON). Autosave stays on regardless.
-- [ ] Character > Equipment: a dialog listing weapons (current marked), armor, magic items with
+- [x] Character > Equipment: a dialog listing weapons (current marked), armor, magic items with
       charges. Character > Magic Items: the same picker as in combat, usable outside combat (potions
       and tomes work, damage items say "This item can only be used in combat.").
-- [ ] Shops menu mirrors the map buildings.
+- [x] Shops menu mirrors the map buildings.
 
 ## Task 9 — Sounds
 
@@ -156,3 +156,4 @@ GameSys<{ item: string }>`, `surrender`, each a `GameSys` that runs one round th
 - Task 7: a magic item that refuses (full hit points, a ring, a tome at maximum) costs no combat round: the alert shows and the creature does not attack. A tome at its maximum keeps its charge; the text is "Sorry... That attribute is already at its maximum.". Only the tails of the heal/damage messages survive, so they read "You have been healed N hit points." and "The creature took N hit points of damage.".
 - Task 7: the win dialog prints "You have defeated your opponent." before the award line, as in `10-win.png` (rules.md lists them the other way round). The Option-key double-xp cheat is left out. The game-won alert uses `portrait-player.png`, as the plan says.
 - Task 7: `app/public/assets/img/portrait-creature.png` is byte-identical to `portrait-player.png`; the creature icon in the screenshots is `png/cicn_258.png`. The asset was not replaced (copying into public/ was not permitted in this session), so both fighters show the player portrait for now.
+- Task 8: the Shops menu keeps the four shops of `MENU_260` (no Arena entry), each opening the same screen as its building. File > Open shows "This file is not a Darkwood character file." for anything that is not a version-1 save. Saved files are named `<name>.darkwood.json`.

@@ -1,13 +1,24 @@
 <script lang="ts">
-  /** The menu bar across the top of the panel: File / Character / Shops. */
-  import { newGame, openScreen } from '../game/systems/newGame'
+  /**
+   * The menu bar across the top of the panel: File (New Game, Open, Save), Character (Equipment,
+   * Magic Items), Shops (the four shops, as on the map). Autosave runs whatever File does.
+   */
+  import { useMagicItem } from '../game/systems/items'
+  import { loadGame, newGame, openScreen } from '../game/systems/newGame'
+  import { serializeMaps } from '../game/save'
   import type { Screen } from '../game/types'
+  import Equipment from './Equipment.svelte'
   import { useGame } from './game'
+  import ItemPicker from './ItemPicker.svelte'
+  import Modal from './Modal.svelte'
 
   const { data, run } = useGame()
 
   type Item = { label: string; action: () => void }
   type Menu = { title: string; items: Item[] }
+
+  let dialog = $state<'new-game' | 'equipment' | 'items' | null>(null)
+  let fileInput: HTMLInputElement
 
   const shop = (label: string, screen: Screen): Item => ({
     label,
@@ -15,8 +26,21 @@
   })
 
   const MENUS: Menu[] = [
-    { title: 'File', items: [{ label: 'New Game', action: () => run(newGame, {}) }] },
-    { title: 'Character', items: [] },
+    {
+      title: 'File',
+      items: [
+        { label: 'New Game', action: () => (dialog = 'new-game') },
+        { label: 'Open...', action: () => fileInput.click() },
+        { label: 'Save...', action: save },
+      ],
+    },
+    {
+      title: 'Character',
+      items: [
+        { label: 'Equipment...', action: () => (dialog = 'equipment') },
+        { label: 'Magic Items...', action: () => (dialog = 'items') },
+      ],
+    },
     {
       title: 'Shops',
       items: [
@@ -35,6 +59,26 @@
   function choose(item: Item) {
     open = null
     item.action()
+  }
+
+  function save() {
+    const json = serializeMaps(data.maps, data.characterId)
+    const link = document.createElement('a')
+    link.href = URL.createObjectURL(new Blob([json], { type: 'application/json' }))
+    link.download = `${data.character?.name ?? 'Character'}.darkwood.json`
+    link.click()
+    URL.revokeObjectURL(link.href)
+  }
+
+  async function load() {
+    const file = fileInput.files?.[0]
+    fileInput.value = ''
+    if (file) run(loadGame, { json: await file.text() })
+  }
+
+  function useItem(item: string) {
+    dialog = null
+    run(useMagicItem, { item })
   }
 </script>
 
@@ -57,7 +101,7 @@
       >
         {menu.title}
       </button>
-      {#if open === menu.title && menu.items.length}
+      {#if open === menu.title}
         <div class="items" role="menu" aria-label={menu.title}>
           {#each menu.items as item (item.label)}
             <button role="menuitem" onclick={() => choose(item)}>{item.label}</button>
@@ -66,7 +110,34 @@
       {/if}
     </div>
   {/each}
+  <input
+    bind:this={fileInput}
+    type="file"
+    accept=".json,application/json"
+    aria-label="Open a character file"
+    hidden
+    onchange={load}
+  />
 </nav>
+
+<Modal open={dialog === 'new-game'} label="New Game">
+  <div class="confirm">
+    <p>Are you sure you want to abandon this character for another?</p>
+    <div class="buttons">
+      <button onclick={() => (dialog = null)}>Cancel</button>
+      <button
+        class="default"
+        onclick={() => {
+          dialog = null
+          run(newGame, {})
+        }}>OK</button
+      >
+    </div>
+  </div>
+</Modal>
+
+<Equipment open={dialog === 'equipment'} onclose={() => (dialog = null)} />
+<ItemPicker open={dialog === 'items'} oncancel={() => (dialog = null)} onuse={useItem} />
 
 <style>
   .menubar {
@@ -82,7 +153,7 @@
     position: relative;
   }
 
-  button {
+  .menu button {
     padding: 2px 12px;
     border: 0;
     background: transparent;
@@ -115,5 +186,15 @@
   .items button:hover {
     background: #000;
     color: #fff;
+  }
+
+  .confirm {
+    width: 420px;
+  }
+
+  .buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 24px;
   }
 </style>
